@@ -1,9 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace InsurancePolicy.Models
+namespace InsurancePolicy.DTOs
 {
-    public class Admin
+    public class AdminInfoDto
     {
         [Key]
         public Guid AdminId { get; set; }
@@ -24,11 +23,6 @@ namespace InsurancePolicy.Models
         [RegularExpression(@"^[6-9]\d{9}$", ErrorMessage = "Invalid phone number. " +
             "It must start with 6-9 and contain exactly 10 digits.")]
         public string AdminPhone { get; set; }
-        public bool Status { get; set; }
-        
-        [ForeignKey("User")]
-        public Guid? UserId { get; set; }
-        public User? User { get; set; }
-    }
 
+    }
 }

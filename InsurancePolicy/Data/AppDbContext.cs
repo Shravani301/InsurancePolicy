@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InsurancePolicy.Data
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext : DbContext
     {
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
@@ -18,25 +18,28 @@ namespace InsurancePolicy.Data
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<Claim> Claims { get; set; }
+        public DbSet<State> States { get; set; }
+        public DbSet<City> Cities { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.HasKey(e => e.UserId);
-                entity.Property(e => e.UserId).HasDefaultValueSql("NEWSEQUENTIALID()");
-            });
             modelBuilder.Entity<Role>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).HasDefaultValueSql("NEWSEQUENTIALID()");
             });
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(e => e.UserId);
+                entity.Property(e => e.UserId).HasDefaultValueSql("NEWSEQUENTIALID()");
+            });
+
             modelBuilder.Entity<Admin>(entity =>
             {
-                entity.HasKey(e => e.PaymentId);
-                entity.Property(e => e.PaymentId).HasDefaultValueSql("NEWSEQUENTIALID()");
+                entity.HasKey(e => e.AdminId);
+                entity.Property(e => e.AdminId).HasDefaultValueSql("NEWSEQUENTIALID()");
             });
 
             modelBuilder.Entity<Agent>(entity =>
@@ -93,15 +96,85 @@ namespace InsurancePolicy.Data
 
             var adminRoleId = Guid.NewGuid();
             var agentRoleId = Guid.NewGuid();
-            var employeeId=Guid.NewGuid();
-            var customerId=Guid.NewGuid();
+            var employeeId = Guid.NewGuid();
+            var customerId = Guid.NewGuid();
             modelBuilder.Entity<Role>().HasData(
                 new Role { Id = adminRoleId, Name = "Admin" },
                 new Role { Id = agentRoleId, Name = "Agent" },
-                new Role { Id = employeeId,Name="Employee"},
-                new Role { Id= customerId, Name="Customer"}
+                new Role { Id = employeeId, Name = "Employee" },
+                new Role { Id = customerId, Name = "Customer" }
                 );
-        }        
+
+            var states = new List<State>
+        {
+        new State { StateId = Guid.NewGuid(), StateName = "Andhra Pradesh" },
+        new State { StateId = Guid.NewGuid(), StateName = "Arunachal Pradesh" },
+        new State { StateId = Guid.NewGuid(), StateName = "Assam" },
+        new State { StateId = Guid.NewGuid(), StateName = "Bihar" },
+        new State { StateId = Guid.NewGuid(), StateName = "Chhattisgarh" },
+        new State { StateId = Guid.NewGuid(), StateName = "Goa" },
+        new State { StateId = Guid.NewGuid(), StateName = "Gujarat" },
+        new State { StateId = Guid.NewGuid(), StateName = "Haryana" },
+        new State { StateId = Guid.NewGuid(), StateName = "Himachal Pradesh" },
+        new State { StateId = Guid.NewGuid(), StateName = "Jharkhand" },
+        new State { StateId = Guid.NewGuid(), StateName = "Karnataka" },
+        new State { StateId = Guid.NewGuid(), StateName = "Kerala" },
+        new State { StateId = Guid.NewGuid(), StateName = "Madhya Pradesh" },
+        new State { StateId = Guid.NewGuid(), StateName = "Maharashtra" },
+        new State { StateId = Guid.NewGuid(), StateName = "Manipur" },
+        new State { StateId = Guid.NewGuid(), StateName = "Meghalaya" },
+        new State { StateId = Guid.NewGuid(), StateName = "Mizoram" },
+        new State { StateId = Guid.NewGuid(), StateName = "Nagaland" },
+        new State { StateId = Guid.NewGuid(), StateName = "Odisha" },
+        new State { StateId = Guid.NewGuid(), StateName = "Punjab" },
+        new State { StateId = Guid.NewGuid(), StateName = "Rajasthan" },
+        new State { StateId = Guid.NewGuid(), StateName = "Sikkim" },
+        new State { StateId = Guid.NewGuid(), StateName = "Tamil Nadu" },
+        new State { StateId = Guid.NewGuid(), StateName = "Telangana" },
+        new State { StateId = Guid.NewGuid(), StateName = "Tripura" },
+        new State { StateId = Guid.NewGuid(), StateName = "Uttar Pradesh" },
+        new State { StateId = Guid.NewGuid(), StateName = "Uttarakhand" },
+        new State { StateId = Guid.NewGuid(), StateName = "West Bengal" }
+        };
+
+            modelBuilder.Entity<State>().HasData(states);
+            var stateCityMap = new List<(string StateName, string[] Cities)>
+    {
+        ("Andhra Pradesh", new[] { "Visakhapatnam", "Vijayawada", "Guntur", "Nellore", "Tirupati", "Rajahmundry", "Kakinada", "Anantapur", "Kadapa", "Chittoor" }),
+        ("Arunachal Pradesh", new[] { "Itanagar", "Tawang", "Ziro", "Pasighat", "Bomdila", "Along", "Roing", "Tezu", "Anini", "Changlang" }),
+        ("Assam", new[] { "Guwahati", "Silchar", "Dibrugarh", "Jorhat", "Tezpur", "Tinsukia", "Nagaon", "Barpeta", "Goalpara", "Bongaigaon" }),
+        ("Bihar", new[] { "Patna", "Gaya", "Bhagalpur", "Muzaffarpur", "Darbhanga", "Purnia", "Hajipur", "Ara", "Sasaram", "Begusarai" }),
+        ("Chhattisgarh", new[] { "Raipur", "Bilaspur", "Korba", "Durg", "Bhilai", "Jagdalpur", "Rajnandgaon", "Raigarh", "Ambikapur", "Mahasamund" }),
+        ("Goa", new[] { "Panaji", "Margao", "Vasco da Gama", "Mapusa", "Ponda", "Calangute", "Bicholim", "Porvorim", "Canacona", "Dona Paula" }),
+        ("Gujarat", new[] { "Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Jamnagar", "Gandhinagar", "Anand", "Navsari", "Mehsana" }),
+        ("Haryana", new[] { "Gurgaon", "Faridabad", "Panipat", "Ambala", "Hisar", "Rohtak", "Karnal", "Yamunanagar", "Sirsa", "Bhiwani" }),
+        ("Himachal Pradesh", new[] { "Shimla", "Manali", "Dharamshala", "Kullu", "Solan", "Mandi", "Chamba", "Bilaspur", "Hamirpur", "Nahan" }),
+        ("Jharkhand", new[] { "Ranchi", "Jamshedpur", "Dhanbad", "Bokaro", "Hazaribagh", "Deoghar", "Giridih", "Ramgarh", "Godda", "Pakur" }),
+        ("Karnataka", new[] { "Bangalore", "Mysore", "Mangalore", "Hubli", "Belgaum", "Davanagere", "Bellary", "Bijapur", "Shimoga", "Udupi" }),
+        ("Kerala", new[] { "Thiruvananthapuram", "Kochi", "Kozhikode", "Thrissur", "Kollam", "Alappuzha", "Kannur", "Palakkad", "Malappuram", "Idukki" }),
+        ("Madhya Pradesh", new[] { "Bhopal", "Indore", "Gwalior", "Jabalpur", "Ujjain", "Sagar", "Rewa", "Ratlam", "Satna", "Chhindwara" }),
+        ("Maharashtra", new[] { "Mumbai", "Pune", "Nagpur", "Nashik", "Thane", "Aurangabad", "Solapur", "Kolhapur", "Amravati", "Sangli" }),
+        ("Rajasthan", new[] { "Jaipur", "Jodhpur", "Udaipur", "Kota", "Ajmer", "Bikaner", "Alwar", "Bharatpur", "Jaisalmer", "Sikar" }),
+        ("Tamil Nadu", new[] { "Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem", "Tirunelveli", "Erode", "Vellore", "Thoothukudi", "Dindigul" }),
+        ("Telangana", new[] { "Hyderabad", "Warangal", "Nizamabad", "Karimnagar", "Khammam", "Mahbubnagar", "Ramagundam", "Adilabad", "Siddipet", "Mancherial" }),
+        ("Uttar Pradesh", new[] { "Lucknow", "Kanpur", "Varanasi", "Agra", "Meerut", "Allahabad", "Ghaziabad", "Bareilly", "Aligarh", "Moradabad" }),
+        ("West Bengal", new[] { "Kolkata", "Howrah", "Darjeeling", "Siliguri", "Durgapur", "Asansol", "Malda", "Bardhaman", "Jalpaiguri", "Haldia" })
+    };
+
+            foreach (var stateCity in stateCityMap)
+            {
+                var stateId = states.First(s => s.StateName == stateCity.StateName).StateId;
+                foreach (var city in stateCity.Cities)
+                {
+                    modelBuilder.Entity<City>().HasData(new City
+                    {
+                        CityId = Guid.NewGuid(),
+                        CityName = city,
+                        StateId = stateId
+                    });
+                }
+            }
+        }
     }
-    
+
 }

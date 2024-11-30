@@ -1,12 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace InsurancePolicy.Models
+namespace InsurancePolicy.DTOs
 {
-    public class Employee
+    public class EmployeeRequestDto
     {
-        [Key]
-        public Guid EmployeeId { get; set; }
+        public Guid? EmployeeId { get; set; }
 
         [Required(ErrorMessage = "First Name is required.")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "First Name should be between 3 and 50 characters.")]
@@ -29,10 +27,17 @@ namespace InsurancePolicy.Models
 
         public bool Status { get; set; }
 
-        [ForeignKey("User")]
-        public Guid? UserId { get; set; }
+        [Required]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Username must be between 3 and 50 characters long.")]
+        public string UserName { get; set; } = string.Empty;
 
-        public User? User { get; set; }  
+        [Required(ErrorMessage = "Password is required.")]
+        [StringLength(50, MinimumLength = 8, ErrorMessage = "Password must be between 8 and 50 characters long.")]
+        [DataType(DataType.Password)]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
+            ErrorMessage = "Password must contain at least one uppercase letter, one lowercase letter, " +
+                           "one number, and one special character.")]
+        public string Password { get; set; } = string.Empty;
 
     }
 }

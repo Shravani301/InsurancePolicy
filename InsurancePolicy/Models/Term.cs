@@ -1,6 +1,6 @@
 ﻿namespace InsurancePolicy.Models
 {
-    public enum Mode
+    public enum Term
     {
         YEARLY,
         HALFYEARLY,

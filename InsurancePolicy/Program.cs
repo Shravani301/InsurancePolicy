@@ -1,5 +1,6 @@
 using InsurancePolicy.Data;
 using InsurancePolicy.Exceptions;
+using InsurancePolicy.Mappers;
 using InsurancePolicy.Repositories;
 using InsurancePolicy.Services;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +38,8 @@ namespace InsurancePolicy
             builder.Services.AddTransient<IClaimService, ClaimService>();
 
             builder.Services.AddControllers();
+
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

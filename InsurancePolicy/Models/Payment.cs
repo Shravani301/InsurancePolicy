@@ -27,7 +27,9 @@ namespace InsurancePolicy.Models
         [DataType(DataType.DateTime, ErrorMessage = "Invalid payment date.")]
         public DateTime PaymentDate { get; set; } // Payment date
 
-        public List<Policy> Policies { get; set; }
+        [ForeignKey("Policy")]
+        public Guid? PolicyId  { get; set; }
+        public Policy Policy { get; set; }
         public Payment()
         {
             PaymentDate = DateTime.Now; 

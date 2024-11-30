@@ -1,6 +1,5 @@
-﻿using InsurancePolicy.Models;
+﻿using InsurancePolicy.DTOs;
 using InsurancePolicy.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsurancePolicy.Controllers
@@ -10,6 +9,7 @@ namespace InsurancePolicy.Controllers
     public class AgentController : ControllerBase
     {
         private readonly IAgentService _service;
+
         public AgentController(IAgentService service)
         {
             _service = service;
@@ -30,19 +30,18 @@ namespace InsurancePolicy.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Agent agent)
+        public IActionResult Add(AgentRequestDto agentRequestDto)
         {
-            var newAgent = _service.Add(agent);
-            return Ok(newAgent);
+            var newAgentId = _service.Add(agentRequestDto);
+            return Ok(new { AgentId = newAgentId, Message = "Agent added successfully" });
         }
 
         [HttpPut]
-        public IActionResult Modify(Agent agent)
+        public IActionResult Modify(AgentRequestDto agentRequestDto)
         {
-            _service.Update(agent);
-            return Ok(agent);
+            _service.Update(agentRequestDto);
+            return Ok(new { Message = "Agent updated successfully" });
         }
-
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {

@@ -22,7 +22,7 @@ namespace InsurancePolicy.Exceptions
         {
 
             var response = new ErrorResponse();
-            if (exception is AdminExceptions.PlanNotFoundException || exception is AgentNotFoundException ||exception is ClaimNotFoundException|| exception is CustomerExceptions.SchemeNotFoundException ||
+            if (exception is AdminNotFoundException || exception is AgentNotFoundException ||exception is ClaimNotFoundException|| exception is CustomerNotFoundException ||
     exception is DocumentNotFoundException || exception is EmployeeNotFoundException || exception is SchemeExceptions.SchemeNotFoundException ||
     exception is RoleNotFoundException || exception is PlanExceptions.PlanNotFoundException||exception is PolicyNotFoundException||exception is SchemeDetailsNotFoundException
     ||exception is PaymentNotFoundException)

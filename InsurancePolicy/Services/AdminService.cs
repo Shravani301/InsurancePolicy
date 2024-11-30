@@ -1,59 +1,101 @@
-﻿using InsurancePolicy.Exceptions.AdminExceptions;
+﻿using AutoMapper;
+using InsurancePolicy.DTOs;
+using InsurancePolicy.Exceptions.AdminExceptions;
 using InsurancePolicy.Models;
 using InsurancePolicy.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace InsurancePolicy.Services
 {
-    public class AdminService:IAdminService
+    public class AdminService : IAdminService
     {
         private readonly IRepository<Admin> _repository;
-        public AdminService(IRepository<Admin> repository)
+        private readonly IRepository<Role> _roleRepository;
+        private readonly IMapper _mapper;
+
+        public AdminService(
+            IRepository<Admin> repository,
+            IRepository<Role> roleRepository,
+            IMapper mapper)
         {
             _repository = repository;
+            _roleRepository = roleRepository;
+            _mapper = mapper;
         }
-        public Guid Add(Admin admin)
+
+        public Guid Add(AdminRequestDto adminRequestDto)
         {
+            // Ensure the "Admin" role exists
+            var adminRole = _roleRepository.GetAll().FirstOrDefault(r => r.Name == "Admin");
+            if (adminRole == null)
+                throw new Exception("Admin role not found."); // Handle this as a custom exception in production
+
+            // Hash the password
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(adminRequestDto.Password);
+
+            // Map the AdminRequestDto to the Admin model
+            var admin = _mapper.Map<Admin>(adminRequestDto);
+
+            // Set the hashed password and assign the "Admin" role ID
+            admin.User.Password = hashedPassword;
+            admin.User.RoleId = adminRole.Id; // Assign the RoleId fetched from the database
+
+            // Add the admin to the repository
             _repository.Add(admin);
-            return admin.PaymentId;
+
+            // Return the Admin ID
+            return admin.AdminId;
         }
 
-        public bool Delete(Guid id)
+        public AdminResponseDto GetById(Guid id)
         {
-            var admin = _repository.GetById(id);
-            if (admin != null)
+            var admin = _repository.GetAll().Include(a => a.User)
+           .FirstOrDefault(a => a.AdminId == id);
+            if (admin == null)
+                throw new AdminNotFoundException("No such admin found");
+
+            return _mapper.Map<AdminResponseDto>(admin);
+        }
+
+        public List<AdminResponseDto> GetAll()
+        {
+            var admins = _repository.GetAll().Include(a => a.User).ToList();
+            if (!admins.Any())
+                throw new AdminsDoesNotExistException("No admins exist");
+
+            return _mapper.Map<List<AdminResponseDto>>(admins);
+        }
+
+        public bool Update(AdminRequestDto adminRequestDto)
+        {
+            if (adminRequestDto.AdminId == null)
+                throw new AdminNotFoundException("AdminId is required for update");
+
+            var existingAdmin = _repository.GetAll()
+                .Include(a => a.User)
+                .FirstOrDefault(a => a.AdminId == adminRequestDto.AdminId.Value);
+
+            if (existingAdmin == null)
+                throw new AdminNotFoundException("No such admin found");
+
+            // Map updated values to the existing admin entity
+            _mapper.Map(adminRequestDto, existingAdmin);
+
+            // Fetch the Admin role
+            var adminRole = _roleRepository.GetAll().FirstOrDefault(r => r.Name == "Admin");
+            if (adminRole == null)
+                throw new Exception("Admin role not found.");
+
+            // Update the User entity
+            if (!string.IsNullOrEmpty(adminRequestDto.Password))
             {
-                _repository.Delete(admin);
-                return true;
+                existingAdmin.User.Password = BCrypt.Net.BCrypt.HashPassword(adminRequestDto.Password);
             }
-            throw new PlanNotFoundException("No such admin found to delete");
-        }
+            existingAdmin.User.RoleId = adminRole.Id; 
 
-        public Admin GetById(Guid id)
-        {
-            var admin = _repository.GetById(id);
-            if (admin != null)
-                return admin;
-            throw new PlanNotFoundException("No such admin found");
-        }
-
-        public List<Admin> GetAll()
-        {
-            var admins = _repository.GetAll().ToList();
-            if (admins.Count == 0)
-                throw new AdminsDoesNotExistException("No admins Exist");
-            return admins;
-        }
-
-        public bool Update(Admin admin)
-        {
-            var existingAdmin = _repository.GetAll().AsNoTracking().FirstOrDefault(a => a.PaymentId == admin.PaymentId);
-            if (existingAdmin != null)
-            {
-                _repository.Update(admin);
-                return true;
-            }
-            throw new PlanNotFoundException("No such role found");
+            _repository.Update(existingAdmin);
+            return true;
         }
     }
 }

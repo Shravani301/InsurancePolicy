@@ -40,7 +40,7 @@ namespace InsurancePolicy.Services
 
         public List<User> GetAll()
         {
-            var users = _repository.GetAll().ToList();
+            var users = _repository.GetAll().Include(r=>r.Role).ToList();
             if (users.Count == 0)
                 throw new UsersDoesNotExistException("No Users Exist");
             return users;

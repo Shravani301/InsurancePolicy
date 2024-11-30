@@ -7,14 +7,15 @@ namespace InsurancePolicy.Models
     {
         [Key]
         public Guid DocumentId { get; set; }
-
-        [Required(ErrorMessage = "Document Type is required.")]
-        [StringLength(50, ErrorMessage = "Document Type should not exceed 50 characters.")]
-        public string DocumentType { get; set; }
-
+                
         [Required(ErrorMessage = "Document Name is required.")]
         [StringLength(250, ErrorMessage = "Document Name should not exceed 100 characters.")]
-        public string DocumentName { get; set; }
+        public DocumentType DocumentName { get; set; }
+
+        [Required(ErrorMessage = "Document Name is required.")]
+        public string DocumentPath { get; set; }
+
+        public Status Status { get; set; }
 
         [Required(ErrorMessage = "Customer is required.")]
         [ForeignKey("Customer")]

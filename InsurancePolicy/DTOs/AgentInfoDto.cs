@@ -1,11 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace InsurancePolicy.Models
+namespace InsurancePolicy.DTOs
 {
-    public class Agent
+    public class AgentInfoDto
     {
-        [Key]
         public Guid AgentId { get; set; }
 
         [Required(ErrorMessage = "First Name is required.")]
@@ -30,12 +28,5 @@ namespace InsurancePolicy.Models
         public double CommissionEarned { get; set; }
 
         public bool Status { get; set; }
-
-        [ForeignKey("User")]
-        public Guid? UserId { get; set; }
-
-        public User? User { get; set; }
-        public List<Customer>? Customers { get; set; }
-
     }
 }

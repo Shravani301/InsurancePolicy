@@ -15,7 +15,7 @@ namespace InsurancePolicy.Models
         public DateTime MaturityDate { get; set; }
 
         [Required(ErrorMessage = "Premium Type is required.")]
-        public Mode PremiumType { get; set; }
+        public Term PremiumType { get; set; }
 
         [Required(ErrorMessage = "Premium Amount is required.")]
         [Range(0.01, double.MaxValue, ErrorMessage = "Premium Amount must be greater than 0.")]

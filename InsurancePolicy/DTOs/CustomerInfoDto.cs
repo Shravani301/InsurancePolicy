@@ -1,12 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace InsurancePolicy.Models
+namespace InsurancePolicy.DTOs
 {
-    public class Customer
+    public class CustomerInfoDto
     {
-        [Key]
         public Guid CustomerId { get; set; }
 
         [Required(ErrorMessage = "First Name is required.")]
@@ -40,22 +37,6 @@ namespace InsurancePolicy.Models
 
         [StringLength(50, ErrorMessage = "Nominee relation should not exceed 50 characters.")]
         public string NomineeRelation { get; set; }
-
-        public bool Status { get; set; }      
-
-        [ForeignKey("User")]
-        public Guid? UserId { get; set; }
-        
-        [ForeignKey("Agent")]
-        public Guid? AgentId { get; set; }
-
-        // Navigation properties
-        public User? User { get; set; }
-        public Agent? Agent { get; set; }
-        public List<Document>? Documents { get; set; }
-        public List<Policy>? Policies { get; set; }
-        
-
-
+        public bool Status { get; set; }
     }
 }

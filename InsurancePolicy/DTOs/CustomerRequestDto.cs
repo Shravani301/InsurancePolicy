@@ -1,13 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace InsurancePolicy.Models
+namespace InsurancePolicy.DTOs
 {
-    public class Customer
+    public class CustomerRequestDto
     {
-        [Key]
-        public Guid CustomerId { get; set; }
+        public Guid? CustomerId { get; set; }
 
         [Required(ErrorMessage = "First Name is required.")]
         [StringLength(50, ErrorMessage = "First Name should not exceed 50 characters.")]
@@ -41,21 +38,20 @@ namespace InsurancePolicy.Models
         [StringLength(50, ErrorMessage = "Nominee relation should not exceed 50 characters.")]
         public string NomineeRelation { get; set; }
 
-        public bool Status { get; set; }      
+        public bool Status { get; set; }
 
-        [ForeignKey("User")]
-        public Guid? UserId { get; set; }
-        
-        [ForeignKey("Agent")]
         public Guid? AgentId { get; set; }
 
-        // Navigation properties
-        public User? User { get; set; }
-        public Agent? Agent { get; set; }
-        public List<Document>? Documents { get; set; }
-        public List<Policy>? Policies { get; set; }
-        
+        [Required]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Username must be between 3 and 50 characters long.")]
+        public string UserName { get; set; } = string.Empty;
 
-
+        [Required(ErrorMessage = "Password is required.")]
+        [StringLength(50, MinimumLength = 8, ErrorMessage = "Password must be between 8 and 50 characters long.")]
+        [DataType(DataType.Password)]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
+            ErrorMessage = "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.")]
+        public string Password { get; set; } = string.Empty;
     }
+
 }

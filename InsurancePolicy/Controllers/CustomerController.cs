@@ -1,6 +1,5 @@
-﻿using InsurancePolicy.Models;
+﻿using InsurancePolicy.DTOs;
 using InsurancePolicy.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsurancePolicy.Controllers
@@ -10,6 +9,7 @@ namespace InsurancePolicy.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerService _service;
+
         public CustomerController(ICustomerService service)
         {
             _service = service;
@@ -30,19 +30,19 @@ namespace InsurancePolicy.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Customer customer)
+        public IActionResult Add(CustomerRequestDto customerRequestDto)
         {
-            var newCustomer = _service.Add(customer);
-            return Ok(newCustomer);
+            var newCustomerId = _service.Add(customerRequestDto);
+            return Ok(new { CustomerId = newCustomerId, Message = "Customer added successfully." });
         }
 
         [HttpPut]
-        public IActionResult Modify(Customer customer)
+        public IActionResult Modify(CustomerRequestDto customerRequestDto)
         {
-            _service.Update(customer);
-            return Ok(customer);
+            _service.Update(customerRequestDto);
+            return Ok(new { Message = "Customer updated successfully." });
         }
-
+        
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {

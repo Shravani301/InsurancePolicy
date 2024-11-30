@@ -1,7 +1,7 @@
-﻿using InsurancePolicy.Models;
+﻿using InsurancePolicy.DTOs;
 using InsurancePolicy.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace InsurancePolicy.Controllers
 {
@@ -10,6 +10,7 @@ namespace InsurancePolicy.Controllers
     public class AdminController : ControllerBase
     {
         private readonly IAdminService _service;
+
         public AdminController(IAdminService service)
         {
             _service = service;
@@ -30,24 +31,17 @@ namespace InsurancePolicy.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Admin admin)
+        public IActionResult Add(AdminRequestDto adminRequestDto)
         {
-            var newAdmin = _service.Add(admin);
-            return Ok(newAdmin);
+            var newAdminId = _service.Add(adminRequestDto);
+            return Ok(new { AdminId = newAdminId, Message = "Admin added successfully" });
         }
 
         [HttpPut]
-        public IActionResult Modify(Admin admin)
+        public IActionResult Modify(AdminRequestDto adminRequestDto)
         {
-            _service.Update(admin);
-            return Ok(admin);
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
-        {
-            _service.Delete(id);
-            return Ok("Deleted Successfully!");
+            _service.Update(adminRequestDto);
+            return Ok(new { Message = "Admin updated successfully" });
         }
     }
 }

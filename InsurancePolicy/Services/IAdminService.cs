@@ -1,13 +1,13 @@
-﻿using InsurancePolicy.Models;
+﻿using InsurancePolicy.DTOs;
+using InsurancePolicy.Models;
 
 namespace InsurancePolicy.Services
 {
     public interface IAdminService
     {
-        public List<Admin> GetAll();
-        public Admin GetById(Guid id);
-        public Guid Add(Admin admin);
-        public bool Update(Admin admin);
-        public bool Delete(Guid id);
+        public List<AdminResponseDto> GetAll();
+        public AdminResponseDto GetById(Guid id);
+        public Guid Add(AdminRequestDto admin);
+        public bool Update(AdminRequestDto admin);
     }
 }
