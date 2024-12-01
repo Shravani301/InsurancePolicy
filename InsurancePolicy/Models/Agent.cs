@@ -29,13 +29,23 @@ namespace InsurancePolicy.Models
         [Range(0.01, double.MaxValue, ErrorMessage = "Commission Earned must be greater than 0.")]
         public double CommissionEarned { get; set; }
 
-        public bool Status { get; set; }
+        public bool Status { get; set; }=true;
 
         [ForeignKey("User")]
         public Guid? UserId { get; set; }
-
         public User? User { get; set; }
-        public List<Customer>? Customers { get; set; }
+
+        [ForeignKey("Address")]
+        public Guid? AddressId { get; set; } // Foreign key for Address
+        public Address? Address { get; set; } // Navigation property for Address
+
+        [ForeignKey("Claim")]
+        public List<Claim>? Claims { get; set; } // Navigation property for Claims
+
+        public List<Commission>? Commissions { get; set; } // Navigation property for Commissions
+
+        public List<Customer>? Customers { get; set; } // Navigation property for Customers
+
 
     }
 }

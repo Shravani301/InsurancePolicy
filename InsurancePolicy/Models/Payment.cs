@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using InsurancePolicy.enums;
 
 namespace InsurancePolicy.Models
 {
@@ -21,18 +22,15 @@ namespace InsurancePolicy.Models
 
         [Required(ErrorMessage = "Total payment is required.")]
         [Range(0.0, double.MaxValue, ErrorMessage = "Total payment must be a positive number.")]
-        public double TotalPayment { get; set; } 
+        public double TotalPayment { get; set; }
 
         [Required(ErrorMessage = "Payment date is required.")]
         [DataType(DataType.DateTime, ErrorMessage = "Invalid payment date.")]
-        public DateTime PaymentDate { get; set; } // Payment date
+        public DateTime PaymentDate { get; set; } = DateTime.Now;// Payment date
 
         [ForeignKey("Policy")]
         public Guid? PolicyId  { get; set; }
         public Policy Policy { get; set; }
-        public Payment()
-        {
-            PaymentDate = DateTime.Now; 
-        }
+        
     }
 }

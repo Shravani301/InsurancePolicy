@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using InsurancePolicy.enums;
 
 namespace InsurancePolicy.Models
 {
@@ -34,6 +35,10 @@ namespace InsurancePolicy.Models
         [Required(ErrorMessage = "Claim date is required.")]
         [DataType(DataType.DateTime, ErrorMessage = "Invalid claim date.")]
         public DateTime ClaimDate { get; set; }
+        public string ClaimReason { get; set; }
+
+        public DateTime ApprovalDate { get; set; }
+        public DateTime RejectionDate { get; set; }
         public Customer? Customer { get; set; }
         public Policy? Policy { get; set; }
 

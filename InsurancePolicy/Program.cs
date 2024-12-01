@@ -33,7 +33,6 @@ namespace InsurancePolicy
             builder.Services.AddTransient<IInsurancePlanService, InsurancePlanService>();
             builder.Services.AddTransient<IInsuranceSchemeService, InsuranceSchemeService>();
             builder.Services.AddTransient<IPolicyService, PolicyService>();
-            builder.Services.AddTransient<ISchemeDetailsService, SchemeDetailsService>();
             builder.Services.AddTransient<IPaymentService,PaymentService>();    
             builder.Services.AddTransient<IClaimService, ClaimService>();
 

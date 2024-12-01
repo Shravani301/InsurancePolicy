@@ -32,12 +32,6 @@ namespace InsurancePolicy.DTOs
         [StringLength(50, ErrorMessage = "City should not exceed 50 characters.")]
         public string? City { get; set; }
 
-        [StringLength(100, ErrorMessage = "Nominee name should not exceed 100 characters.")]
-        public string Nominee { get; set; }
-
-        [StringLength(50, ErrorMessage = "Nominee relation should not exceed 50 characters.")]
-        public string NomineeRelation { get; set; }
-
         public bool Status { get; set; }
 
         public Guid? AgentId { get; set; }

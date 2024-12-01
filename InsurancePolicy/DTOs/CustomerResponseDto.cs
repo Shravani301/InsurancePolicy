@@ -10,8 +10,6 @@
         public string? Address { get; set; }
         public string? State { get; set; }
         public string? City { get; set; }
-        public string Nominee { get; set; }
-        public string NomineeRelation { get; set; }
         public bool Status { get; set; }
         public string? UserName { get; set; }
         public int TotalPolicies { get; set; }

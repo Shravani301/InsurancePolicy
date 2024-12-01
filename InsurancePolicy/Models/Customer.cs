@@ -26,36 +26,30 @@ namespace InsurancePolicy.Models
         [RegularExpression(@"^[6-9]\d{9}$", ErrorMessage = "Phone number must start with 6-9 and contain exactly 10 digits.")]
         public string Phone { get; set; }
 
-        [StringLength(100, ErrorMessage = "Address should not exceed 100 characters.")]
-        public string? Address { get; set; }
+        [Required(ErrorMessage = "Date of Birth is required.")]
+        [DataType(DataType.Date, ErrorMessage = "Invalid date format.")]
+        public DateTime DateOfBirth { get; set; }
 
-        [Required(ErrorMessage = "State is required.")]
-        public string? State { get; set; }
+        // Address Details
+        [Required(ErrorMessage = "Address is required.")]
+        [ForeignKey("Address")]
+        public Guid AddressId { get; set; }
+        public Address Address { get; set; }
 
-        [StringLength(50, ErrorMessage = "City should not exceed 50 characters.")]
-        public string? City { get; set; }
-
-        [StringLength(100, ErrorMessage = "Nominee name should not exceed 100 characters.")]
-        public string Nominee { get; set; }
-
-        [StringLength(50, ErrorMessage = "Nominee relation should not exceed 50 characters.")]
-        public string NomineeRelation { get; set; }
-
-        public bool Status { get; set; }      
+        public bool Status { get; set; }
 
         [ForeignKey("User")]
         public Guid? UserId { get; set; }
-        
+
         [ForeignKey("Agent")]
         public Guid? AgentId { get; set; }
 
-        // Navigation properties
+        // Navigation Properties
         public User? User { get; set; }
         public Agent? Agent { get; set; }
         public List<Document>? Documents { get; set; }
         public List<Policy>? Policies { get; set; }
-        
-
+        public List<CustomerQuery>? Queries { get; set; }
 
     }
 }

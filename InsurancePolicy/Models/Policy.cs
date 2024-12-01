@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using InsurancePolicy.enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InsurancePolicy.Models
@@ -8,31 +9,57 @@ namespace InsurancePolicy.Models
         [Key]
         public Guid PolicyId { get; set; }
 
-        [Required(ErrorMessage = "Issue Date is required.")]
-        public DateTime IssueDate { get; set; }
+        [ForeignKey("InsuranceScheme")]
+        public Guid InsuranceSchemeId { get; set; }
+        public InsuranceScheme InsuranceScheme { get; set; }
+
+        [ForeignKey("Customer")]
+        public Guid CustomerId { get; set; }
+        public Customer Customer { get; set; }
+
+        [Required]
+        public DateTime IssueDate { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "Maturity Date is required.")]
         public DateTime MaturityDate { get; set; }
 
         [Required(ErrorMessage = "Premium Type is required.")]
-        public Term PremiumType { get; set; }
+        public PremiumType PremiumType { get; set; }
+
+        [Required(ErrorMessage = "Sum Assured is required.")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Sum Assured must be greater than 0.")]
+        public double SumAssured { get; set; }
+
+        [Required(ErrorMessage = "Policy Term is required.")]
+        public long PolicyTerm { get; set; }
 
         [Required(ErrorMessage = "Premium Amount is required.")]
         [Range(0.01, double.MaxValue, ErrorMessage = "Premium Amount must be greater than 0.")]
         public double PremiumAmount { get; set; }
 
-        [Required(ErrorMessage = "Sum Assured is required.")]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Sum Assured must be greater than 0.")]
-        public double SumAssured { get; set; }
-        public bool Status { get; set; }
-        [Required(ErrorMessage = "Insurance Scheme is required.")]
-        [ForeignKey("InsuranceScheme")]
-        public Guid InsuranceSchemeId { get; set; }
+        public double? InstallmentAmount { get; set; }
+        public double? TotalPaidAmount { get; set; }
 
-        public List<Customer>? Customers { get; set; }
-        public List<Payment>? Payment { get; set; }
-        public List<Claim> Claim { get; set; }
-        public InsuranceScheme? InsuranceScheme { get; set; } 
+        public PolicyStatus Status { get; set; } = PolicyStatus.PENDING;
+
+        [ForeignKey("Agent")]
+        public Guid? AgentId { get; set; }
+        public Agent Agent { get; set; }
+
+        public List<Installment> Installments { get; set; }
+        public List<Nominee> Nominees { get; set; }
+        public List<Payment> Payments { get; set; }
+
+        [ForeignKey("TaxSetting")]
+        public Guid? TaxId { get; set; }
+        public TaxSettings TaxSettings { get; set; }
+
+        public DateTime? CancellationDate { get; set; }
+
+        [ForeignKey("InsuranceSetting")]
+        public Guid? InsuranceSettingId { get; set; }
+        public InsuranceSettings InsuranceSettings { get; set; }
+        public Claim Claim { get; set; }
 
     }
 }

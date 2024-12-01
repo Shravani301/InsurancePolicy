@@ -8,19 +8,25 @@ namespace InsurancePolicy.Data
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Admin> Admins { get; set; }
-        public DbSet<Employee> Employees { get; set; }
         public DbSet<Agent> Agents { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<InsuranceScheme> InsuranceSchemes { get; set; }
-        public DbSet<SchemeDetails> SchemeDetails { get; set; }
-        public DbSet<InsurancePlan> InsurancePlans { get; set; }
-        public DbSet<Policy> InsurancePolicies { get; set; }
-        public DbSet<Payment> Payments { get; set; }
-        public DbSet<Document> Documents { get; set; }
-        public DbSet<Claim> Claims { get; set; }
-        public DbSet<State> States { get; set; }
+        public DbSet<AgentEarnings> AgentEarnings { get; set; }
         public DbSet<City> Cities { get; set; }
-
+        public DbSet<Claim> Claims { get; set; }
+        public DbSet<Commission> Commissions { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<CustomerQuery> CustomersQueries { get; set; }
+        public DbSet<Document> Documents { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Installment> Installments { get; set; }
+        public DbSet<InsurancePlan> InsurancePlans { get; set; }
+        public DbSet<InsuranceScheme> InsuranceSchemes { get; set; }
+        public DbSet<InsuranceSettings> InsuranceSettings { get; set; }
+        public DbSet<Nominee> Nomines { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Policy> InsurancePolicies { get; set; }
+        public DbSet<State> States { get; set; }
+        public DbSet<TaxSettings> TaxSettings { get; set; }
+        public DbSet<WithdrawalRequest> WithdrawalRequests { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -47,10 +53,32 @@ namespace InsurancePolicy.Data
                 entity.HasKey(e => e.AgentId);
                 entity.Property(e => e.AgentId).HasDefaultValueSql("NEWSEQUENTIALID()");
             });
+
+            modelBuilder.Entity<AgentEarnings>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).HasDefaultValueSql("NEWSEQUENTIALID()");
+            });
+            modelBuilder.Entity<City>(entity =>
+            {
+                entity.HasKey(e => e.CityId);
+                entity.Property(e => e.CityId).HasDefaultValueSql("NEWSEQUENTIALID()");
+            });
+            modelBuilder.Entity<Commission>(entity =>
+            {
+                entity.HasKey(e => e.CommissionId);
+                entity.Property(e => e.CommissionId).HasDefaultValueSql("NEWSEQUENTIALID()");
+            });
+
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasKey(e => e.CustomerId);
                 entity.Property(e => e.CustomerId).HasDefaultValueSql("NEWSEQUENTIALID()");
+            });
+            modelBuilder.Entity<CustomerQuery>(entity =>
+            {
+                entity.HasKey(e => e.QueryId);
+                entity.Property(e => e.QueryId).HasDefaultValueSql("NEWSEQUENTIALID()");
             });
             modelBuilder.Entity<Employee>(entity =>
             {
@@ -77,6 +105,16 @@ namespace InsurancePolicy.Data
                 entity.HasKey(e => e.SchemeId);
                 entity.Property(e => e.SchemeId).HasDefaultValueSql("NEWSEQUENTIALID()");
             });
+            modelBuilder.Entity<InsuranceSettings>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).HasDefaultValueSql("NEWSEQUENTIALID()");
+            });
+            modelBuilder.Entity<Nominee>(entity =>
+            {
+                entity.HasKey(e => e.NomineeId);
+                entity.Property(e => e.NomineeId).HasDefaultValueSql("NEWSEQUENTIALID()");
+            });
             modelBuilder.Entity<Payment>(entity =>
             {
                 entity.HasKey(e => e.PaymentId);
@@ -87,12 +125,18 @@ namespace InsurancePolicy.Data
                 entity.HasKey(e => e.PolicyId);
                 entity.Property(e => e.PolicyId).HasDefaultValueSql("NEWSEQUENTIALID()");
             });
-
-            modelBuilder.Entity<SchemeDetails>(entity =>
+            modelBuilder.Entity<TaxSettings>(entity =>
             {
-                entity.HasKey(e => e.DetailId);
-                entity.Property(e => e.DetailId).HasDefaultValueSql("NEWSEQUENTIALID()");
+                entity.HasKey(e => e.TaxId);
+                entity.Property(e => e.TaxId).HasDefaultValueSql("NEWSEQUENTIALID()");
             });
+            modelBuilder.Entity<WithdrawalRequest>(entity =>
+            {
+                entity.HasKey(e => e.WithdrawalRequestId);
+                entity.Property(e => e.WithdrawalRequestId).HasDefaultValueSql("NEWSEQUENTIALID()");
+            });
+
+
 
             var adminRoleId = Guid.NewGuid();
             var agentRoleId = Guid.NewGuid();

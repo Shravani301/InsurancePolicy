@@ -1,4 +1,4 @@
-﻿namespace InsurancePolicy.Models
+﻿namespace InsurancePolicy.enums
 {
     public enum PaymentType
     {

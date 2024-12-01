@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using InsurancePolicy.enums;
 
 namespace InsurancePolicy.Models
 {
@@ -21,5 +22,9 @@ namespace InsurancePolicy.Models
         [ForeignKey("Customer")]
         public Guid CustomerId { get; set; }
         public Customer Customer { get; set; }
+
+        [ForeignKey("VerifiedBy")]
+        public Guid? VerifiedById { get; set; }
+        public Employee? VerifiedBy { get; set; }
     }
 }
