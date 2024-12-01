@@ -6,6 +6,7 @@ namespace InsurancePolicy.DTOs
 {
     public class AdminDto
     {
+        //gitignore migrations
         [Required(ErrorMessage = "Admin First Name is required.")]
         [StringLength(50, ErrorMessage = "Admin First Name should not exceed 50 characters.")]
         public string AdminFirstName { get; set; }
