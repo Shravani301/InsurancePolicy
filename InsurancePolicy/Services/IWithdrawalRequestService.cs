@@ -9,5 +9,6 @@ namespace InsurancePolicy.Services
         void RejectRequest(Guid requestId);
         WithdrawalRequestResponseDto GetRequestById(Guid requestId);
         List<WithdrawalRequestResponseDto> GetAllRequests();
+        public double GetTotalCommission(Guid agentId);
     }
 }

@@ -235,40 +235,98 @@ namespace InsurancePolicy.Mappers
             // Map InsuranceSettings to InsuranceSettingsResponseDto
             CreateMap<InsuranceSettings, InsuranceSettingsResponseDto>();
 
+            CreateMap<InstallmentRequestDto, Installment>()
+  .ForMember(dest => dest.InstallmentId, opt => opt.Condition(src => src.InstallmentId.HasValue));
+
+            CreateMap<Installment, InstallmentResponseDto>()
+                .ForMember(dest => dest.PolicyName, opt => opt.MapFrom(src => src.InsurancePolicy != null ? src.InsurancePolicy.InsuranceScheme.SchemeName : "N/A"));
+            CreateMap<PaymentRequestDto, Payment>();
+            CreateMap<Payment, PaymentResponseDto>()
+                .ForMember(dest => dest.PolicyName, opt => opt.MapFrom(src => src.Policy.InsuranceScheme.SchemeName));
+
+            CreateMap<CommissionRequestDto, Commission>()
+                .ForMember(dest => dest.CommissionId, opt => opt.Condition(src => src.CommissionId.HasValue))
+                .ForMember(dest => dest.PolicyNo, opt => opt.Condition(src => src.PolicyNo.HasValue));
+
+
+            CreateMap<Commission, CommissionResponseDto>()
+                .ForMember(dest => dest.CommissionType, opt => opt.MapFrom(src => src.CommissionType.ToString())) // Map enum to string
+                .ForMember(dest => dest.AgentName, opt => opt.MapFrom(src => src.Agent != null ? src.Agent.AgentFirstName : null))
+                .ForMember(dest => dest.PolicyName, opt => opt.MapFrom(src => src.PolicyAccount != null ? src.PolicyAccount.InsuranceScheme.SchemeName : null));
+
+            // Claim mappings
+            CreateMap<ClaimRequestDto, Claim>();
+            CreateMap<Claim, ClaimResponseDto>()
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
+                .ForMember(dest => dest.PolicyName, opt => opt.MapFrom(src => src.Policy != null ? src.Policy.InsuranceScheme.SchemeName : null))
+                .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer != null ? src.Customer.CustomerFirstName : null));
+
+            // Map PolicyRequestDto to Policy
             // Map PolicyRequestDto to Policy
             CreateMap<PolicyRequestDto, Policy>()
                 .ForMember(dest => dest.PolicyId, opt => opt.Ignore()) // Set by the database
-                .ForMember(dest => dest.Installments, opt => opt.Ignore()) // Installments handled separately
-                .ForMember(dest => dest.Nominees, opt => opt.Ignore()) // Added separately
-                .ForMember(dest => dest.Payments, opt => opt.Ignore()) // Generated separately
-                .ForMember(dest => dest.TaxSettings, opt => opt.Ignore()) // Set in service
-                .ForMember(dest => dest.InsuranceSettings, opt => opt.Ignore()); // Set in service
+                .ForMember(dest => dest.Installments, opt => opt.Ignore()) // Handled separately
+                .ForMember(dest => dest.Nominees, opt => opt.Ignore()) // Handled separately
+                .ForMember(dest => dest.Payments, opt => opt.Ignore()) // Handled separately
+                .ForMember(dest => dest.TaxSettings, opt => opt.Ignore()) // Handled in service
+                .ForMember(dest => dest.InsuranceSettings, opt => opt.Ignore()); // Handled in service
 
-            // Policy to PolicyResponseDto
-            CreateMap<Policy, PolicyResponseDto>()
-                .ForMember(dest => dest.InsuranceSchemeName, opt => opt.MapFrom(src => src.InsuranceScheme.SchemeName))
-                .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.CustomerFirstName))
-                .ForMember(dest => dest.PolicyStatus, opt => opt.MapFrom(src => src.Status.ToString()))
-                .ForMember(dest => dest.AgentName, opt => opt.MapFrom(src => src.Agent.AgentFirstName))
-                .ForMember(dest => dest.Tax, opt => opt.MapFrom(src => src.TaxSettings.TaxPercentage))
-                .ForMember(dest => dest.Installments, opt => opt.MapFrom(src => src.Installments))
-                .ForMember(dest => dest.Payments, opt => opt.MapFrom(src => src.Payments));
-
+            // Map InstallmentRequestDto to Installment
             CreateMap<InstallmentRequestDto, Installment>()
-     .ForMember(dest => dest.InstallmentId, opt => opt.Condition(src => src.InstallmentId.HasValue))
-     .ForMember(dest => dest.PolicyNo, opt => opt.Ignore()); // Set explicitly in service
+                .ForMember(dest => dest.InstallmentId, opt => opt.Condition(src => src.InstallmentId.HasValue)) // Map InstallmentId only if provided
+                .ForMember(dest => dest.PolicyNo, opt => opt.MapFrom(src => src.PolicyId)); // Map PolicyNo from PolicyId
 
-            // Installment to InstallmentResponseDto
+
+
+            // Map Policy to PolicyResponseDto
+            CreateMap<Policy, PolicyResponseDto>()
+                .ForMember(dest => dest.InsuranceSchemeName, opt => opt.MapFrom(src => src.InsuranceScheme != null ? src.InsuranceScheme.SchemeName : null)) // Handle null InsuranceScheme
+                .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer != null ? src.Customer.CustomerFirstName : null)) // Handle null Customer
+                .ForMember(dest => dest.PolicyStatus, opt => opt.MapFrom(src => src.Status.ToString())) // Convert enum to string
+                .ForMember(dest => dest.AgentName, opt => opt.MapFrom(src => src.Agent != null ? src.Agent.AgentFirstName : null)) // Handle null Agent
+                .ForMember(dest => dest.Nominees, opt => opt.MapFrom(src => src.Nominees)) // Map Nominees
+                .ForMember(dest => dest.Installments, opt => opt.MapFrom(src => src.Installments)) // Map Installments
+                .ForMember(dest => dest.Payments, opt => opt.MapFrom(src => src.Payments)); // Map Payments
+
+            // Map NomineeRequestDto to Nominee
+            CreateMap<NomineeRequestDto, Nominee>()
+                .ForMember(dest => dest.PolicyNo, opt => opt.Ignore()) // PolicyNo will be set in service
+                .ForMember(dest => dest.NomineeId, opt => opt.Condition(src => src.NomineeId.HasValue)) // Map NomineeId only if provided
+                .ForMember(dest => dest.Relationship, opt => opt.MapFrom(src => src.Relationship)); // Map enum directly
+
+            // Map Nominee to NomineeResponseDto
+            CreateMap<Nominee, NomineeResponseDto>()
+                .ForMember(dest => dest.Relationship, opt => opt.MapFrom(src => src.Relationship.ToString())); // Convert enum to string
+
+            // Map InstallmentRequestDto to Installment
+            CreateMap<InstallmentRequestDto, Installment>()
+                .ForMember(dest => dest.InstallmentId, opt => opt.Condition(src => src.InstallmentId.HasValue)) // Map InstallmentId only if provided
+                .ForMember(dest => dest.PolicyNo, opt => opt.Ignore()); // PolicyNo will be set in service
+
+            // Map Installment to InstallmentResponseDto
             CreateMap<Installment, InstallmentResponseDto>()
-                .ForMember(dest => dest.PolicyName, opt => opt.MapFrom(src => src.InsurancePolicy.InsuranceScheme.SchemeName));
+                .ForMember(dest => dest.PolicyName, opt => opt.MapFrom(src => src.InsurancePolicy != null ? src.InsurancePolicy.InsuranceScheme.SchemeName : null)); // Handle null InsurancePolicy
 
-            // PaymentRequestDto to Payment
+            // Map PaymentRequestDto to Payment
             CreateMap<PaymentRequestDto, Payment>()
-                .ForMember(dest => dest.PolicyId, opt => opt.Ignore()); // Set in service
+                .ForMember(dest => dest.PolicyId, opt => opt.Ignore()); // PolicyId will be set in service
 
-            // Payment to PaymentResponseDto
+            // Map Payment to PaymentResponseDto
             CreateMap<Payment, PaymentResponseDto>()
-                .ForMember(dest => dest.PolicyName, opt => opt.MapFrom(src => src.Policy.InsuranceScheme.SchemeName));
+                .ForMember(dest => dest.PolicyName, opt => opt.MapFrom(src => src.Policy != null ? src.Policy.InsuranceScheme.SchemeName : null)); // Handle null Policy
+
+            //Map WithdrawalRequestDto to WithdrawalRequest
+        CreateMap<WithdrawalRequestDto, WithdrawalRequest>()
+            .ForMember(dest => dest.WithdrawalRequestId, opt => opt.Condition(src => src.WithdrawalRequestId.HasValue)) // Map only if provided
+            .ForMember(dest => dest.Agent, opt => opt.Ignore()) // Handled in service layer
+            .ForMember(dest => dest.Customer, opt => opt.Ignore()) // Handled in service layer
+            .ForMember(dest => dest.TotalCommission, opt => opt.Ignore()); // Calculate dynamically
+
+            // Map WithdrawalRequest to WithdrawalRequestResponseDto
+            CreateMap<WithdrawalRequest, WithdrawalRequestResponseDto>()
+                .ForMember(dest => dest.AgentName, opt => opt.MapFrom(src => src.Agent != null ? $"{src.Agent.AgentFirstName} {src.Agent.AgentLastName}" : null)) // Combine Agent's first and last name
+                .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer != null ? $"{src.Customer.CustomerFirstName} {src.Customer.CustomerLastName}" : null)); // Combine Customer's first and last name
+
 
             // Other mappings (e.g., Agent, Employee)
             CreateMap<Agent, AgentInfoDto>();

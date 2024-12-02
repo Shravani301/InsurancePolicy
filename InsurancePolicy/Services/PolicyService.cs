@@ -18,7 +18,6 @@ namespace InsurancePolicy.Services
         private readonly IRepository<InsuranceScheme> _insuranceSchemeRepository;
         private readonly IRepository<TaxSettings> _taxSettingsRepository;
         private readonly IRepository<InsuranceSettings> _insuranceSettingsRepository;
-        private readonly IRepository<Payment>_paymentRepository;
         private readonly IMapper _mapper;
         private readonly AppDbContext _context;
 
@@ -30,9 +29,7 @@ namespace InsurancePolicy.Services
             IRepository<InsuranceScheme> insuranceSchemeRepository,
             IRepository<TaxSettings> taxSettingsRepository,
             IRepository<InsuranceSettings> insuranceSettingsRepository,
-            IRepository<Payment> paymentRepository,
-            IMapper mapper,
-            AppDbContext context)
+            IMapper mapper, AppDbContext context)
         {
             _policyRepository = policyRepository;
             _installmentRepository = installmentRepository;
@@ -41,7 +38,6 @@ namespace InsurancePolicy.Services
             _insuranceSchemeRepository = insuranceSchemeRepository;
             _taxSettingsRepository = taxSettingsRepository;
             _insuranceSettingsRepository = insuranceSettingsRepository;
-            _paymentRepository = paymentRepository;
             _mapper = mapper;
             _context = context;
         }
@@ -49,7 +45,7 @@ namespace InsurancePolicy.Services
         public List<PolicyResponseDto> GetAll()
         {
             var policies = _policyRepository.GetAll()
-                .Include(p => p.InsuranceScheme)
+                .Include(p => p.InsuranceScheme).ThenInclude(p=>p.InsurancePlan)
                 .Include(p => p.Nominees)
                 .Include(p => p.Installments)
                 .Include(p => p.Payments)
@@ -77,70 +73,59 @@ namespace InsurancePolicy.Services
 
         public Guid Add(PolicyRequestDto requestDto)
         {
-            using var transaction = _context.Database.BeginTransaction();
-            try
+            var policy = _mapper.Map<Policy>(requestDto);
+
+            // Set default values and validate relationships
+            policy.Status = PolicyStatus.PENDING;
+            policy.IssueDate = DateTime.Now;
+
+            // Validate and set Insurance Scheme
+            var insuranceScheme = _insuranceSchemeRepository.GetById(requestDto.InsuranceSchemeId);
+            if (insuranceScheme == null)
+                throw new InvalidOperationException("Invalid Insurance Scheme ID.");
+            policy.InsuranceScheme = insuranceScheme;
+
+            // Validate and set Tax Settings
+            if (requestDto.TaxId.HasValue)
             {
-                // Map the request DTO to the Policy entity
-                var policy = _mapper.Map<Policy>(requestDto);
-
-                // Validate InsuranceSettingId
-                if (requestDto.InsuranceSettingId.HasValue)
-                {
-                    var insuranceSetting = _insuranceSettingsRepository.GetById(requestDto.InsuranceSettingId.Value);
-                    if (insuranceSetting == null)
-                    {
-                        throw new InvalidOperationException($"Invalid InsuranceSettingId: {requestDto.InsuranceSettingId}");
-                    }
-                    policy.InsuranceSettings = insuranceSetting;
-                }
-
-                // Validate TaxId
-                if (requestDto.TaxId.HasValue)
-                {
-                    var taxSetting = _taxSettingsRepository.GetById(requestDto.TaxId.Value);
-                    if (taxSetting == null)
-                    {
-                        throw new InvalidOperationException($"Invalid TaxId: {requestDto.TaxId}");
-                    }
-                    policy.TaxSettings = taxSetting;
-                }
-
-                // Set default properties
-                policy.Status = PolicyStatus.PENDING;
-                policy.IssueDate = DateTime.Now;
-
-                // Save Policy first to generate PolicyId
-                _policyRepository.Add(policy);
-                _context.SaveChanges();
-
-                Console.WriteLine($"Policy saved with PolicyId: {policy.PolicyId}");
-
-                // Generate Installments (if applicable)
-                var installments = GenerateInstallments(policy);
-                policy.Installments = installments;
-
-                // Add Commissions if AgentId exists
-                if (policy.AgentId.HasValue)
-                {
-                    CalculateCommissions(policy);
-                }
-
-                // Commit transaction
-                _context.SaveChanges();
-                transaction.Commit();
-
-                return policy.PolicyId;
+                var taxSettings = _taxSettingsRepository.GetById(requestDto.TaxId.Value);
+                if (taxSettings == null)
+                    throw new InvalidOperationException("Invalid TaxSettings ID.");
+                policy.TaxSettings = taxSettings;
             }
-            catch (Exception ex)
+
+            // Validate and set Insurance Settings
+            if (requestDto.InsuranceSettingId.HasValue)
             {
-                transaction.Rollback();
-                Console.WriteLine($"Error adding policy: {ex.Message}");
-                throw;
+                var insuranceSettings = _insuranceSettingsRepository.GetById(requestDto.InsuranceSettingId.Value);
+                if (insuranceSettings == null)
+                    throw new InvalidOperationException("Invalid InsuranceSettings ID.");
+                policy.InsuranceSettings = insuranceSettings;
             }
+
+            // Add Nominees
+            if (requestDto.Nominees != null)
+            {
+                policy.Nominees = requestDto.Nominees.Select(n => _mapper.Map<Nominee>(n)).ToList();
+            }
+
+            // Generate Installments
+            policy.Installments = GenerateInstallments(policy);
+
+            // Add Policy to the repository
+            _policyRepository.Add(policy);
+
+            // Save changes through repository
+            _context.SaveChanges();
+
+            // Update Commissions if Agent exists
+            if (policy.AgentId.HasValue)
+            {
+                AddCommissionForAgent(policy);
+            }
+
+            return policy.PolicyId;
         }
-
-
-
 
         public bool Update(PolicyRequestDto requestDto)
         {
@@ -174,16 +159,14 @@ namespace InsurancePolicy.Services
         private List<Installment> GenerateInstallments(Policy policy)
         {
             var installments = new List<Installment>();
-            double taxPercentage = policy.TaxSettings?.TaxPercentage ?? 0;
 
             if (policy.PremiumType == PremiumType.SINGLE)
             {
-                var taxAmount = policy.SumAssured * (taxPercentage / 100);
                 installments.Add(new Installment
                 {
-                    PolicyNo = policy.PolicyId, // Directly associate with the PolicyId
+                    PolicyNo = policy.PolicyId,
                     DueDate = policy.IssueDate,
-                    AmountDue = policy.SumAssured + taxAmount,
+                    AmountDue = policy.SumAssured,
                     Status = InstallmentStatus.PENDING,
                     PaymentReference = "TEMP-REFERENCE"
                 });
@@ -199,15 +182,14 @@ namespace InsurancePolicy.Services
                     _ => throw new ArgumentException("Invalid PremiumType.")
                 };
 
-                var baseInstallmentAmount = policy.SumAssured / (policy.PolicyTerm / intervalInMonths);
+                var installmentAmount = policy.SumAssured / (policy.PolicyTerm / intervalInMonths);
                 for (int i = 1; i <= policy.PolicyTerm / intervalInMonths; i++)
                 {
-                    var taxAmount = baseInstallmentAmount * (taxPercentage / 100);
                     installments.Add(new Installment
                     {
-                        PolicyNo = policy.PolicyId, // Directly associate with the PolicyId
+                        PolicyNo = policy.PolicyId,
                         DueDate = policy.IssueDate.AddMonths(i * intervalInMonths),
-                        AmountDue = baseInstallmentAmount + taxAmount,
+                        AmountDue = installmentAmount,
                         Status = InstallmentStatus.PENDING,
                         PaymentReference = $"TEMP-REF-{i}"
                     });
@@ -217,25 +199,23 @@ namespace InsurancePolicy.Services
             return installments;
         }
 
+
+
         private void CalculateCommissions(Policy policy)
         {
             if (policy.AgentId.HasValue && policy.InsuranceScheme != null)
             {
                 var commissionAmount = policy.PremiumAmount * policy.InsuranceScheme.RegistrationCommRatio / 100;
 
-                var commission = new Commission
+                _commissionRepository.Add(new Commission
                 {
                     AgentId = policy.AgentId.Value,
                     PolicyNo = policy.PolicyId,
                     Amount = commissionAmount,
-                    CommissionType = CommissionType.REGISTRATION,
-                    IssueDate = DateTime.Now
-                };
-
-                _commissionRepository.Add(commission);
+                    CommissionType = CommissionType.REGISTRATION
+                });
             }
         }
-
 
         private void CancelInstallments(Guid policyId)
         {
@@ -256,28 +236,68 @@ namespace InsurancePolicy.Services
                 _commissionRepository.Update(commission);
             }
         }
-        private void GenerateFirstPayment(Policy policy)
+        private void AddCommissionForAgent(Policy policy)
         {
-            if (policy.Installments.Any())
+            // Ensure agent exists
+            if (!policy.AgentId.HasValue || policy.InsuranceScheme == null)
+                return;
+
+            // Calculate registration commission
+            var commissionAmount = policy.PremiumAmount * policy.InsuranceScheme.RegistrationCommRatio / 100;
+
+            // Create the commission
+            var commission = new Commission
             {
-                var firstInstallment = policy.Installments.First();
+                AgentId = policy.AgentId.Value,
+                PolicyNo = policy.PolicyId, // Link commission to the policy
+                Amount = commissionAmount,
+                CommissionType = CommissionType.REGISTRATION,
+                IssueDate = DateTime.Now
+            };
 
-                var payment = new Payment
-                {
-                    PolicyId = policy.PolicyId,
-                    AmountPaid = firstInstallment.AmountDue,
-                    Tax = firstInstallment.AmountDue * 0.1, // Example tax calculation
-                    TotalPayment = firstInstallment.AmountDue,
-                    PaymentDate = DateTime.Now,
-                    paymentType = PaymentType.CREDIT // Default payment type
-                };
+            // Add the commission to the repository
+            _commissionRepository.Add(commission);
 
-                _paymentRepository.Add(payment);
-
-                // Update installment status
-                firstInstallment.Status = InstallmentStatus.PAID;
-                _installmentRepository.Update(firstInstallment);
-            }
+            // Save changes
+            _context.SaveChanges();
         }
+        public List<PolicyResponseDto> GetPoliciesByAgentId(Guid agentId)
+        {
+            var policies = _policyRepository.GetAll()
+                .Include(p => p.Agent)
+                .Where(p => p.AgentId == agentId)
+                .ToList();
+
+            return _mapper.Map<List<PolicyResponseDto>>(policies);
+        }
+
+        public List<PolicyResponseDto> GetPoliciesByCustomerId(Guid customerId)
+        {
+            var policies = _policyRepository.GetAll()
+                .Where(p => p.CustomerId == customerId)
+                .ToList();
+
+            return _mapper.Map<List<PolicyResponseDto>>(policies);
+        }
+
+        public List<PolicyResponseDto> GetPoliciesBySchemeId(Guid schemeId)
+        {
+            var policies = _policyRepository.GetAll()
+                .Include(p => p.InsuranceScheme)
+                .Where(p => p.InsuranceSchemeId == schemeId)
+                .ToList();
+
+            return _mapper.Map<List<PolicyResponseDto>>(policies);
+        }
+
+        public List<PolicyResponseDto> GetPoliciesByPlanId(Guid planId)
+        {
+            var policies = _policyRepository.GetAll()
+                .Where(p => p.InsuranceScheme.InsurancePlan.PlanId == planId)
+                .ToList();
+
+            return _mapper.Map<List<PolicyResponseDto>>(policies);
+        }
+
     }
 }

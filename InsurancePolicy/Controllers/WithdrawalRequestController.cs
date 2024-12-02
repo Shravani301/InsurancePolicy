@@ -42,6 +42,13 @@ namespace InsurancePolicy.Controllers
             var request = _service.GetRequestById(requestId);
             return Ok(request);
         }
+        [HttpGet("agent/{agentId}/total-commission")]
+        public IActionResult GetTotalCommission(Guid agentId)
+        {
+            var totalCommission = _service.GetTotalCommission(agentId);
+            return Ok(new { AgentId = agentId, TotalCommission = totalCommission });
+        }
+
 
         [HttpGet]
         public IActionResult GetAllRequests()

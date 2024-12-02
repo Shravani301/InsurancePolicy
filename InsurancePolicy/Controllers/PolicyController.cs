@@ -1,6 +1,5 @@
 ﻿using InsurancePolicy.DTOs;
 using InsurancePolicy.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsurancePolicy.Controllers
@@ -10,6 +9,7 @@ namespace InsurancePolicy.Controllers
     public class PolicyController : ControllerBase
     {
         private readonly IPolicyService _service;
+
         public PolicyController(IPolicyService service)
         {
             _service = service;
@@ -48,6 +48,34 @@ namespace InsurancePolicy.Controllers
         {
             _service.Delete(id);
             return Ok("Policy deleted successfully.");
+        }
+
+        [HttpGet("agent/{agentId}")]
+        public IActionResult GetPoliciesByAgentId(Guid agentId)
+        {
+            var policies = _service.GetPoliciesByAgentId(agentId);
+            return Ok(policies);
+        }
+
+        [HttpGet("customer/{customerId}")]
+        public IActionResult GetPoliciesByCustomerId(Guid customerId)
+        {
+            var policies = _service.GetPoliciesByCustomerId(customerId);
+            return Ok(policies);
+        }
+
+        [HttpGet("scheme/{schemeId}")]
+        public IActionResult GetPoliciesBySchemeId(Guid schemeId)
+        {
+            var policies = _service.GetPoliciesBySchemeId(schemeId);
+            return Ok(policies);
+        }
+
+        [HttpGet("plan/{planId}")]
+        public IActionResult GetPoliciesByPlanId(Guid planId)
+        {
+            var policies = _service.GetPoliciesByPlanId(planId);
+            return Ok(policies);
         }
     }
 }
