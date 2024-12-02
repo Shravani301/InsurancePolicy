@@ -12,34 +12,34 @@ namespace InsurancePolicy.Services
         {
             _repository = repository;
         }
-        public Guid Add(Document document)
+        public string Add(Document document)
         {
             _repository.Add(document);
             return document.DocumentId;
         }
 
-        public bool Delete(Guid id)
-        {
-            var document = _repository.GetById(id);
-            if (document != null)
-            {
-                _repository.Delete(document);
-                return true;
-            }
-            throw new DocumentNotFoundException("No such document found to delete");
-        }
+        //public bool Delete(string id)
+        //{
+        //    var document = _repository.GetById(id);
+        //    if (document != null)
+        //    {
+        //        _repository.Delete(document);
+        //        return true;
+        //    }
+        //    throw new DocumentNotFoundException("No such document found to delete");
+        //}
 
-        public Document GetById(Guid id)
-        {
-            var document = _repository.GetById(id);
-            if (document != null)
-                return document;
-            throw new DocumentNotFoundException("No such document found");
-        }
+        //public Document GetById(string id)
+        //{
+        //    var document = _repository.GetById(id);
+        //    if (document != null)
+        //        return document;
+        //    throw new DocumentNotFoundException("No such document found");
+        //}
 
         public List<Document> GetAll()
         {
-            var documents = _repository.GetAll().ToList();
+            var documents = _repository.GetAll().Include(c=>c.Customer).ToList();
             if (documents.Count == 0)
                 throw new DocumentsDoesNotExistException("Documents does not exist!");
             return documents;

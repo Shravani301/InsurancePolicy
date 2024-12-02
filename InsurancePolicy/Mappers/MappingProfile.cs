@@ -274,7 +274,7 @@ namespace InsurancePolicy.Mappers
             // Map InstallmentRequestDto to Installment
             CreateMap<InstallmentRequestDto, Installment>()
                 .ForMember(dest => dest.InstallmentId, opt => opt.Condition(src => src.InstallmentId.HasValue)) // Map InstallmentId only if provided
-                .ForMember(dest => dest.PolicyNo, opt => opt.MapFrom(src => src.PolicyId)); // Map PolicyNo from PolicyId
+                .ForMember(dest => dest.PolicyId, opt => opt.MapFrom(src => src.PolicyId)); // Map PolicyNo from PolicyId
 
 
 
@@ -301,7 +301,7 @@ namespace InsurancePolicy.Mappers
             // Map InstallmentRequestDto to Installment
             CreateMap<InstallmentRequestDto, Installment>()
                 .ForMember(dest => dest.InstallmentId, opt => opt.Condition(src => src.InstallmentId.HasValue)) // Map InstallmentId only if provided
-                .ForMember(dest => dest.PolicyNo, opt => opt.Ignore()); // PolicyNo will be set in service
+                .ForMember(dest => dest.PolicyId, opt => opt.Ignore()); // PolicyNo will be set in service
 
             // Map Installment to InstallmentResponseDto
             CreateMap<Installment, InstallmentResponseDto>()

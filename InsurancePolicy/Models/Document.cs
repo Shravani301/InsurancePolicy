@@ -7,7 +7,7 @@ namespace InsurancePolicy.Models
     public class Document
     {
         [Key]
-        public Guid DocumentId { get; set; }
+        public string DocumentId { get; set; }
                 
         [Required(ErrorMessage = "Document Name is required.")]
         [StringLength(250, ErrorMessage = "Document Name should not exceed 100 characters.")]

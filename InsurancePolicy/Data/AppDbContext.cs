@@ -90,11 +90,6 @@ namespace InsurancePolicy.Data
                 entity.HasKey(e => e.ClaimId);
                 entity.Property(e => e.ClaimId).HasDefaultValueSql("NEWSEQUENTIALID()");
             });
-            modelBuilder.Entity<Document>(entity =>
-            {
-                entity.HasKey(e => e.DocumentId);
-                entity.Property(e => e.DocumentId).HasDefaultValueSql("NEWSEQUENTIALID()");
-            });
             modelBuilder.Entity<InsurancePlan>(entity =>
             {
                 entity.HasKey(e => e.PlanId);

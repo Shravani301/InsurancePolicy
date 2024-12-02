@@ -164,7 +164,7 @@ namespace InsurancePolicy.Services
             {
                 installments.Add(new Installment
                 {
-                    PolicyNo = policy.PolicyId,
+                    PolicyId = policy.PolicyId,
                     DueDate = policy.IssueDate,
                     AmountDue = policy.SumAssured,
                     Status = InstallmentStatus.PENDING,
@@ -187,7 +187,7 @@ namespace InsurancePolicy.Services
                 {
                     installments.Add(new Installment
                     {
-                        PolicyNo = policy.PolicyId,
+                        PolicyId = policy.PolicyId,
                         DueDate = policy.IssueDate.AddMonths(i * intervalInMonths),
                         AmountDue = installmentAmount,
                         Status = InstallmentStatus.PENDING,
@@ -219,7 +219,7 @@ namespace InsurancePolicy.Services
 
         private void CancelInstallments(Guid policyId)
         {
-            var installments = _installmentRepository.GetAll().Where(i => i.PolicyNo == policyId).ToList();
+            var installments = _installmentRepository.GetAll().Where(i => i.PolicyId == policyId).ToList();
             foreach (var installment in installments)
             {
                 installment.Status = InstallmentStatus.CANCELLED;

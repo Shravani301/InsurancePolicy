@@ -51,7 +51,7 @@ namespace InsurancePolicy.Services
         public List<InstallmentResponseDto> GetAllInstallmentsForPolicy(Guid policyId)
         {
             var installments = _installmentRepository.GetAll()
-                .Where(i => i.PolicyNo == policyId)
+                .Where(i => i.PolicyId == policyId)
                 .ToList();
 
             return _mapper.Map<List<InstallmentResponseDto>>(installments);

@@ -10,7 +10,7 @@ namespace InsurancePolicy.Models
         public Guid InstallmentId { get; set; }
 
         [ForeignKey("Policy")]
-        public Guid? PolicyNo { get; set; } // Made optional
+        public Guid? PolicyId { get; set; } // Made optional
         public Policy InsurancePolicy { get; set; } // Navigation property
 
         [Required]

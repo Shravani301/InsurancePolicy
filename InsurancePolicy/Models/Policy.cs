@@ -50,6 +50,8 @@ namespace InsurancePolicy.Models
         public List<Nominee> Nominees { get; set; }
         public List<Payment> Payments { get; set; }
 
+        public List<Document> Documents { get; set; }
+
         [ForeignKey("TaxSetting")]
         public Guid? TaxId { get; set; }
         public TaxSettings TaxSettings { get; set; }

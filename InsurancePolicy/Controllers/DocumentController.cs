@@ -22,12 +22,12 @@ namespace InsurancePolicy.Controllers
             return Ok(documents);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
-        {
-            var document = _service.GetById(id);
-            return Ok(document);
-        }
+        //[HttpGet("{id}")]
+        //public IActionResult Get(string id)
+        //{
+        //    var document = _service.GetById(id);
+        //    return Ok(document);
+        //}
 
         [HttpPost]
         public IActionResult Add(Document document)
@@ -43,11 +43,11 @@ namespace InsurancePolicy.Controllers
             return Ok(document);
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
-        {
-            _service.Delete(id);
-            return Ok("Deleted Successfully!");
-        }
+        //[HttpDelete("{id}")]
+        //public IActionResult Delete(string id)
+        //{
+        //    _service.Delete(id);
+        //    return Ok("Deleted Successfully!");
+        //}
     }
 }
