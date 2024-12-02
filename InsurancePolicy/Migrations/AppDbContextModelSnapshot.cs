@@ -185,1143 +185,1143 @@ namespace InsurancePolicy.Migrations
                     b.HasData(
                         new
                         {
-                            CityId = new Guid("19d6414d-d9d8-4cdc-866f-ba4e185d4cb6"),
+                            CityId = new Guid("a12b47de-b4eb-4071-9305-94af1b4dd43d"),
                             CityName = "Visakhapatnam",
-                            StateId = new Guid("a39d4621-c132-493d-8487-a8ce389d09b8")
+                            StateId = new Guid("6d83779f-b709-4445-854a-93b9d335a657")
                         },
                         new
                         {
-                            CityId = new Guid("9ea9a83e-3566-49f6-b8d2-f8298db72ab9"),
+                            CityId = new Guid("3c42849f-2d87-4ba0-91b7-fa2f574cea8d"),
                             CityName = "Vijayawada",
-                            StateId = new Guid("a39d4621-c132-493d-8487-a8ce389d09b8")
+                            StateId = new Guid("6d83779f-b709-4445-854a-93b9d335a657")
                         },
                         new
                         {
-                            CityId = new Guid("57ec8580-2430-4103-8a95-4f9d3014bd90"),
+                            CityId = new Guid("b861d7e6-7987-4766-8803-e89ff2fd586e"),
                             CityName = "Guntur",
-                            StateId = new Guid("a39d4621-c132-493d-8487-a8ce389d09b8")
+                            StateId = new Guid("6d83779f-b709-4445-854a-93b9d335a657")
                         },
                         new
                         {
-                            CityId = new Guid("cd343d63-ed12-4c46-a15e-beda0cf0cea7"),
+                            CityId = new Guid("555dce6a-29df-41d3-8ddc-e23d7f33ab12"),
                             CityName = "Nellore",
-                            StateId = new Guid("a39d4621-c132-493d-8487-a8ce389d09b8")
+                            StateId = new Guid("6d83779f-b709-4445-854a-93b9d335a657")
                         },
                         new
                         {
-                            CityId = new Guid("4ac086e1-7e07-40d7-a836-b6b62840c1ce"),
+                            CityId = new Guid("23b3a393-ae50-4b9e-b5f3-9b04c4651ac0"),
                             CityName = "Tirupati",
-                            StateId = new Guid("a39d4621-c132-493d-8487-a8ce389d09b8")
+                            StateId = new Guid("6d83779f-b709-4445-854a-93b9d335a657")
                         },
                         new
                         {
-                            CityId = new Guid("33635015-47da-4df7-8a48-4e365dd3787f"),
+                            CityId = new Guid("06f89f66-ab5e-46e1-acde-1cee7d595355"),
                             CityName = "Rajahmundry",
-                            StateId = new Guid("a39d4621-c132-493d-8487-a8ce389d09b8")
+                            StateId = new Guid("6d83779f-b709-4445-854a-93b9d335a657")
                         },
                         new
                         {
-                            CityId = new Guid("85723339-73b1-4d01-befb-6d293b38f0a3"),
+                            CityId = new Guid("e8bf3530-6313-4888-91b4-effac8229c31"),
                             CityName = "Kakinada",
-                            StateId = new Guid("a39d4621-c132-493d-8487-a8ce389d09b8")
+                            StateId = new Guid("6d83779f-b709-4445-854a-93b9d335a657")
                         },
                         new
                         {
-                            CityId = new Guid("2f225afd-c6d9-417d-a285-261d6b2997dd"),
+                            CityId = new Guid("d25d8794-779e-485e-89be-595900a76b8f"),
                             CityName = "Anantapur",
-                            StateId = new Guid("a39d4621-c132-493d-8487-a8ce389d09b8")
+                            StateId = new Guid("6d83779f-b709-4445-854a-93b9d335a657")
                         },
                         new
                         {
-                            CityId = new Guid("eef8c71e-94e0-468a-a099-d82615eeac9a"),
+                            CityId = new Guid("ad8f29ae-9ac5-414a-8b68-32bf91fc5082"),
                             CityName = "Kadapa",
-                            StateId = new Guid("a39d4621-c132-493d-8487-a8ce389d09b8")
+                            StateId = new Guid("6d83779f-b709-4445-854a-93b9d335a657")
                         },
                         new
                         {
-                            CityId = new Guid("d69cde13-7a7c-4d4f-9bd0-6d55169f4cbf"),
+                            CityId = new Guid("1e89bfe2-ce92-4426-a34f-d37688f98c75"),
                             CityName = "Chittoor",
-                            StateId = new Guid("a39d4621-c132-493d-8487-a8ce389d09b8")
+                            StateId = new Guid("6d83779f-b709-4445-854a-93b9d335a657")
                         },
                         new
                         {
-                            CityId = new Guid("75c03675-6737-4c42-8226-fc4e02be0ae6"),
+                            CityId = new Guid("ea6ba2c8-8742-4b59-bdde-684217ce1f93"),
                             CityName = "Itanagar",
-                            StateId = new Guid("a4fe84dc-f31f-402c-a429-3d6979aa36fd")
+                            StateId = new Guid("4f98e29d-7965-4707-a0f2-c7f590fec70e")
                         },
                         new
                         {
-                            CityId = new Guid("7acf95d7-fd08-4c78-9180-ae409748f98f"),
+                            CityId = new Guid("1860c43a-e36d-4993-af50-920c231e6107"),
                             CityName = "Tawang",
-                            StateId = new Guid("a4fe84dc-f31f-402c-a429-3d6979aa36fd")
+                            StateId = new Guid("4f98e29d-7965-4707-a0f2-c7f590fec70e")
                         },
                         new
                         {
-                            CityId = new Guid("418fa19e-a703-47f8-9894-d936d91af79d"),
+                            CityId = new Guid("66491c4c-8f9e-460f-9379-92d429881dbc"),
                             CityName = "Ziro",
-                            StateId = new Guid("a4fe84dc-f31f-402c-a429-3d6979aa36fd")
+                            StateId = new Guid("4f98e29d-7965-4707-a0f2-c7f590fec70e")
                         },
                         new
                         {
-                            CityId = new Guid("223ffdf8-9f22-4fbd-90dc-a3770a176356"),
+                            CityId = new Guid("6251e138-2b22-4bcf-b604-eafbaedbbf6c"),
                             CityName = "Pasighat",
-                            StateId = new Guid("a4fe84dc-f31f-402c-a429-3d6979aa36fd")
+                            StateId = new Guid("4f98e29d-7965-4707-a0f2-c7f590fec70e")
                         },
                         new
                         {
-                            CityId = new Guid("79ccd89d-f04f-479c-929a-1231c98183c2"),
+                            CityId = new Guid("e1159421-0ade-4112-adb4-68d2d8fd7b21"),
                             CityName = "Bomdila",
-                            StateId = new Guid("a4fe84dc-f31f-402c-a429-3d6979aa36fd")
+                            StateId = new Guid("4f98e29d-7965-4707-a0f2-c7f590fec70e")
                         },
                         new
                         {
-                            CityId = new Guid("daff6b20-feeb-488c-9494-ecb417782324"),
+                            CityId = new Guid("5bd68d4c-bc60-483c-a93e-6f206e5432c2"),
                             CityName = "Along",
-                            StateId = new Guid("a4fe84dc-f31f-402c-a429-3d6979aa36fd")
+                            StateId = new Guid("4f98e29d-7965-4707-a0f2-c7f590fec70e")
                         },
                         new
                         {
-                            CityId = new Guid("eec50505-2299-46b6-9d2f-4e80c9af4dac"),
+                            CityId = new Guid("af717360-d057-41bd-8105-6d99c86ba9ea"),
                             CityName = "Roing",
-                            StateId = new Guid("a4fe84dc-f31f-402c-a429-3d6979aa36fd")
+                            StateId = new Guid("4f98e29d-7965-4707-a0f2-c7f590fec70e")
                         },
                         new
                         {
-                            CityId = new Guid("42b6ad89-46bd-4591-8f0e-54401b3c40dc"),
+                            CityId = new Guid("ecc7d3e6-95d9-45fc-895c-494a2161e4ac"),
                             CityName = "Tezu",
-                            StateId = new Guid("a4fe84dc-f31f-402c-a429-3d6979aa36fd")
+                            StateId = new Guid("4f98e29d-7965-4707-a0f2-c7f590fec70e")
                         },
                         new
                         {
-                            CityId = new Guid("4fbf7ebd-6ee5-460d-acd1-ad00307f436f"),
+                            CityId = new Guid("ffff8e8e-f9f4-4c32-b5ca-442555c3b616"),
                             CityName = "Anini",
-                            StateId = new Guid("a4fe84dc-f31f-402c-a429-3d6979aa36fd")
+                            StateId = new Guid("4f98e29d-7965-4707-a0f2-c7f590fec70e")
                         },
                         new
                         {
-                            CityId = new Guid("d9bc506c-feb5-48b4-a3a5-e076f23b33b2"),
+                            CityId = new Guid("5dcbf175-7609-419d-98c6-f3ca9a839f65"),
                             CityName = "Changlang",
-                            StateId = new Guid("a4fe84dc-f31f-402c-a429-3d6979aa36fd")
+                            StateId = new Guid("4f98e29d-7965-4707-a0f2-c7f590fec70e")
                         },
                         new
                         {
-                            CityId = new Guid("01d34cdb-c1b4-4080-9f25-42ad9cbd9477"),
+                            CityId = new Guid("a87fe530-365e-4b4f-8a86-3768dfd29257"),
                             CityName = "Guwahati",
-                            StateId = new Guid("06e34b22-5e8f-4919-a66c-01353c586278")
+                            StateId = new Guid("491dfbd7-89bc-423a-beab-4b01aa2effd0")
                         },
                         new
                         {
-                            CityId = new Guid("e498dedd-2030-4181-b081-45ce2ed07e2a"),
+                            CityId = new Guid("88b5136b-fa96-4c53-87ba-3f605fe4583e"),
                             CityName = "Silchar",
-                            StateId = new Guid("06e34b22-5e8f-4919-a66c-01353c586278")
+                            StateId = new Guid("491dfbd7-89bc-423a-beab-4b01aa2effd0")
                         },
                         new
                         {
-                            CityId = new Guid("34c3714a-11b3-4fe3-a8b8-74b20022175c"),
+                            CityId = new Guid("f03da0e8-b585-478b-9cdb-c5c270ab7d1c"),
                             CityName = "Dibrugarh",
-                            StateId = new Guid("06e34b22-5e8f-4919-a66c-01353c586278")
+                            StateId = new Guid("491dfbd7-89bc-423a-beab-4b01aa2effd0")
                         },
                         new
                         {
-                            CityId = new Guid("1d9736a5-87d6-465b-a1f7-bec40b5b5d93"),
+                            CityId = new Guid("fca14fb8-19d5-4c95-8e74-a4ecccffdee5"),
                             CityName = "Jorhat",
-                            StateId = new Guid("06e34b22-5e8f-4919-a66c-01353c586278")
+                            StateId = new Guid("491dfbd7-89bc-423a-beab-4b01aa2effd0")
                         },
                         new
                         {
-                            CityId = new Guid("bc8a2acd-19e6-479d-ba01-f33696126cee"),
+                            CityId = new Guid("c15549c2-bc2f-4f81-8dfe-b23dbbcb0412"),
                             CityName = "Tezpur",
-                            StateId = new Guid("06e34b22-5e8f-4919-a66c-01353c586278")
+                            StateId = new Guid("491dfbd7-89bc-423a-beab-4b01aa2effd0")
                         },
                         new
                         {
-                            CityId = new Guid("d3ce4dd2-a9c6-4372-b86e-ab97f8a3047b"),
+                            CityId = new Guid("968e85b0-c57f-4eff-a76e-35eee2e02785"),
                             CityName = "Tinsukia",
-                            StateId = new Guid("06e34b22-5e8f-4919-a66c-01353c586278")
+                            StateId = new Guid("491dfbd7-89bc-423a-beab-4b01aa2effd0")
                         },
                         new
                         {
-                            CityId = new Guid("c9fcb9db-c596-4f4e-bbea-71ab02ae96ee"),
+                            CityId = new Guid("c17cd2a5-9b70-4c36-9259-f30b96adee5b"),
                             CityName = "Nagaon",
-                            StateId = new Guid("06e34b22-5e8f-4919-a66c-01353c586278")
+                            StateId = new Guid("491dfbd7-89bc-423a-beab-4b01aa2effd0")
                         },
                         new
                         {
-                            CityId = new Guid("34c013c3-8884-4ca9-aff3-60bb291fb1da"),
+                            CityId = new Guid("ae109122-55ae-4ab4-b130-e47dc94ea8e0"),
                             CityName = "Barpeta",
-                            StateId = new Guid("06e34b22-5e8f-4919-a66c-01353c586278")
+                            StateId = new Guid("491dfbd7-89bc-423a-beab-4b01aa2effd0")
                         },
                         new
                         {
-                            CityId = new Guid("fb006cb4-e91d-4b08-922c-9a5663661d27"),
+                            CityId = new Guid("39ebc53c-fe4e-43aa-93c7-944536c34f02"),
                             CityName = "Goalpara",
-                            StateId = new Guid("06e34b22-5e8f-4919-a66c-01353c586278")
+                            StateId = new Guid("491dfbd7-89bc-423a-beab-4b01aa2effd0")
                         },
                         new
                         {
-                            CityId = new Guid("1b146df8-7fb7-47f7-8d7e-56ca4307d2ec"),
+                            CityId = new Guid("53ed2525-d390-414b-bdc7-aa580f51c7f5"),
                             CityName = "Bongaigaon",
-                            StateId = new Guid("06e34b22-5e8f-4919-a66c-01353c586278")
+                            StateId = new Guid("491dfbd7-89bc-423a-beab-4b01aa2effd0")
                         },
                         new
                         {
-                            CityId = new Guid("3d949990-b434-494f-a244-967d78a52d58"),
+                            CityId = new Guid("b7477dcd-e83d-48b0-b3aa-8ecfa81d41e1"),
                             CityName = "Patna",
-                            StateId = new Guid("c22fe6e6-7dc0-425d-ae46-e4b03a40d8f0")
+                            StateId = new Guid("b5358f30-bdfa-48fd-91c6-85fca42ace1a")
                         },
                         new
                         {
-                            CityId = new Guid("5bef9b31-c818-4a3b-a44e-fb3ddcfc1e47"),
+                            CityId = new Guid("b3f400da-b8a6-465f-9377-d2d6007732a5"),
                             CityName = "Gaya",
-                            StateId = new Guid("c22fe6e6-7dc0-425d-ae46-e4b03a40d8f0")
+                            StateId = new Guid("b5358f30-bdfa-48fd-91c6-85fca42ace1a")
                         },
                         new
                         {
-                            CityId = new Guid("cb180aed-3b87-4f71-b94e-013726fdf24f"),
+                            CityId = new Guid("52decb23-2f52-4d19-91e1-d5a0d9776678"),
                             CityName = "Bhagalpur",
-                            StateId = new Guid("c22fe6e6-7dc0-425d-ae46-e4b03a40d8f0")
+                            StateId = new Guid("b5358f30-bdfa-48fd-91c6-85fca42ace1a")
                         },
                         new
                         {
-                            CityId = new Guid("76aab0dc-9dd4-4f53-bcf0-9c98c16992a8"),
+                            CityId = new Guid("7ebb99e1-b52a-4680-88ce-010c88bf11b4"),
                             CityName = "Muzaffarpur",
-                            StateId = new Guid("c22fe6e6-7dc0-425d-ae46-e4b03a40d8f0")
+                            StateId = new Guid("b5358f30-bdfa-48fd-91c6-85fca42ace1a")
                         },
                         new
                         {
-                            CityId = new Guid("a1811c38-529c-4eb9-b576-39e4f0759baa"),
+                            CityId = new Guid("924ab68d-3510-407e-a5f9-cfd3dbae8977"),
                             CityName = "Darbhanga",
-                            StateId = new Guid("c22fe6e6-7dc0-425d-ae46-e4b03a40d8f0")
+                            StateId = new Guid("b5358f30-bdfa-48fd-91c6-85fca42ace1a")
                         },
                         new
                         {
-                            CityId = new Guid("7f11c137-8a6f-4068-9097-2cd1fc84e453"),
+                            CityId = new Guid("8a925cae-ba50-4ead-9fc3-9548bc62c205"),
                             CityName = "Purnia",
-                            StateId = new Guid("c22fe6e6-7dc0-425d-ae46-e4b03a40d8f0")
+                            StateId = new Guid("b5358f30-bdfa-48fd-91c6-85fca42ace1a")
                         },
                         new
                         {
-                            CityId = new Guid("2acf1956-7439-472e-b49c-50b8068fb622"),
+                            CityId = new Guid("9456fe17-a843-4f61-ae8a-abd3f3e7e3ff"),
                             CityName = "Hajipur",
-                            StateId = new Guid("c22fe6e6-7dc0-425d-ae46-e4b03a40d8f0")
+                            StateId = new Guid("b5358f30-bdfa-48fd-91c6-85fca42ace1a")
                         },
                         new
                         {
-                            CityId = new Guid("7deb8bbd-a0df-49ef-9518-97b551f4c7d8"),
+                            CityId = new Guid("4725b578-8052-4577-97a0-f3536bbc4899"),
                             CityName = "Ara",
-                            StateId = new Guid("c22fe6e6-7dc0-425d-ae46-e4b03a40d8f0")
+                            StateId = new Guid("b5358f30-bdfa-48fd-91c6-85fca42ace1a")
                         },
                         new
                         {
-                            CityId = new Guid("8d883e31-4b6b-4788-a86b-f72b3996c038"),
+                            CityId = new Guid("a1090664-6204-418e-99e1-b86d3577c759"),
                             CityName = "Sasaram",
-                            StateId = new Guid("c22fe6e6-7dc0-425d-ae46-e4b03a40d8f0")
+                            StateId = new Guid("b5358f30-bdfa-48fd-91c6-85fca42ace1a")
                         },
                         new
                         {
-                            CityId = new Guid("ee363344-8910-4175-8be0-22347e1b93dd"),
+                            CityId = new Guid("a1f59a0a-c390-47eb-ab88-9fa4ce079186"),
                             CityName = "Begusarai",
-                            StateId = new Guid("c22fe6e6-7dc0-425d-ae46-e4b03a40d8f0")
+                            StateId = new Guid("b5358f30-bdfa-48fd-91c6-85fca42ace1a")
                         },
                         new
                         {
-                            CityId = new Guid("f00244ec-b099-4e52-be26-8efe0a9c8a72"),
+                            CityId = new Guid("0094c580-0d43-47d6-81c5-5906b55ce969"),
                             CityName = "Raipur",
-                            StateId = new Guid("074e13ee-c86b-45b2-92e3-bfa72a2f267a")
+                            StateId = new Guid("b4253dca-1df7-46fc-b1e7-f9559bc9ef79")
                         },
                         new
                         {
-                            CityId = new Guid("6080e45f-9adf-4b24-b0b6-9c1078650606"),
+                            CityId = new Guid("be7e4748-d8c7-4a9d-ae5f-0197ec002847"),
                             CityName = "Bilaspur",
-                            StateId = new Guid("074e13ee-c86b-45b2-92e3-bfa72a2f267a")
+                            StateId = new Guid("b4253dca-1df7-46fc-b1e7-f9559bc9ef79")
                         },
                         new
                         {
-                            CityId = new Guid("64c3f02c-eaa4-46c6-ba3c-e05a65ecc890"),
+                            CityId = new Guid("077dd178-4cdf-4495-98d4-6b7107ba4adb"),
                             CityName = "Korba",
-                            StateId = new Guid("074e13ee-c86b-45b2-92e3-bfa72a2f267a")
+                            StateId = new Guid("b4253dca-1df7-46fc-b1e7-f9559bc9ef79")
                         },
                         new
                         {
-                            CityId = new Guid("7265c458-943c-4f0f-aa0c-4baf5e074c9e"),
+                            CityId = new Guid("6b1d7f43-779a-40b5-a2c6-165a33bf5002"),
                             CityName = "Durg",
-                            StateId = new Guid("074e13ee-c86b-45b2-92e3-bfa72a2f267a")
+                            StateId = new Guid("b4253dca-1df7-46fc-b1e7-f9559bc9ef79")
                         },
                         new
                         {
-                            CityId = new Guid("b31092bc-5024-4776-b14c-c3957a49613d"),
+                            CityId = new Guid("0d988f5b-fd0f-4046-8e6f-b642ab2324f9"),
                             CityName = "Bhilai",
-                            StateId = new Guid("074e13ee-c86b-45b2-92e3-bfa72a2f267a")
+                            StateId = new Guid("b4253dca-1df7-46fc-b1e7-f9559bc9ef79")
                         },
                         new
                         {
-                            CityId = new Guid("49c60f8d-e66a-478d-b7a0-f111e1ef4b60"),
+                            CityId = new Guid("18e6b830-5383-4083-a83e-e9c33dd49fbd"),
                             CityName = "Jagdalpur",
-                            StateId = new Guid("074e13ee-c86b-45b2-92e3-bfa72a2f267a")
+                            StateId = new Guid("b4253dca-1df7-46fc-b1e7-f9559bc9ef79")
                         },
                         new
                         {
-                            CityId = new Guid("81bbdf1a-1c3f-4917-b65e-6d6252666e4c"),
+                            CityId = new Guid("f9fff5fa-ac17-4739-a027-3c0e0b62774f"),
                             CityName = "Rajnandgaon",
-                            StateId = new Guid("074e13ee-c86b-45b2-92e3-bfa72a2f267a")
+                            StateId = new Guid("b4253dca-1df7-46fc-b1e7-f9559bc9ef79")
                         },
                         new
                         {
-                            CityId = new Guid("b5f89567-01da-4a76-a0f1-85ee508bb885"),
+                            CityId = new Guid("4afe0b03-6f0c-4e99-8949-7982a6db1c79"),
                             CityName = "Raigarh",
-                            StateId = new Guid("074e13ee-c86b-45b2-92e3-bfa72a2f267a")
+                            StateId = new Guid("b4253dca-1df7-46fc-b1e7-f9559bc9ef79")
                         },
                         new
                         {
-                            CityId = new Guid("41c426a0-29e8-4e7d-bef2-e9cace5cfe5c"),
+                            CityId = new Guid("e61eac6c-b6e6-4e64-a870-df8538014c2d"),
                             CityName = "Ambikapur",
-                            StateId = new Guid("074e13ee-c86b-45b2-92e3-bfa72a2f267a")
+                            StateId = new Guid("b4253dca-1df7-46fc-b1e7-f9559bc9ef79")
                         },
                         new
                         {
-                            CityId = new Guid("9ea37df0-1dab-49e3-a60e-29a2b867aa63"),
+                            CityId = new Guid("18eabfc3-13ad-4106-9d2a-b84b06fa285b"),
                             CityName = "Mahasamund",
-                            StateId = new Guid("074e13ee-c86b-45b2-92e3-bfa72a2f267a")
+                            StateId = new Guid("b4253dca-1df7-46fc-b1e7-f9559bc9ef79")
                         },
                         new
                         {
-                            CityId = new Guid("934ee263-76df-495a-ba8d-022f6d58afe8"),
+                            CityId = new Guid("915ac00c-85d1-4555-bf17-a512159ed3ec"),
                             CityName = "Panaji",
-                            StateId = new Guid("1221c640-eb37-40e4-9aa0-93a8ea46eeac")
+                            StateId = new Guid("20e525a4-c4de-46fb-9dd6-8389c9af202a")
                         },
                         new
                         {
-                            CityId = new Guid("30c8a224-fcb4-4df7-bf41-3697deb8a4a6"),
+                            CityId = new Guid("924a1d7d-9f83-4e31-9b89-941b70762c48"),
                             CityName = "Margao",
-                            StateId = new Guid("1221c640-eb37-40e4-9aa0-93a8ea46eeac")
+                            StateId = new Guid("20e525a4-c4de-46fb-9dd6-8389c9af202a")
                         },
                         new
                         {
-                            CityId = new Guid("6726670e-df86-4371-910f-e82907a0478d"),
+                            CityId = new Guid("89a366f3-9016-4171-a96f-fcaa309577e2"),
                             CityName = "Vasco da Gama",
-                            StateId = new Guid("1221c640-eb37-40e4-9aa0-93a8ea46eeac")
+                            StateId = new Guid("20e525a4-c4de-46fb-9dd6-8389c9af202a")
                         },
                         new
                         {
-                            CityId = new Guid("f5455393-3228-4d2d-9ac0-034d9e8a4586"),
+                            CityId = new Guid("67334f8a-81ae-49d8-ac5d-fdae3dd5e4ed"),
                             CityName = "Mapusa",
-                            StateId = new Guid("1221c640-eb37-40e4-9aa0-93a8ea46eeac")
+                            StateId = new Guid("20e525a4-c4de-46fb-9dd6-8389c9af202a")
                         },
                         new
                         {
-                            CityId = new Guid("7c6aac9f-ef37-4be2-b153-3c300cc421ed"),
+                            CityId = new Guid("406a6e4e-c441-469e-8a2a-f1e8e4c8ad8d"),
                             CityName = "Ponda",
-                            StateId = new Guid("1221c640-eb37-40e4-9aa0-93a8ea46eeac")
+                            StateId = new Guid("20e525a4-c4de-46fb-9dd6-8389c9af202a")
                         },
                         new
                         {
-                            CityId = new Guid("f0dd85b0-bcd0-4883-a089-1ea06a75a7c7"),
+                            CityId = new Guid("c64f1fa8-5011-4dda-8680-31fe77208cba"),
                             CityName = "Calangute",
-                            StateId = new Guid("1221c640-eb37-40e4-9aa0-93a8ea46eeac")
+                            StateId = new Guid("20e525a4-c4de-46fb-9dd6-8389c9af202a")
                         },
                         new
                         {
-                            CityId = new Guid("c83edb14-5a7b-4821-aa3d-bd28f1d02c79"),
+                            CityId = new Guid("4bf3d9b0-0289-41f5-a760-dc5d77754c8d"),
                             CityName = "Bicholim",
-                            StateId = new Guid("1221c640-eb37-40e4-9aa0-93a8ea46eeac")
+                            StateId = new Guid("20e525a4-c4de-46fb-9dd6-8389c9af202a")
                         },
                         new
                         {
-                            CityId = new Guid("4ef93364-469a-4a8b-b7d6-cc2f2d9d583a"),
+                            CityId = new Guid("f4edff40-441b-4b4d-aedf-2d9c8efc6424"),
                             CityName = "Porvorim",
-                            StateId = new Guid("1221c640-eb37-40e4-9aa0-93a8ea46eeac")
+                            StateId = new Guid("20e525a4-c4de-46fb-9dd6-8389c9af202a")
                         },
                         new
                         {
-                            CityId = new Guid("edc9bea2-b95c-4c24-8f8a-ad979c2db3dd"),
+                            CityId = new Guid("007b6370-f319-433e-8127-ee5d01e7d76f"),
                             CityName = "Canacona",
-                            StateId = new Guid("1221c640-eb37-40e4-9aa0-93a8ea46eeac")
+                            StateId = new Guid("20e525a4-c4de-46fb-9dd6-8389c9af202a")
                         },
                         new
                         {
-                            CityId = new Guid("754b66da-d384-42f2-8575-8e988f44634f"),
+                            CityId = new Guid("6bd8278e-80bd-4e48-a9c8-b4cea211bab5"),
                             CityName = "Dona Paula",
-                            StateId = new Guid("1221c640-eb37-40e4-9aa0-93a8ea46eeac")
+                            StateId = new Guid("20e525a4-c4de-46fb-9dd6-8389c9af202a")
                         },
                         new
                         {
-                            CityId = new Guid("86c2b0c9-ecce-446f-9cf6-2529473a2058"),
+                            CityId = new Guid("b31a9975-8d4b-47c4-bd57-ded82ba86cc5"),
                             CityName = "Ahmedabad",
-                            StateId = new Guid("d54b72d0-bd4e-43a4-88a0-6a02e1b4c45f")
+                            StateId = new Guid("b7417275-3b44-4a18-95ef-764659f1fd42")
                         },
                         new
                         {
-                            CityId = new Guid("1110ecc1-7268-46b6-96bf-cdce2ce4dc7e"),
+                            CityId = new Guid("42b74495-9912-4dfd-9804-282e41bcdb7f"),
                             CityName = "Surat",
-                            StateId = new Guid("d54b72d0-bd4e-43a4-88a0-6a02e1b4c45f")
+                            StateId = new Guid("b7417275-3b44-4a18-95ef-764659f1fd42")
                         },
                         new
                         {
-                            CityId = new Guid("3157ac04-7413-45de-8370-cd6c0b689d37"),
+                            CityId = new Guid("614ee91d-4e7d-4161-802f-ab241ddaf191"),
                             CityName = "Vadodara",
-                            StateId = new Guid("d54b72d0-bd4e-43a4-88a0-6a02e1b4c45f")
+                            StateId = new Guid("b7417275-3b44-4a18-95ef-764659f1fd42")
                         },
                         new
                         {
-                            CityId = new Guid("c7fcd2f8-d0e0-47b4-b7e8-dc8d58127ccc"),
+                            CityId = new Guid("035e0224-e9e9-4f8f-98fe-1f5f3fe014ac"),
                             CityName = "Rajkot",
-                            StateId = new Guid("d54b72d0-bd4e-43a4-88a0-6a02e1b4c45f")
+                            StateId = new Guid("b7417275-3b44-4a18-95ef-764659f1fd42")
                         },
                         new
                         {
-                            CityId = new Guid("6215b765-1e01-454e-bbb1-6d3c0e6a8074"),
+                            CityId = new Guid("913a720e-02b5-4924-94ab-4953bb8d72fb"),
                             CityName = "Bhavnagar",
-                            StateId = new Guid("d54b72d0-bd4e-43a4-88a0-6a02e1b4c45f")
+                            StateId = new Guid("b7417275-3b44-4a18-95ef-764659f1fd42")
                         },
                         new
                         {
-                            CityId = new Guid("a678b467-7e90-4ff3-be33-9f384e9eb5ce"),
+                            CityId = new Guid("ba6b84c9-9086-4d35-8f7f-a331ebb8134c"),
                             CityName = "Jamnagar",
-                            StateId = new Guid("d54b72d0-bd4e-43a4-88a0-6a02e1b4c45f")
+                            StateId = new Guid("b7417275-3b44-4a18-95ef-764659f1fd42")
                         },
                         new
                         {
-                            CityId = new Guid("c3783259-8f0b-4140-b11c-b1443f2021c5"),
+                            CityId = new Guid("56a59d9c-bb1d-4688-8b87-645eb81cd2ed"),
                             CityName = "Gandhinagar",
-                            StateId = new Guid("d54b72d0-bd4e-43a4-88a0-6a02e1b4c45f")
+                            StateId = new Guid("b7417275-3b44-4a18-95ef-764659f1fd42")
                         },
                         new
                         {
-                            CityId = new Guid("a4f012b8-53bd-42f9-9524-12fbead99662"),
+                            CityId = new Guid("24aae3f7-b7e4-4edc-96a2-a995270ef5b3"),
                             CityName = "Anand",
-                            StateId = new Guid("d54b72d0-bd4e-43a4-88a0-6a02e1b4c45f")
+                            StateId = new Guid("b7417275-3b44-4a18-95ef-764659f1fd42")
                         },
                         new
                         {
-                            CityId = new Guid("6924cea1-1c75-4b64-9edf-edb6145e503b"),
+                            CityId = new Guid("8f7702a8-c75c-4260-981e-be9b8ef11a4e"),
                             CityName = "Navsari",
-                            StateId = new Guid("d54b72d0-bd4e-43a4-88a0-6a02e1b4c45f")
+                            StateId = new Guid("b7417275-3b44-4a18-95ef-764659f1fd42")
                         },
                         new
                         {
-                            CityId = new Guid("30715f75-06a8-4acd-80c9-fafe48caef42"),
+                            CityId = new Guid("2c081d23-a1cc-46c0-8909-e021b9fd87d9"),
                             CityName = "Mehsana",
-                            StateId = new Guid("d54b72d0-bd4e-43a4-88a0-6a02e1b4c45f")
+                            StateId = new Guid("b7417275-3b44-4a18-95ef-764659f1fd42")
                         },
                         new
                         {
-                            CityId = new Guid("02a819f7-d685-44ac-9a52-62873de8ca7d"),
+                            CityId = new Guid("4822b05b-a284-48ec-93d3-3bccbbf62c64"),
                             CityName = "Gurgaon",
-                            StateId = new Guid("36551f4f-d528-46c3-a372-9f5dcba9bf3d")
+                            StateId = new Guid("73f6ced4-8489-4c72-b0e8-76fa648e54ad")
                         },
                         new
                         {
-                            CityId = new Guid("12b3ce35-fbb4-49f3-aed2-e9060e7f9159"),
+                            CityId = new Guid("952fbdc0-179f-4f1f-9819-695bed4ab446"),
                             CityName = "Faridabad",
-                            StateId = new Guid("36551f4f-d528-46c3-a372-9f5dcba9bf3d")
+                            StateId = new Guid("73f6ced4-8489-4c72-b0e8-76fa648e54ad")
                         },
                         new
                         {
-                            CityId = new Guid("44f677a0-439b-4808-b6ca-f092dca57065"),
+                            CityId = new Guid("0d893ada-fbdf-4af7-a3d9-75ada1f75f9b"),
                             CityName = "Panipat",
-                            StateId = new Guid("36551f4f-d528-46c3-a372-9f5dcba9bf3d")
+                            StateId = new Guid("73f6ced4-8489-4c72-b0e8-76fa648e54ad")
                         },
                         new
                         {
-                            CityId = new Guid("aaee77cc-a9cc-444c-9828-f8aad7f609d0"),
+                            CityId = new Guid("e7af81f3-6738-4c73-a05a-f0c15284ec0f"),
                             CityName = "Ambala",
-                            StateId = new Guid("36551f4f-d528-46c3-a372-9f5dcba9bf3d")
+                            StateId = new Guid("73f6ced4-8489-4c72-b0e8-76fa648e54ad")
                         },
                         new
                         {
-                            CityId = new Guid("6ed443c9-1f40-442c-afa6-decc8773f49a"),
+                            CityId = new Guid("4dc51ebe-b8e9-4821-9410-12e3242c3148"),
                             CityName = "Hisar",
-                            StateId = new Guid("36551f4f-d528-46c3-a372-9f5dcba9bf3d")
+                            StateId = new Guid("73f6ced4-8489-4c72-b0e8-76fa648e54ad")
                         },
                         new
                         {
-                            CityId = new Guid("506fe318-5582-462a-90f8-b7f3bc7cccf5"),
+                            CityId = new Guid("f9ea7e81-cb56-4f53-ac18-30511a265587"),
                             CityName = "Rohtak",
-                            StateId = new Guid("36551f4f-d528-46c3-a372-9f5dcba9bf3d")
+                            StateId = new Guid("73f6ced4-8489-4c72-b0e8-76fa648e54ad")
                         },
                         new
                         {
-                            CityId = new Guid("ce760849-d89c-4ed1-992f-dd4b940efb0f"),
+                            CityId = new Guid("d6dee7ff-8d1c-4eb3-b10d-1f8c6fd85f6a"),
                             CityName = "Karnal",
-                            StateId = new Guid("36551f4f-d528-46c3-a372-9f5dcba9bf3d")
+                            StateId = new Guid("73f6ced4-8489-4c72-b0e8-76fa648e54ad")
                         },
                         new
                         {
-                            CityId = new Guid("dd24d29c-d1e3-4ad1-a505-3587e55e99be"),
+                            CityId = new Guid("36bb632d-5a55-4850-a097-6fc68f25b6fb"),
                             CityName = "Yamunanagar",
-                            StateId = new Guid("36551f4f-d528-46c3-a372-9f5dcba9bf3d")
+                            StateId = new Guid("73f6ced4-8489-4c72-b0e8-76fa648e54ad")
                         },
                         new
                         {
-                            CityId = new Guid("88dfbe47-26ba-489c-8e77-b9985f192f71"),
+                            CityId = new Guid("f87a7757-0554-4b74-862e-95c14abb2388"),
                             CityName = "Sirsa",
-                            StateId = new Guid("36551f4f-d528-46c3-a372-9f5dcba9bf3d")
+                            StateId = new Guid("73f6ced4-8489-4c72-b0e8-76fa648e54ad")
                         },
                         new
                         {
-                            CityId = new Guid("484b8db3-017d-4cb7-9a03-d6105ceda0ff"),
+                            CityId = new Guid("759c0ef8-299d-4488-86d4-15886325465c"),
                             CityName = "Bhiwani",
-                            StateId = new Guid("36551f4f-d528-46c3-a372-9f5dcba9bf3d")
+                            StateId = new Guid("73f6ced4-8489-4c72-b0e8-76fa648e54ad")
                         },
                         new
                         {
-                            CityId = new Guid("2d8414b9-866f-4256-8d7c-6a6534535132"),
+                            CityId = new Guid("5808cacd-5f12-427d-bb5a-90625151f1aa"),
                             CityName = "Shimla",
-                            StateId = new Guid("2308a211-d1e3-4184-be0b-3fb6a388b496")
+                            StateId = new Guid("7746ef13-b271-4ed4-af7f-9b4c99964f43")
                         },
                         new
                         {
-                            CityId = new Guid("d4612a47-0684-4700-8e7f-a42999463b91"),
+                            CityId = new Guid("50aa0904-2ca5-43db-830a-f62988e6ca11"),
                             CityName = "Manali",
-                            StateId = new Guid("2308a211-d1e3-4184-be0b-3fb6a388b496")
+                            StateId = new Guid("7746ef13-b271-4ed4-af7f-9b4c99964f43")
                         },
                         new
                         {
-                            CityId = new Guid("1dbefe9b-37da-43d9-9f82-bf689b2675b6"),
+                            CityId = new Guid("8efe5718-389a-4542-b85f-0abedd2301d8"),
                             CityName = "Dharamshala",
-                            StateId = new Guid("2308a211-d1e3-4184-be0b-3fb6a388b496")
+                            StateId = new Guid("7746ef13-b271-4ed4-af7f-9b4c99964f43")
                         },
                         new
                         {
-                            CityId = new Guid("1d9a85b3-4e16-4144-ac1a-1c05d22266e7"),
+                            CityId = new Guid("67ac2a39-240d-46f1-8269-81321ef44e76"),
                             CityName = "Kullu",
-                            StateId = new Guid("2308a211-d1e3-4184-be0b-3fb6a388b496")
+                            StateId = new Guid("7746ef13-b271-4ed4-af7f-9b4c99964f43")
                         },
                         new
                         {
-                            CityId = new Guid("78700a09-6370-498d-ada6-1ec44ec8c926"),
+                            CityId = new Guid("b9d27a86-f30d-41a6-91b4-8539688df32f"),
                             CityName = "Solan",
-                            StateId = new Guid("2308a211-d1e3-4184-be0b-3fb6a388b496")
+                            StateId = new Guid("7746ef13-b271-4ed4-af7f-9b4c99964f43")
                         },
                         new
                         {
-                            CityId = new Guid("5838588d-2301-4d65-813a-ea0876fd175f"),
+                            CityId = new Guid("0eedb046-b307-40c3-a6e3-364ff77ec831"),
                             CityName = "Mandi",
-                            StateId = new Guid("2308a211-d1e3-4184-be0b-3fb6a388b496")
+                            StateId = new Guid("7746ef13-b271-4ed4-af7f-9b4c99964f43")
                         },
                         new
                         {
-                            CityId = new Guid("e239b733-1de1-4be6-afd8-59ce0f07ed25"),
+                            CityId = new Guid("bbd533ef-0d8f-4926-84ae-23bc119dff24"),
                             CityName = "Chamba",
-                            StateId = new Guid("2308a211-d1e3-4184-be0b-3fb6a388b496")
+                            StateId = new Guid("7746ef13-b271-4ed4-af7f-9b4c99964f43")
                         },
                         new
                         {
-                            CityId = new Guid("41fb1bce-4e72-4630-a55b-cb4fd516f9c2"),
+                            CityId = new Guid("c35e6226-f83b-4c4d-bdb8-de823b750e4c"),
                             CityName = "Bilaspur",
-                            StateId = new Guid("2308a211-d1e3-4184-be0b-3fb6a388b496")
+                            StateId = new Guid("7746ef13-b271-4ed4-af7f-9b4c99964f43")
                         },
                         new
                         {
-                            CityId = new Guid("bb1ff29e-4a2f-4958-9dc5-e3f6c0e67dd1"),
+                            CityId = new Guid("88d00b9f-1f71-4724-8531-ecd9aebd5f56"),
                             CityName = "Hamirpur",
-                            StateId = new Guid("2308a211-d1e3-4184-be0b-3fb6a388b496")
+                            StateId = new Guid("7746ef13-b271-4ed4-af7f-9b4c99964f43")
                         },
                         new
                         {
-                            CityId = new Guid("d289f479-de69-4043-8675-798a43075a9d"),
+                            CityId = new Guid("718def1e-7aed-4312-aa43-1080382c809d"),
                             CityName = "Nahan",
-                            StateId = new Guid("2308a211-d1e3-4184-be0b-3fb6a388b496")
+                            StateId = new Guid("7746ef13-b271-4ed4-af7f-9b4c99964f43")
                         },
                         new
                         {
-                            CityId = new Guid("7b8158b4-7039-48b1-8811-693c4ce596f0"),
+                            CityId = new Guid("344de080-970c-4cf0-9f32-331048fa6b0e"),
                             CityName = "Ranchi",
-                            StateId = new Guid("c15c4637-d5b6-43da-ab0c-ea4fc80ef876")
+                            StateId = new Guid("62f4621d-15b4-45eb-a47c-ea3e30e1bbfa")
                         },
                         new
                         {
-                            CityId = new Guid("ceb4b6c7-41eb-4d5d-a7b1-81aac7ff7856"),
+                            CityId = new Guid("0b5b6490-5e64-4c92-8bdb-be626d86856a"),
                             CityName = "Jamshedpur",
-                            StateId = new Guid("c15c4637-d5b6-43da-ab0c-ea4fc80ef876")
+                            StateId = new Guid("62f4621d-15b4-45eb-a47c-ea3e30e1bbfa")
                         },
                         new
                         {
-                            CityId = new Guid("9d399bb0-7c88-43b9-bba3-774a4ffeca2e"),
+                            CityId = new Guid("0828301a-461c-4d81-bcb8-88d915b0fc9b"),
                             CityName = "Dhanbad",
-                            StateId = new Guid("c15c4637-d5b6-43da-ab0c-ea4fc80ef876")
+                            StateId = new Guid("62f4621d-15b4-45eb-a47c-ea3e30e1bbfa")
                         },
                         new
                         {
-                            CityId = new Guid("a4a01446-9e80-498b-a5cb-21cad6fe4a01"),
+                            CityId = new Guid("501f093c-462f-4f37-a449-d9a7325c5db4"),
                             CityName = "Bokaro",
-                            StateId = new Guid("c15c4637-d5b6-43da-ab0c-ea4fc80ef876")
+                            StateId = new Guid("62f4621d-15b4-45eb-a47c-ea3e30e1bbfa")
                         },
                         new
                         {
-                            CityId = new Guid("0d1bf74f-3d35-4663-8d74-ed9e934f4293"),
+                            CityId = new Guid("7a0adfe0-98bc-46f9-a427-a359086b6d88"),
                             CityName = "Hazaribagh",
-                            StateId = new Guid("c15c4637-d5b6-43da-ab0c-ea4fc80ef876")
+                            StateId = new Guid("62f4621d-15b4-45eb-a47c-ea3e30e1bbfa")
                         },
                         new
                         {
-                            CityId = new Guid("429baa51-c37c-45cb-b88b-f38fdd3c64dc"),
+                            CityId = new Guid("d5de5f1e-36ab-456a-9ee0-3e46fbcc947a"),
                             CityName = "Deoghar",
-                            StateId = new Guid("c15c4637-d5b6-43da-ab0c-ea4fc80ef876")
+                            StateId = new Guid("62f4621d-15b4-45eb-a47c-ea3e30e1bbfa")
                         },
                         new
                         {
-                            CityId = new Guid("e5965de2-2d70-4a63-9993-a0ad7743f067"),
+                            CityId = new Guid("4d600e4d-6516-4086-80ba-2f658d2df0c8"),
                             CityName = "Giridih",
-                            StateId = new Guid("c15c4637-d5b6-43da-ab0c-ea4fc80ef876")
+                            StateId = new Guid("62f4621d-15b4-45eb-a47c-ea3e30e1bbfa")
                         },
                         new
                         {
-                            CityId = new Guid("60ff52fe-62ec-4b3f-a805-b1b63604a22a"),
+                            CityId = new Guid("04383073-349f-4621-8aa0-42c1c4d0a9b5"),
                             CityName = "Ramgarh",
-                            StateId = new Guid("c15c4637-d5b6-43da-ab0c-ea4fc80ef876")
+                            StateId = new Guid("62f4621d-15b4-45eb-a47c-ea3e30e1bbfa")
                         },
                         new
                         {
-                            CityId = new Guid("5d042d5e-652d-40da-be6c-a3948a5d0f2a"),
+                            CityId = new Guid("5ac626a2-2ba9-4ea0-bb32-d3275d7c41d5"),
                             CityName = "Godda",
-                            StateId = new Guid("c15c4637-d5b6-43da-ab0c-ea4fc80ef876")
+                            StateId = new Guid("62f4621d-15b4-45eb-a47c-ea3e30e1bbfa")
                         },
                         new
                         {
-                            CityId = new Guid("015b877a-0df1-4f2e-8824-210c59995bb4"),
+                            CityId = new Guid("e2c0d51c-7c27-44f9-b827-72ea03a33db4"),
                             CityName = "Pakur",
-                            StateId = new Guid("c15c4637-d5b6-43da-ab0c-ea4fc80ef876")
+                            StateId = new Guid("62f4621d-15b4-45eb-a47c-ea3e30e1bbfa")
                         },
                         new
                         {
-                            CityId = new Guid("3f32ead2-2caa-47eb-b275-66ec08f51064"),
+                            CityId = new Guid("6d477679-25b7-4bf5-891b-c94ef248f539"),
                             CityName = "Bangalore",
-                            StateId = new Guid("315a2463-00c1-4751-94fe-70ebb081c00c")
+                            StateId = new Guid("7d8dc724-e2b4-4bb8-8a25-ce4a41a09d2a")
                         },
                         new
                         {
-                            CityId = new Guid("a8c89ce8-0008-4019-9ecc-cd336d53dedb"),
+                            CityId = new Guid("dbfa0381-5d8b-4392-a3a0-4792390a7519"),
                             CityName = "Mysore",
-                            StateId = new Guid("315a2463-00c1-4751-94fe-70ebb081c00c")
+                            StateId = new Guid("7d8dc724-e2b4-4bb8-8a25-ce4a41a09d2a")
                         },
                         new
                         {
-                            CityId = new Guid("860ba9a4-7cb4-42bb-beeb-889cbcd3c0eb"),
+                            CityId = new Guid("54ca0f83-f40a-4fe2-a883-48a6c8009055"),
                             CityName = "Mangalore",
-                            StateId = new Guid("315a2463-00c1-4751-94fe-70ebb081c00c")
+                            StateId = new Guid("7d8dc724-e2b4-4bb8-8a25-ce4a41a09d2a")
                         },
                         new
                         {
-                            CityId = new Guid("918c04a0-3ae7-4b11-a5a9-12c7a87a55c5"),
+                            CityId = new Guid("379ec754-2710-4f6b-9af7-a753a22d0639"),
                             CityName = "Hubli",
-                            StateId = new Guid("315a2463-00c1-4751-94fe-70ebb081c00c")
+                            StateId = new Guid("7d8dc724-e2b4-4bb8-8a25-ce4a41a09d2a")
                         },
                         new
                         {
-                            CityId = new Guid("1144c7be-93b0-49f5-95d3-cfc0a85e1ed2"),
+                            CityId = new Guid("bad2f6e8-def1-4dab-a1c2-1e0c20cb181a"),
                             CityName = "Belgaum",
-                            StateId = new Guid("315a2463-00c1-4751-94fe-70ebb081c00c")
+                            StateId = new Guid("7d8dc724-e2b4-4bb8-8a25-ce4a41a09d2a")
                         },
                         new
                         {
-                            CityId = new Guid("7e09451e-568b-40c4-9292-8d04ebfe8bd3"),
+                            CityId = new Guid("ccc849e9-3c29-49c4-b425-44fb58991c4e"),
                             CityName = "Davanagere",
-                            StateId = new Guid("315a2463-00c1-4751-94fe-70ebb081c00c")
+                            StateId = new Guid("7d8dc724-e2b4-4bb8-8a25-ce4a41a09d2a")
                         },
                         new
                         {
-                            CityId = new Guid("71e02a80-a826-4a4e-9ba2-831c331026bc"),
+                            CityId = new Guid("17ab8bb7-597b-474d-9838-de59faec038c"),
                             CityName = "Bellary",
-                            StateId = new Guid("315a2463-00c1-4751-94fe-70ebb081c00c")
+                            StateId = new Guid("7d8dc724-e2b4-4bb8-8a25-ce4a41a09d2a")
                         },
                         new
                         {
-                            CityId = new Guid("74834b0c-5a38-4b92-904c-015aaf4e7fd1"),
+                            CityId = new Guid("652c0588-88a5-470c-af58-c459098d6550"),
                             CityName = "Bijapur",
-                            StateId = new Guid("315a2463-00c1-4751-94fe-70ebb081c00c")
+                            StateId = new Guid("7d8dc724-e2b4-4bb8-8a25-ce4a41a09d2a")
                         },
                         new
                         {
-                            CityId = new Guid("d90b1fc1-0bcb-4cb2-a254-42803b51e1cd"),
+                            CityId = new Guid("af3c5ebc-e0b8-4a8a-899a-9d7591983735"),
                             CityName = "Shimoga",
-                            StateId = new Guid("315a2463-00c1-4751-94fe-70ebb081c00c")
+                            StateId = new Guid("7d8dc724-e2b4-4bb8-8a25-ce4a41a09d2a")
                         },
                         new
                         {
-                            CityId = new Guid("de6f31f6-7149-476e-9388-67361e590e5c"),
+                            CityId = new Guid("f973cbc4-1f7c-4312-9246-2e2357b3145f"),
                             CityName = "Udupi",
-                            StateId = new Guid("315a2463-00c1-4751-94fe-70ebb081c00c")
+                            StateId = new Guid("7d8dc724-e2b4-4bb8-8a25-ce4a41a09d2a")
                         },
                         new
                         {
-                            CityId = new Guid("6f83567f-0b22-4e3f-b0ee-b7953d36790e"),
+                            CityId = new Guid("794467b6-bb9e-4169-8ab7-d99224257d63"),
                             CityName = "Thiruvananthapuram",
-                            StateId = new Guid("bc830474-74f0-4463-95b0-9ae8c5532d90")
+                            StateId = new Guid("f64c52b3-43cc-42d5-8906-59adce903a78")
                         },
                         new
                         {
-                            CityId = new Guid("2007b7a0-4818-43f2-bd76-78944254ca02"),
+                            CityId = new Guid("f3587e05-697b-4720-be21-c0d31bafe1d5"),
                             CityName = "Kochi",
-                            StateId = new Guid("bc830474-74f0-4463-95b0-9ae8c5532d90")
+                            StateId = new Guid("f64c52b3-43cc-42d5-8906-59adce903a78")
                         },
                         new
                         {
-                            CityId = new Guid("9ffb0191-36de-4baf-91fc-1452d51a0af5"),
+                            CityId = new Guid("af603fa3-322e-413b-b856-8ae81fc71226"),
                             CityName = "Kozhikode",
-                            StateId = new Guid("bc830474-74f0-4463-95b0-9ae8c5532d90")
+                            StateId = new Guid("f64c52b3-43cc-42d5-8906-59adce903a78")
                         },
                         new
                         {
-                            CityId = new Guid("0f2c6ff2-924e-4d56-97d3-598eee55dae3"),
+                            CityId = new Guid("e58b216f-fcb6-446f-8b85-fd63fc9400f9"),
                             CityName = "Thrissur",
-                            StateId = new Guid("bc830474-74f0-4463-95b0-9ae8c5532d90")
+                            StateId = new Guid("f64c52b3-43cc-42d5-8906-59adce903a78")
                         },
                         new
                         {
-                            CityId = new Guid("1a882fc1-1d91-4901-9659-77e4d69b2168"),
+                            CityId = new Guid("20d1a422-67df-4534-9313-199c2ebd01f6"),
                             CityName = "Kollam",
-                            StateId = new Guid("bc830474-74f0-4463-95b0-9ae8c5532d90")
+                            StateId = new Guid("f64c52b3-43cc-42d5-8906-59adce903a78")
                         },
                         new
                         {
-                            CityId = new Guid("7eacd343-7dfa-419c-856d-759830b255a7"),
+                            CityId = new Guid("0c7b0cea-e12b-4e72-8700-d91a29de68ee"),
                             CityName = "Alappuzha",
-                            StateId = new Guid("bc830474-74f0-4463-95b0-9ae8c5532d90")
+                            StateId = new Guid("f64c52b3-43cc-42d5-8906-59adce903a78")
                         },
                         new
                         {
-                            CityId = new Guid("11211bc5-0bc0-48cc-9498-b766d2a4fc99"),
+                            CityId = new Guid("1f93379c-49a9-4644-80fb-59670f718b6f"),
                             CityName = "Kannur",
-                            StateId = new Guid("bc830474-74f0-4463-95b0-9ae8c5532d90")
+                            StateId = new Guid("f64c52b3-43cc-42d5-8906-59adce903a78")
                         },
                         new
                         {
-                            CityId = new Guid("62da99f6-f69d-46ec-b1de-9eed0e2e8da6"),
+                            CityId = new Guid("e48b9726-3936-402b-a349-a3b979aabc5f"),
                             CityName = "Palakkad",
-                            StateId = new Guid("bc830474-74f0-4463-95b0-9ae8c5532d90")
+                            StateId = new Guid("f64c52b3-43cc-42d5-8906-59adce903a78")
                         },
                         new
                         {
-                            CityId = new Guid("c3cf1067-e786-4ff8-88c5-14954f84ab0a"),
+                            CityId = new Guid("e8914ad9-62e8-4b21-bc9b-84ef3e08c5fe"),
                             CityName = "Malappuram",
-                            StateId = new Guid("bc830474-74f0-4463-95b0-9ae8c5532d90")
+                            StateId = new Guid("f64c52b3-43cc-42d5-8906-59adce903a78")
                         },
                         new
                         {
-                            CityId = new Guid("b4b4c223-a12c-4b3a-88e5-0ec1fe081bf6"),
+                            CityId = new Guid("3870ea27-08d2-4b49-a346-7536378cf825"),
                             CityName = "Idukki",
-                            StateId = new Guid("bc830474-74f0-4463-95b0-9ae8c5532d90")
+                            StateId = new Guid("f64c52b3-43cc-42d5-8906-59adce903a78")
                         },
                         new
                         {
-                            CityId = new Guid("556d8637-4d36-46b8-b0ec-25cfd800e20e"),
+                            CityId = new Guid("d18e9167-55df-4693-b66a-49fa8c692932"),
                             CityName = "Bhopal",
-                            StateId = new Guid("dc2d87ab-6f5e-4b8c-b396-3d4f501d12c2")
+                            StateId = new Guid("027777db-9497-422d-9a17-b8ecc4fe1e0b")
                         },
                         new
                         {
-                            CityId = new Guid("e266e3a7-c212-4ee0-a652-085d97eaaf74"),
+                            CityId = new Guid("7eaa0234-1d79-4035-b6f5-603241af89dd"),
                             CityName = "Indore",
-                            StateId = new Guid("dc2d87ab-6f5e-4b8c-b396-3d4f501d12c2")
+                            StateId = new Guid("027777db-9497-422d-9a17-b8ecc4fe1e0b")
                         },
                         new
                         {
-                            CityId = new Guid("74e4a4a3-a93e-49d0-b59e-18ea26300b9c"),
+                            CityId = new Guid("b046bf46-3318-4022-804f-d599eebefee9"),
                             CityName = "Gwalior",
-                            StateId = new Guid("dc2d87ab-6f5e-4b8c-b396-3d4f501d12c2")
+                            StateId = new Guid("027777db-9497-422d-9a17-b8ecc4fe1e0b")
                         },
                         new
                         {
-                            CityId = new Guid("41af65a4-1ef3-41e0-a653-7f2dcd60bbbb"),
+                            CityId = new Guid("293d9e46-c177-4180-a4e4-a8e27975e5a6"),
                             CityName = "Jabalpur",
-                            StateId = new Guid("dc2d87ab-6f5e-4b8c-b396-3d4f501d12c2")
+                            StateId = new Guid("027777db-9497-422d-9a17-b8ecc4fe1e0b")
                         },
                         new
                         {
-                            CityId = new Guid("b5f67504-f268-4c2b-8079-3eeef0560b4b"),
+                            CityId = new Guid("b874b19f-7d43-4718-9a9b-91aef9f4425c"),
                             CityName = "Ujjain",
-                            StateId = new Guid("dc2d87ab-6f5e-4b8c-b396-3d4f501d12c2")
+                            StateId = new Guid("027777db-9497-422d-9a17-b8ecc4fe1e0b")
                         },
                         new
                         {
-                            CityId = new Guid("1a032731-535b-490c-81ec-5699e9213921"),
+                            CityId = new Guid("6a8b5f86-7974-454d-9be3-a6a31d51aa72"),
                             CityName = "Sagar",
-                            StateId = new Guid("dc2d87ab-6f5e-4b8c-b396-3d4f501d12c2")
+                            StateId = new Guid("027777db-9497-422d-9a17-b8ecc4fe1e0b")
                         },
                         new
                         {
-                            CityId = new Guid("2d0b3832-cb21-43a4-a75f-d6d8147e2d1e"),
+                            CityId = new Guid("40e38907-4085-41a5-80b2-5840503202a1"),
                             CityName = "Rewa",
-                            StateId = new Guid("dc2d87ab-6f5e-4b8c-b396-3d4f501d12c2")
+                            StateId = new Guid("027777db-9497-422d-9a17-b8ecc4fe1e0b")
                         },
                         new
                         {
-                            CityId = new Guid("7111d06e-fcf4-4e84-8de1-e5c73e89a73d"),
+                            CityId = new Guid("d67ce160-af49-4526-95bc-6af0336c5bf1"),
                             CityName = "Ratlam",
-                            StateId = new Guid("dc2d87ab-6f5e-4b8c-b396-3d4f501d12c2")
+                            StateId = new Guid("027777db-9497-422d-9a17-b8ecc4fe1e0b")
                         },
                         new
                         {
-                            CityId = new Guid("9965f910-c750-4057-847b-2da75c3b30c6"),
+                            CityId = new Guid("12cbc0d3-ef35-4594-82c1-72aed247c32f"),
                             CityName = "Satna",
-                            StateId = new Guid("dc2d87ab-6f5e-4b8c-b396-3d4f501d12c2")
+                            StateId = new Guid("027777db-9497-422d-9a17-b8ecc4fe1e0b")
                         },
                         new
                         {
-                            CityId = new Guid("4dfaef38-0cc4-41e2-839d-a4eab27d0132"),
+                            CityId = new Guid("73a2d097-a551-4a2c-8dc9-cbc934cff151"),
                             CityName = "Chhindwara",
-                            StateId = new Guid("dc2d87ab-6f5e-4b8c-b396-3d4f501d12c2")
+                            StateId = new Guid("027777db-9497-422d-9a17-b8ecc4fe1e0b")
                         },
                         new
                         {
-                            CityId = new Guid("4b49e649-22a5-447c-ae99-3457a4eab9c8"),
+                            CityId = new Guid("31cb208f-b154-4f79-a1eb-21c6303e70a7"),
                             CityName = "Mumbai",
-                            StateId = new Guid("aba44b47-1306-46f5-8389-25abf39a813f")
+                            StateId = new Guid("76f5d4a9-d70c-4f5d-8634-b584919c96aa")
                         },
                         new
                         {
-                            CityId = new Guid("63044337-68cb-4fb0-8a5a-3465fbdb24f2"),
+                            CityId = new Guid("b37d0c7d-c6f4-435b-ade8-c142d8ae7b2c"),
                             CityName = "Pune",
-                            StateId = new Guid("aba44b47-1306-46f5-8389-25abf39a813f")
+                            StateId = new Guid("76f5d4a9-d70c-4f5d-8634-b584919c96aa")
                         },
                         new
                         {
-                            CityId = new Guid("45e54e63-4156-4d51-855f-6badaa8f5ac1"),
+                            CityId = new Guid("29704c7f-73fc-4919-bced-28468fead987"),
                             CityName = "Nagpur",
-                            StateId = new Guid("aba44b47-1306-46f5-8389-25abf39a813f")
+                            StateId = new Guid("76f5d4a9-d70c-4f5d-8634-b584919c96aa")
                         },
                         new
                         {
-                            CityId = new Guid("f8dfe399-5494-4b0e-a9ad-103002f3453c"),
+                            CityId = new Guid("d9726185-aa4b-4270-8314-853b6728bd78"),
                             CityName = "Nashik",
-                            StateId = new Guid("aba44b47-1306-46f5-8389-25abf39a813f")
+                            StateId = new Guid("76f5d4a9-d70c-4f5d-8634-b584919c96aa")
                         },
                         new
                         {
-                            CityId = new Guid("407ac8ec-afd8-4c9a-b2cb-dc361e00246e"),
+                            CityId = new Guid("33f06e97-aea9-4549-9071-a41555a10cda"),
                             CityName = "Thane",
-                            StateId = new Guid("aba44b47-1306-46f5-8389-25abf39a813f")
+                            StateId = new Guid("76f5d4a9-d70c-4f5d-8634-b584919c96aa")
                         },
                         new
                         {
-                            CityId = new Guid("6575463c-9fe2-4631-b89b-f0ce8b9dd94a"),
+                            CityId = new Guid("4ec0b7d5-c803-4d14-b7b2-fc372cc30b54"),
                             CityName = "Aurangabad",
-                            StateId = new Guid("aba44b47-1306-46f5-8389-25abf39a813f")
+                            StateId = new Guid("76f5d4a9-d70c-4f5d-8634-b584919c96aa")
                         },
                         new
                         {
-                            CityId = new Guid("0a11b3c2-b9d3-4535-b0dd-7910c4988e02"),
+                            CityId = new Guid("c04dfc6b-f813-4d03-80d9-a9d23ee93367"),
                             CityName = "Solapur",
-                            StateId = new Guid("aba44b47-1306-46f5-8389-25abf39a813f")
+                            StateId = new Guid("76f5d4a9-d70c-4f5d-8634-b584919c96aa")
                         },
                         new
                         {
-                            CityId = new Guid("ec8766a2-dfc9-4aaf-8a8c-534bc973c05a"),
+                            CityId = new Guid("dbcf94b2-c85d-4be6-94f4-a1bd2ee6f790"),
                             CityName = "Kolhapur",
-                            StateId = new Guid("aba44b47-1306-46f5-8389-25abf39a813f")
+                            StateId = new Guid("76f5d4a9-d70c-4f5d-8634-b584919c96aa")
                         },
                         new
                         {
-                            CityId = new Guid("6f9bdb16-b941-4110-a298-396005062bab"),
+                            CityId = new Guid("f269623e-a9c6-4992-b2aa-0e82b7b85eed"),
                             CityName = "Amravati",
-                            StateId = new Guid("aba44b47-1306-46f5-8389-25abf39a813f")
+                            StateId = new Guid("76f5d4a9-d70c-4f5d-8634-b584919c96aa")
                         },
                         new
                         {
-                            CityId = new Guid("27c551aa-7e82-4c07-927a-e08fd613cca2"),
+                            CityId = new Guid("75cf6e4a-b2bb-4112-9551-f3c5230a2bf2"),
                             CityName = "Sangli",
-                            StateId = new Guid("aba44b47-1306-46f5-8389-25abf39a813f")
+                            StateId = new Guid("76f5d4a9-d70c-4f5d-8634-b584919c96aa")
                         },
                         new
                         {
-                            CityId = new Guid("298ab6d0-2487-453d-bcd3-ddbaf364a7dd"),
+                            CityId = new Guid("44b9051a-6622-4823-9723-ca569dc9089b"),
                             CityName = "Jaipur",
-                            StateId = new Guid("dc8eeac3-5677-44ec-9f43-638a3e61938f")
+                            StateId = new Guid("2d79d1cd-a93e-4848-a71e-6fc971f16118")
                         },
                         new
                         {
-                            CityId = new Guid("e61e5e8c-9f54-4359-aeca-2a6e342aae53"),
+                            CityId = new Guid("a3f3e376-cabc-4fb9-bc07-933bc6de5ce8"),
                             CityName = "Jodhpur",
-                            StateId = new Guid("dc8eeac3-5677-44ec-9f43-638a3e61938f")
+                            StateId = new Guid("2d79d1cd-a93e-4848-a71e-6fc971f16118")
                         },
                         new
                         {
-                            CityId = new Guid("2859b149-de47-4f7f-885b-61fb640f1453"),
+                            CityId = new Guid("6dd5bce3-fc4a-4b14-b21b-908c4691a46f"),
                             CityName = "Udaipur",
-                            StateId = new Guid("dc8eeac3-5677-44ec-9f43-638a3e61938f")
+                            StateId = new Guid("2d79d1cd-a93e-4848-a71e-6fc971f16118")
                         },
                         new
                         {
-                            CityId = new Guid("cdc09c4a-3559-470f-add5-ac424e0d1c91"),
+                            CityId = new Guid("681055bb-fddc-4be8-bde2-d185523914cf"),
                             CityName = "Kota",
-                            StateId = new Guid("dc8eeac3-5677-44ec-9f43-638a3e61938f")
+                            StateId = new Guid("2d79d1cd-a93e-4848-a71e-6fc971f16118")
                         },
                         new
                         {
-                            CityId = new Guid("91779aac-d2dc-4e0f-9e0d-03aa9d6e0ec5"),
+                            CityId = new Guid("aa5e5cb0-e8f9-4340-b2b3-e352187e6b94"),
                             CityName = "Ajmer",
-                            StateId = new Guid("dc8eeac3-5677-44ec-9f43-638a3e61938f")
+                            StateId = new Guid("2d79d1cd-a93e-4848-a71e-6fc971f16118")
                         },
                         new
                         {
-                            CityId = new Guid("aa42dfdc-6c25-4991-8d32-f747abc75571"),
+                            CityId = new Guid("f60f7ea6-d169-4aa9-8f3f-eef6188ac3df"),
                             CityName = "Bikaner",
-                            StateId = new Guid("dc8eeac3-5677-44ec-9f43-638a3e61938f")
+                            StateId = new Guid("2d79d1cd-a93e-4848-a71e-6fc971f16118")
                         },
                         new
                         {
-                            CityId = new Guid("b1a2e1d2-35f6-4b86-b597-29131d325d91"),
+                            CityId = new Guid("dad2af30-887e-4426-8a30-4e3902fb9be7"),
                             CityName = "Alwar",
-                            StateId = new Guid("dc8eeac3-5677-44ec-9f43-638a3e61938f")
+                            StateId = new Guid("2d79d1cd-a93e-4848-a71e-6fc971f16118")
                         },
                         new
                         {
-                            CityId = new Guid("2cdd45ce-cbed-469f-9e01-d8c5d03fe1b7"),
+                            CityId = new Guid("d09cb306-e0d6-4ca9-a6ba-6c2c83074654"),
                             CityName = "Bharatpur",
-                            StateId = new Guid("dc8eeac3-5677-44ec-9f43-638a3e61938f")
+                            StateId = new Guid("2d79d1cd-a93e-4848-a71e-6fc971f16118")
                         },
                         new
                         {
-                            CityId = new Guid("6c05574e-0c28-4ba7-9f0d-8e095d642d75"),
+                            CityId = new Guid("6accec67-5b6c-454d-bc3d-5a6eba9458a0"),
                             CityName = "Jaisalmer",
-                            StateId = new Guid("dc8eeac3-5677-44ec-9f43-638a3e61938f")
+                            StateId = new Guid("2d79d1cd-a93e-4848-a71e-6fc971f16118")
                         },
                         new
                         {
-                            CityId = new Guid("66d6225e-9a59-4e3f-979e-59198794b68c"),
+                            CityId = new Guid("777208b7-533e-407b-a4ed-158d67c9195f"),
                             CityName = "Sikar",
-                            StateId = new Guid("dc8eeac3-5677-44ec-9f43-638a3e61938f")
+                            StateId = new Guid("2d79d1cd-a93e-4848-a71e-6fc971f16118")
                         },
                         new
                         {
-                            CityId = new Guid("d16f221c-ea1a-422b-9367-7c5bddbc0607"),
+                            CityId = new Guid("1f1ff35f-808e-4a8f-89f8-cfb72085e58e"),
                             CityName = "Chennai",
-                            StateId = new Guid("f8e1e68e-6477-4279-ae63-9c2dbd77c844")
+                            StateId = new Guid("3b0948e5-2921-4ff9-8f72-e162c2910356")
                         },
                         new
                         {
-                            CityId = new Guid("7de7d0b9-de6b-4b9c-9adc-0f6cb4f4dc5d"),
+                            CityId = new Guid("9f254664-7516-4242-84d4-bd9e9783fbb5"),
                             CityName = "Coimbatore",
-                            StateId = new Guid("f8e1e68e-6477-4279-ae63-9c2dbd77c844")
+                            StateId = new Guid("3b0948e5-2921-4ff9-8f72-e162c2910356")
                         },
                         new
                         {
-                            CityId = new Guid("24492ce4-80bc-40c5-8734-5a3ab6ad2116"),
+                            CityId = new Guid("6e7cb70a-a71d-4c76-aa12-d94957ebe668"),
                             CityName = "Madurai",
-                            StateId = new Guid("f8e1e68e-6477-4279-ae63-9c2dbd77c844")
+                            StateId = new Guid("3b0948e5-2921-4ff9-8f72-e162c2910356")
                         },
                         new
                         {
-                            CityId = new Guid("79d9beb2-9906-4ca9-977f-e37c01cdfa93"),
+                            CityId = new Guid("71ed8f23-7a2d-40af-9cfa-6486246897ec"),
                             CityName = "Tiruchirappalli",
-                            StateId = new Guid("f8e1e68e-6477-4279-ae63-9c2dbd77c844")
+                            StateId = new Guid("3b0948e5-2921-4ff9-8f72-e162c2910356")
                         },
                         new
                         {
-                            CityId = new Guid("38e7a134-5122-4aa6-b403-89088f3f99dc"),
+                            CityId = new Guid("02012eb4-e655-4897-8192-96815dcd9d65"),
                             CityName = "Salem",
-                            StateId = new Guid("f8e1e68e-6477-4279-ae63-9c2dbd77c844")
+                            StateId = new Guid("3b0948e5-2921-4ff9-8f72-e162c2910356")
                         },
                         new
                         {
-                            CityId = new Guid("852b511b-cf61-4468-97ad-49191f03465d"),
+                            CityId = new Guid("2b6c0c67-6a9c-448c-8fda-dc061c5fcee8"),
                             CityName = "Tirunelveli",
-                            StateId = new Guid("f8e1e68e-6477-4279-ae63-9c2dbd77c844")
+                            StateId = new Guid("3b0948e5-2921-4ff9-8f72-e162c2910356")
                         },
                         new
                         {
-                            CityId = new Guid("5c02555b-b058-4f08-834b-7548b2de603b"),
+                            CityId = new Guid("4298cea0-88f3-452d-9fe5-3e9d24e4f89f"),
                             CityName = "Erode",
-                            StateId = new Guid("f8e1e68e-6477-4279-ae63-9c2dbd77c844")
+                            StateId = new Guid("3b0948e5-2921-4ff9-8f72-e162c2910356")
                         },
                         new
                         {
-                            CityId = new Guid("4fad5693-13cb-475a-8744-6d24642abc48"),
+                            CityId = new Guid("8c5d4794-e94d-4f7c-81ba-f3cf5625f1e5"),
                             CityName = "Vellore",
-                            StateId = new Guid("f8e1e68e-6477-4279-ae63-9c2dbd77c844")
+                            StateId = new Guid("3b0948e5-2921-4ff9-8f72-e162c2910356")
                         },
                         new
                         {
-                            CityId = new Guid("a824ae6d-3b66-4b3e-ab1d-abe79895862b"),
+                            CityId = new Guid("4ee7ef4f-7c39-4a37-8a92-bdc5b1162817"),
                             CityName = "Thoothukudi",
-                            StateId = new Guid("f8e1e68e-6477-4279-ae63-9c2dbd77c844")
+                            StateId = new Guid("3b0948e5-2921-4ff9-8f72-e162c2910356")
                         },
                         new
                         {
-                            CityId = new Guid("46226b94-e087-4240-969a-89d1f232220c"),
+                            CityId = new Guid("66ef1a2d-b25c-46ca-892a-58e427b4a132"),
                             CityName = "Dindigul",
-                            StateId = new Guid("f8e1e68e-6477-4279-ae63-9c2dbd77c844")
+                            StateId = new Guid("3b0948e5-2921-4ff9-8f72-e162c2910356")
                         },
                         new
                         {
-                            CityId = new Guid("16a5bf3a-a864-417b-874b-b6d2054e7a98"),
+                            CityId = new Guid("d36afc8a-cd7d-4fda-be70-28b04dd14f11"),
                             CityName = "Hyderabad",
-                            StateId = new Guid("3ad852bf-5e9b-4e92-97aa-1bc5734f38ec")
+                            StateId = new Guid("d8fe2065-e1a1-4301-bc42-4113de1f84a4")
                         },
                         new
                         {
-                            CityId = new Guid("e40b56ef-b4cf-4bf1-b697-884df0ed4d08"),
+                            CityId = new Guid("98a80d44-39ea-47d0-a6bd-5dde21481804"),
                             CityName = "Warangal",
-                            StateId = new Guid("3ad852bf-5e9b-4e92-97aa-1bc5734f38ec")
+                            StateId = new Guid("d8fe2065-e1a1-4301-bc42-4113de1f84a4")
                         },
                         new
                         {
-                            CityId = new Guid("d844fe5f-80c6-4554-abef-ba4d39c73434"),
+                            CityId = new Guid("967f9a4b-5334-4495-8f2c-fd360209bbbc"),
                             CityName = "Nizamabad",
-                            StateId = new Guid("3ad852bf-5e9b-4e92-97aa-1bc5734f38ec")
+                            StateId = new Guid("d8fe2065-e1a1-4301-bc42-4113de1f84a4")
                         },
                         new
                         {
-                            CityId = new Guid("a5732865-c3c3-4954-9d80-78aa7529cc2b"),
+                            CityId = new Guid("d5a804be-decc-4937-96b6-13b409365330"),
                             CityName = "Karimnagar",
-                            StateId = new Guid("3ad852bf-5e9b-4e92-97aa-1bc5734f38ec")
+                            StateId = new Guid("d8fe2065-e1a1-4301-bc42-4113de1f84a4")
                         },
                         new
                         {
-                            CityId = new Guid("e3477ec1-004b-4ba3-8510-c602efe6b2d1"),
+                            CityId = new Guid("27994bb0-b7cd-4ddc-9d1a-8e1022cdb619"),
                             CityName = "Khammam",
-                            StateId = new Guid("3ad852bf-5e9b-4e92-97aa-1bc5734f38ec")
+                            StateId = new Guid("d8fe2065-e1a1-4301-bc42-4113de1f84a4")
                         },
                         new
                         {
-                            CityId = new Guid("66229bcc-0c5f-4510-a73b-8e51009de702"),
+                            CityId = new Guid("dbb240bb-0bb3-4ec9-ac5f-1e50d75a6556"),
                             CityName = "Mahbubnagar",
-                            StateId = new Guid("3ad852bf-5e9b-4e92-97aa-1bc5734f38ec")
+                            StateId = new Guid("d8fe2065-e1a1-4301-bc42-4113de1f84a4")
                         },
                         new
                         {
-                            CityId = new Guid("4ec7e0d6-89f0-49a6-a58f-22400f4b4ab7"),
+                            CityId = new Guid("be90c6b8-02b3-4517-a31b-a577b8b00aa8"),
                             CityName = "Ramagundam",
-                            StateId = new Guid("3ad852bf-5e9b-4e92-97aa-1bc5734f38ec")
+                            StateId = new Guid("d8fe2065-e1a1-4301-bc42-4113de1f84a4")
                         },
                         new
                         {
-                            CityId = new Guid("56963fbb-34ba-4091-bcb5-1b13ed313d2d"),
+                            CityId = new Guid("7a4e03d8-6a62-49f5-b5e1-0ddd1d50131f"),
                             CityName = "Adilabad",
-                            StateId = new Guid("3ad852bf-5e9b-4e92-97aa-1bc5734f38ec")
+                            StateId = new Guid("d8fe2065-e1a1-4301-bc42-4113de1f84a4")
                         },
                         new
                         {
-                            CityId = new Guid("c491d9fe-d1a1-429c-9a6a-2b734a9e8a29"),
+                            CityId = new Guid("23dcd089-7ea6-445b-ac64-02a9bf186787"),
                             CityName = "Siddipet",
-                            StateId = new Guid("3ad852bf-5e9b-4e92-97aa-1bc5734f38ec")
+                            StateId = new Guid("d8fe2065-e1a1-4301-bc42-4113de1f84a4")
                         },
                         new
                         {
-                            CityId = new Guid("dde0cd34-3e30-43f2-bd0f-8c69bb462495"),
+                            CityId = new Guid("f141bd14-9f7e-4d67-99b5-512241974960"),
                             CityName = "Mancherial",
-                            StateId = new Guid("3ad852bf-5e9b-4e92-97aa-1bc5734f38ec")
+                            StateId = new Guid("d8fe2065-e1a1-4301-bc42-4113de1f84a4")
                         },
                         new
                         {
-                            CityId = new Guid("d3ddc091-f351-41a4-ae31-47cc686f0dde"),
+                            CityId = new Guid("3444ce5b-d47e-486f-becf-7655681326ff"),
                             CityName = "Lucknow",
-                            StateId = new Guid("6e5c570f-5c6a-4d1c-8597-2ed590ed4e38")
+                            StateId = new Guid("aaf298f1-7671-4114-a026-628734203d69")
                         },
                         new
                         {
-                            CityId = new Guid("6c349b07-6c93-4746-82d9-8bc63dec6f5f"),
+                            CityId = new Guid("e8d2474b-0dc1-4f47-bffe-7b076b0f8984"),
                             CityName = "Kanpur",
-                            StateId = new Guid("6e5c570f-5c6a-4d1c-8597-2ed590ed4e38")
+                            StateId = new Guid("aaf298f1-7671-4114-a026-628734203d69")
                         },
                         new
                         {
-                            CityId = new Guid("3102b12a-0349-4650-bea8-a34866b24836"),
+                            CityId = new Guid("6d0de6df-a174-41b4-9964-c39b99e99aff"),
                             CityName = "Varanasi",
-                            StateId = new Guid("6e5c570f-5c6a-4d1c-8597-2ed590ed4e38")
+                            StateId = new Guid("aaf298f1-7671-4114-a026-628734203d69")
                         },
                         new
                         {
-                            CityId = new Guid("10a7422e-ee74-4aac-8146-fcda09a0146a"),
+                            CityId = new Guid("34f9b62d-ea79-490a-af4a-4dad846921d7"),
                             CityName = "Agra",
-                            StateId = new Guid("6e5c570f-5c6a-4d1c-8597-2ed590ed4e38")
+                            StateId = new Guid("aaf298f1-7671-4114-a026-628734203d69")
                         },
                         new
                         {
-                            CityId = new Guid("fbf33150-c985-42be-8b3d-d2ecb9213d54"),
+                            CityId = new Guid("1f654052-97ed-44e4-9d36-9bb41bab0612"),
                             CityName = "Meerut",
-                            StateId = new Guid("6e5c570f-5c6a-4d1c-8597-2ed590ed4e38")
+                            StateId = new Guid("aaf298f1-7671-4114-a026-628734203d69")
                         },
                         new
                         {
-                            CityId = new Guid("da58dc1a-f83d-4806-9f6f-84d49b2f035b"),
+                            CityId = new Guid("a0a1ec63-d6d4-4b9f-aae6-14b9b28f352f"),
                             CityName = "Allahabad",
-                            StateId = new Guid("6e5c570f-5c6a-4d1c-8597-2ed590ed4e38")
+                            StateId = new Guid("aaf298f1-7671-4114-a026-628734203d69")
                         },
                         new
                         {
-                            CityId = new Guid("3ed7d825-c53a-4b45-b44d-8aa12bf673fc"),
+                            CityId = new Guid("212dba81-cb2b-4da2-94fd-df70cc4e0643"),
                             CityName = "Ghaziabad",
-                            StateId = new Guid("6e5c570f-5c6a-4d1c-8597-2ed590ed4e38")
+                            StateId = new Guid("aaf298f1-7671-4114-a026-628734203d69")
                         },
                         new
                         {
-                            CityId = new Guid("fdf0398a-5dd8-4248-bd9f-990a420355c0"),
+                            CityId = new Guid("86ea3417-5103-4ef4-901f-810d72d9ba62"),
                             CityName = "Bareilly",
-                            StateId = new Guid("6e5c570f-5c6a-4d1c-8597-2ed590ed4e38")
+                            StateId = new Guid("aaf298f1-7671-4114-a026-628734203d69")
                         },
                         new
                         {
-                            CityId = new Guid("d86d6fc2-4972-4c54-a37f-71f90997360c"),
+                            CityId = new Guid("ce5b9dfa-c620-4487-88b8-6aab77a3e157"),
                             CityName = "Aligarh",
-                            StateId = new Guid("6e5c570f-5c6a-4d1c-8597-2ed590ed4e38")
+                            StateId = new Guid("aaf298f1-7671-4114-a026-628734203d69")
                         },
                         new
                         {
-                            CityId = new Guid("039fc486-bb25-4b3f-a71b-c9f0a285b949"),
+                            CityId = new Guid("73801b49-10e4-4387-8d6c-3143a4ab9cda"),
                             CityName = "Moradabad",
-                            StateId = new Guid("6e5c570f-5c6a-4d1c-8597-2ed590ed4e38")
+                            StateId = new Guid("aaf298f1-7671-4114-a026-628734203d69")
                         },
                         new
                         {
-                            CityId = new Guid("d5ee3aaa-bb2e-4aa5-b049-75c105c534d7"),
+                            CityId = new Guid("fa7e7849-95a1-498c-9f42-544147ef8c4a"),
                             CityName = "Kolkata",
-                            StateId = new Guid("33f6bbb3-f18b-4e1c-a6fa-3556913a2bb5")
+                            StateId = new Guid("74127793-39a9-42ab-a951-4601e03e07c3")
                         },
                         new
                         {
-                            CityId = new Guid("c8855613-17e9-479b-aecf-fb8906026c7f"),
+                            CityId = new Guid("221980a8-2f0b-42a3-b69d-3b6f72f54933"),
                             CityName = "Howrah",
-                            StateId = new Guid("33f6bbb3-f18b-4e1c-a6fa-3556913a2bb5")
+                            StateId = new Guid("74127793-39a9-42ab-a951-4601e03e07c3")
                         },
                         new
                         {
-                            CityId = new Guid("1cff87f3-6f33-400d-a608-72262f9c6341"),
+                            CityId = new Guid("2eb23eb2-7f4d-4fc3-950b-bfa5e3b22611"),
                             CityName = "Darjeeling",
-                            StateId = new Guid("33f6bbb3-f18b-4e1c-a6fa-3556913a2bb5")
+                            StateId = new Guid("74127793-39a9-42ab-a951-4601e03e07c3")
                         },
                         new
                         {
-                            CityId = new Guid("05a92e9b-6c86-4549-b7cb-c24c54cc0adf"),
+                            CityId = new Guid("909c9e83-77bd-4ae1-873b-016a681ac17a"),
                             CityName = "Siliguri",
-                            StateId = new Guid("33f6bbb3-f18b-4e1c-a6fa-3556913a2bb5")
+                            StateId = new Guid("74127793-39a9-42ab-a951-4601e03e07c3")
                         },
                         new
                         {
-                            CityId = new Guid("0f306eff-4cb4-464d-bde5-a486e29a2f62"),
+                            CityId = new Guid("8cf223ea-4293-4954-b2ab-a80b9c7096b1"),
                             CityName = "Durgapur",
-                            StateId = new Guid("33f6bbb3-f18b-4e1c-a6fa-3556913a2bb5")
+                            StateId = new Guid("74127793-39a9-42ab-a951-4601e03e07c3")
                         },
                         new
                         {
-                            CityId = new Guid("be8a3918-ccb0-4f0c-bfc2-4eeca0cb6782"),
+                            CityId = new Guid("33799e24-2c22-4448-adee-3d36b0bb60c8"),
                             CityName = "Asansol",
-                            StateId = new Guid("33f6bbb3-f18b-4e1c-a6fa-3556913a2bb5")
+                            StateId = new Guid("74127793-39a9-42ab-a951-4601e03e07c3")
                         },
                         new
                         {
-                            CityId = new Guid("0f7de0ef-f381-478b-979d-a70d375ebf67"),
+                            CityId = new Guid("e54c157f-7b20-46e7-a741-6d5cd54ac287"),
                             CityName = "Malda",
-                            StateId = new Guid("33f6bbb3-f18b-4e1c-a6fa-3556913a2bb5")
+                            StateId = new Guid("74127793-39a9-42ab-a951-4601e03e07c3")
                         },
                         new
                         {
-                            CityId = new Guid("6fba245f-ef46-4929-ad80-903129ecf0fa"),
+                            CityId = new Guid("cd95016d-6402-4939-ab93-99274cb57b24"),
                             CityName = "Bardhaman",
-                            StateId = new Guid("33f6bbb3-f18b-4e1c-a6fa-3556913a2bb5")
+                            StateId = new Guid("74127793-39a9-42ab-a951-4601e03e07c3")
                         },
                         new
                         {
-                            CityId = new Guid("f53c3eb3-19bc-4fc1-a6a7-e9482e101195"),
+                            CityId = new Guid("23a12cd3-82d0-4b38-bef4-77166f82b8a4"),
                             CityName = "Jalpaiguri",
-                            StateId = new Guid("33f6bbb3-f18b-4e1c-a6fa-3556913a2bb5")
+                            StateId = new Guid("74127793-39a9-42ab-a951-4601e03e07c3")
                         },
                         new
                         {
-                            CityId = new Guid("ccb4daca-0641-4321-a3c6-6c6a5cab3123"),
+                            CityId = new Guid("b4d4e16c-6cc1-4c3b-aa5a-c2aff405c38f"),
                             CityName = "Haldia",
-                            StateId = new Guid("33f6bbb3-f18b-4e1c-a6fa-3556913a2bb5")
+                            StateId = new Guid("74127793-39a9-42ab-a951-4601e03e07c3")
                         });
                 });
 
@@ -1331,6 +1331,9 @@ namespace InsurancePolicy.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("NEWSEQUENTIALID()");
+
+                    b.Property<DateTime>("ApprovalDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("BankAccountNumber")
                         .IsRequired()
@@ -1360,6 +1363,9 @@ namespace InsurancePolicy.Migrations
 
                     b.Property<Guid>("PolicyId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("RejectionDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -1599,10 +1605,9 @@ namespace InsurancePolicy.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("PaymentReference")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("PolicyNo")
+                    b.Property<Guid?>("PolicyNo")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Status")
@@ -1650,9 +1655,6 @@ namespace InsurancePolicy.Migrations
                     b.Property<double>("InstallmentCommRatio")
                         .HasColumnType("float");
 
-                    b.Property<Guid?>("InsurancePlanPlanId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("MaxAge")
                         .HasColumnType("int");
 
@@ -1698,7 +1700,7 @@ namespace InsurancePolicy.Migrations
 
                     b.HasKey("SchemeId");
 
-                    b.HasIndex("InsurancePlanPlanId");
+                    b.HasIndex("PlanId");
 
                     b.ToTable("InsuranceSchemes");
                 });
@@ -1722,63 +1724,6 @@ namespace InsurancePolicy.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("InsuranceSettings");
-                });
-
-            modelBuilder.Entity("InsurancePolicy.Models.Nominee", b =>
-                {
-                    b.Property<Guid>("NomineeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID()");
-
-                    b.Property<string>("NomineeName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<Guid>("PolicyNo")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Relationship")
-                        .HasColumnType("int");
-
-                    b.HasKey("NomineeId");
-
-                    b.HasIndex("PolicyNo");
-
-                    b.ToTable("Nomines");
-                });
-
-            modelBuilder.Entity("InsurancePolicy.Models.Payment", b =>
-                {
-                    b.Property<Guid>("PaymentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID()");
-
-                    b.Property<double>("AmountPaid")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("PaymentDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("PolicyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<double>("Tax")
-                        .HasColumnType("float");
-
-                    b.Property<double>("TotalPayment")
-                        .HasColumnType("float");
-
-                    b.Property<int>("paymentType")
-                        .HasColumnType("int");
-
-                    b.HasKey("PaymentId");
-
-                    b.HasIndex("PolicyId");
-
-                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("InsurancePolicy.Models.Policy", b =>
@@ -1873,22 +1818,22 @@ namespace InsurancePolicy.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("8e7c1dae-e296-4a3d-9b3d-9fa6dff8a89c"),
+                            Id = new Guid("b5689c7d-54c8-4db9-a151-ddb82296fba4"),
                             Name = "Admin"
                         },
                         new
                         {
-                            Id = new Guid("ebaa212c-39cf-4a32-9b2f-594eddf3b441"),
+                            Id = new Guid("1c9b2dc2-7bc3-4890-80db-0d2793a6e497"),
                             Name = "Agent"
                         },
                         new
                         {
-                            Id = new Guid("e6e5e706-5b7c-4c32-8853-d48e506f82cf"),
+                            Id = new Guid("58637d49-15ab-41ca-b59b-6bc963b79002"),
                             Name = "Employee"
                         },
                         new
                         {
-                            Id = new Guid("2509e485-5d58-4510-bfd8-8a581e3936eb"),
+                            Id = new Guid("b11240f6-7e78-4b5f-a118-1e859b9a66aa"),
                             Name = "Customer"
                         });
                 });
@@ -1911,142 +1856,142 @@ namespace InsurancePolicy.Migrations
                     b.HasData(
                         new
                         {
-                            StateId = new Guid("a39d4621-c132-493d-8487-a8ce389d09b8"),
+                            StateId = new Guid("6d83779f-b709-4445-854a-93b9d335a657"),
                             StateName = "Andhra Pradesh"
                         },
                         new
                         {
-                            StateId = new Guid("a4fe84dc-f31f-402c-a429-3d6979aa36fd"),
+                            StateId = new Guid("4f98e29d-7965-4707-a0f2-c7f590fec70e"),
                             StateName = "Arunachal Pradesh"
                         },
                         new
                         {
-                            StateId = new Guid("06e34b22-5e8f-4919-a66c-01353c586278"),
+                            StateId = new Guid("491dfbd7-89bc-423a-beab-4b01aa2effd0"),
                             StateName = "Assam"
                         },
                         new
                         {
-                            StateId = new Guid("c22fe6e6-7dc0-425d-ae46-e4b03a40d8f0"),
+                            StateId = new Guid("b5358f30-bdfa-48fd-91c6-85fca42ace1a"),
                             StateName = "Bihar"
                         },
                         new
                         {
-                            StateId = new Guid("074e13ee-c86b-45b2-92e3-bfa72a2f267a"),
+                            StateId = new Guid("b4253dca-1df7-46fc-b1e7-f9559bc9ef79"),
                             StateName = "Chhattisgarh"
                         },
                         new
                         {
-                            StateId = new Guid("1221c640-eb37-40e4-9aa0-93a8ea46eeac"),
+                            StateId = new Guid("20e525a4-c4de-46fb-9dd6-8389c9af202a"),
                             StateName = "Goa"
                         },
                         new
                         {
-                            StateId = new Guid("d54b72d0-bd4e-43a4-88a0-6a02e1b4c45f"),
+                            StateId = new Guid("b7417275-3b44-4a18-95ef-764659f1fd42"),
                             StateName = "Gujarat"
                         },
                         new
                         {
-                            StateId = new Guid("36551f4f-d528-46c3-a372-9f5dcba9bf3d"),
+                            StateId = new Guid("73f6ced4-8489-4c72-b0e8-76fa648e54ad"),
                             StateName = "Haryana"
                         },
                         new
                         {
-                            StateId = new Guid("2308a211-d1e3-4184-be0b-3fb6a388b496"),
+                            StateId = new Guid("7746ef13-b271-4ed4-af7f-9b4c99964f43"),
                             StateName = "Himachal Pradesh"
                         },
                         new
                         {
-                            StateId = new Guid("c15c4637-d5b6-43da-ab0c-ea4fc80ef876"),
+                            StateId = new Guid("62f4621d-15b4-45eb-a47c-ea3e30e1bbfa"),
                             StateName = "Jharkhand"
                         },
                         new
                         {
-                            StateId = new Guid("315a2463-00c1-4751-94fe-70ebb081c00c"),
+                            StateId = new Guid("7d8dc724-e2b4-4bb8-8a25-ce4a41a09d2a"),
                             StateName = "Karnataka"
                         },
                         new
                         {
-                            StateId = new Guid("bc830474-74f0-4463-95b0-9ae8c5532d90"),
+                            StateId = new Guid("f64c52b3-43cc-42d5-8906-59adce903a78"),
                             StateName = "Kerala"
                         },
                         new
                         {
-                            StateId = new Guid("dc2d87ab-6f5e-4b8c-b396-3d4f501d12c2"),
+                            StateId = new Guid("027777db-9497-422d-9a17-b8ecc4fe1e0b"),
                             StateName = "Madhya Pradesh"
                         },
                         new
                         {
-                            StateId = new Guid("aba44b47-1306-46f5-8389-25abf39a813f"),
+                            StateId = new Guid("76f5d4a9-d70c-4f5d-8634-b584919c96aa"),
                             StateName = "Maharashtra"
                         },
                         new
                         {
-                            StateId = new Guid("7a50b9b5-3c16-467d-8240-8b50799fa7f9"),
+                            StateId = new Guid("efd2331a-2076-411f-a358-ee59bc448d41"),
                             StateName = "Manipur"
                         },
                         new
                         {
-                            StateId = new Guid("913dad25-0a5b-427d-9122-eaa2c8d0974f"),
+                            StateId = new Guid("b1da210e-dfe0-4918-b031-a58d139e1f63"),
                             StateName = "Meghalaya"
                         },
                         new
                         {
-                            StateId = new Guid("1c29f72c-b869-4767-83c0-861a70fbc688"),
+                            StateId = new Guid("c8c7dfb0-7d10-44d1-bcd0-18951f2fee52"),
                             StateName = "Mizoram"
                         },
                         new
                         {
-                            StateId = new Guid("5ba1336b-7b96-4b21-863c-8057c4121846"),
+                            StateId = new Guid("9d19abc9-6b39-4247-b230-2def035802f8"),
                             StateName = "Nagaland"
                         },
                         new
                         {
-                            StateId = new Guid("86c46d03-5638-4fdf-88ae-eed5c80cd06e"),
+                            StateId = new Guid("633565eb-6d02-4e49-b6c0-27a54562a43e"),
                             StateName = "Odisha"
                         },
                         new
                         {
-                            StateId = new Guid("aeceb63a-0c40-4c36-b250-bfcfecdd8ad1"),
+                            StateId = new Guid("a03a8a96-5b8b-4a23-b28a-a81f86c88a3f"),
                             StateName = "Punjab"
                         },
                         new
                         {
-                            StateId = new Guid("dc8eeac3-5677-44ec-9f43-638a3e61938f"),
+                            StateId = new Guid("2d79d1cd-a93e-4848-a71e-6fc971f16118"),
                             StateName = "Rajasthan"
                         },
                         new
                         {
-                            StateId = new Guid("3c8fc976-291f-4eee-b092-e5b8a6df3ea7"),
+                            StateId = new Guid("d189e8e4-1548-4772-ad3d-2263e2b2f3f9"),
                             StateName = "Sikkim"
                         },
                         new
                         {
-                            StateId = new Guid("f8e1e68e-6477-4279-ae63-9c2dbd77c844"),
+                            StateId = new Guid("3b0948e5-2921-4ff9-8f72-e162c2910356"),
                             StateName = "Tamil Nadu"
                         },
                         new
                         {
-                            StateId = new Guid("3ad852bf-5e9b-4e92-97aa-1bc5734f38ec"),
+                            StateId = new Guid("d8fe2065-e1a1-4301-bc42-4113de1f84a4"),
                             StateName = "Telangana"
                         },
                         new
                         {
-                            StateId = new Guid("0dfe8761-5cc9-450a-8258-b4120fa48023"),
+                            StateId = new Guid("77543aef-73fa-4df8-8b7f-15a6633c570d"),
                             StateName = "Tripura"
                         },
                         new
                         {
-                            StateId = new Guid("6e5c570f-5c6a-4d1c-8597-2ed590ed4e38"),
+                            StateId = new Guid("aaf298f1-7671-4114-a026-628734203d69"),
                             StateName = "Uttar Pradesh"
                         },
                         new
                         {
-                            StateId = new Guid("970a0f0f-e154-472b-bba7-238628aa7fe8"),
+                            StateId = new Guid("4f8eb6cf-4a03-4f70-851a-a357f2f01a56"),
                             StateName = "Uttarakhand"
                         },
                         new
                         {
-                            StateId = new Guid("33f6bbb3-f18b-4e1c-a6fa-3556913a2bb5"),
+                            StateId = new Guid("74127793-39a9-42ab-a951-4601e03e07c3"),
                             StateName = "West Bengal"
                         });
                 });
@@ -2131,6 +2076,63 @@ namespace InsurancePolicy.Migrations
                     b.HasIndex("CustomerId");
 
                     b.ToTable("WithdrawalRequests");
+                });
+
+            modelBuilder.Entity("Nominee", b =>
+                {
+                    b.Property<Guid>("NomineeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWSEQUENTIALID()");
+
+                    b.Property<string>("NomineeName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid?>("PolicyNo")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Relationship")
+                        .HasColumnType("int");
+
+                    b.HasKey("NomineeId");
+
+                    b.HasIndex("PolicyNo");
+
+                    b.ToTable("Nomines");
+                });
+
+            modelBuilder.Entity("Payment", b =>
+                {
+                    b.Property<Guid>("PaymentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWSEQUENTIALID()");
+
+                    b.Property<double>("AmountPaid")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("PolicyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Tax")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalPayment")
+                        .HasColumnType("float");
+
+                    b.Property<int>("paymentType")
+                        .HasColumnType("int");
+
+                    b.HasKey("PaymentId");
+
+                    b.HasIndex("PolicyId");
+
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("InsurancePolicy.Models.Address", b =>
@@ -2309,29 +2311,13 @@ namespace InsurancePolicy.Migrations
 
             modelBuilder.Entity("InsurancePolicy.Models.InsuranceScheme", b =>
                 {
-                    b.HasOne("InsurancePolicy.Models.InsurancePlan", null)
+                    b.HasOne("InsurancePolicy.Models.InsurancePlan", "InsurancePlan")
                         .WithMany("Schemes")
-                        .HasForeignKey("InsurancePlanPlanId");
-                });
-
-            modelBuilder.Entity("InsurancePolicy.Models.Nominee", b =>
-                {
-                    b.HasOne("InsurancePolicy.Models.Policy", "PolicyAccount")
-                        .WithMany("Nominees")
-                        .HasForeignKey("PolicyNo")
+                        .HasForeignKey("PlanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("PolicyAccount");
-                });
-
-            modelBuilder.Entity("InsurancePolicy.Models.Payment", b =>
-                {
-                    b.HasOne("InsurancePolicy.Models.Policy", "Policy")
-                        .WithMany("Payments")
-                        .HasForeignKey("PolicyId");
-
-                    b.Navigation("Policy");
+                    b.Navigation("InsurancePlan");
                 });
 
             modelBuilder.Entity("InsurancePolicy.Models.Policy", b =>
@@ -2359,7 +2345,7 @@ namespace InsurancePolicy.Migrations
                         .IsRequired();
 
                     b.HasOne("InsurancePolicy.Models.TaxSettings", "TaxSettings")
-                        .WithMany("InsurancePolicies")
+                        .WithMany()
                         .HasForeignKey("TaxSettingsTaxId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2399,6 +2385,24 @@ namespace InsurancePolicy.Migrations
                     b.Navigation("Agent");
 
                     b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("Nominee", b =>
+                {
+                    b.HasOne("InsurancePolicy.Models.Policy", "PolicyAccount")
+                        .WithMany("Nominees")
+                        .HasForeignKey("PolicyNo");
+
+                    b.Navigation("PolicyAccount");
+                });
+
+            modelBuilder.Entity("Payment", b =>
+                {
+                    b.HasOne("InsurancePolicy.Models.Policy", "Policy")
+                        .WithMany("Payments")
+                        .HasForeignKey("PolicyId");
+
+                    b.Navigation("Policy");
                 });
 
             modelBuilder.Entity("InsurancePolicy.Models.Agent", b =>
@@ -2449,11 +2453,6 @@ namespace InsurancePolicy.Migrations
             modelBuilder.Entity("InsurancePolicy.Models.State", b =>
                 {
                     b.Navigation("Cities");
-                });
-
-            modelBuilder.Entity("InsurancePolicy.Models.TaxSettings", b =>
-                {
-                    b.Navigation("InsurancePolicies");
                 });
 #pragma warning restore 612, 618
         }

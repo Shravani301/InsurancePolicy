@@ -1,13 +1,14 @@
-﻿using InsurancePolicy.Models;
+﻿using InsurancePolicy.DTOs;
 
 namespace InsurancePolicy.Services
 {
     public interface IClaimService
     {
-        public List<Claim> GetAll();
-        public Claim GetById(Guid id);
-        public Guid Add(Claim claim);
-        public bool Update(Claim claim);
-        public bool Delete(Guid id);
+        Guid AddClaim(ClaimRequestDto requestDto);
+        void UpdateClaim(ClaimRequestDto requestDto);
+        void ApproveClaim(Guid claimId);
+        void RejectClaim(Guid claimId, string rejectionReason);
+        ClaimResponseDto GetClaimById(Guid claimId);
+        List<ClaimResponseDto> GetAllClaims();
     }
 }

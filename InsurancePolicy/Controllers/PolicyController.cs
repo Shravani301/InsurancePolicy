@@ -1,4 +1,4 @@
-﻿using InsurancePolicy.Models;
+﻿using InsurancePolicy.DTOs;
 using InsurancePolicy.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -30,24 +30,24 @@ namespace InsurancePolicy.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Policy policy)
+        public IActionResult Add(PolicyRequestDto policy)
         {
-            var newPolicy = _service.Add(policy);
-            return Ok(newPolicy);
+            var newPolicyId = _service.Add(policy);
+            return Ok(newPolicyId);
         }
 
         [HttpPut]
-        public IActionResult Modify(Policy policy)
+        public IActionResult Update(PolicyRequestDto policy)
         {
             _service.Update(policy);
-            return Ok(policy);
+            return Ok("Policy updated successfully.");
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
             _service.Delete(id);
-            return Ok("Deleted Successfully!");
+            return Ok("Policy deleted successfully.");
         }
     }
 }

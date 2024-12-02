@@ -7,27 +7,25 @@ namespace InsurancePolicy.Models
     public class Installment
     {
         [Key]
-        public Guid InstallmentId { get; set; } 
+        public Guid InstallmentId { get; set; }
 
         [ForeignKey("Policy")]
-        public Guid PolicyNo { get; set; } 
-
-        public Policy InsurancePolicy { get; set; }
-
-        [Required]
-        public DateTime DueDate { get; set; } 
-
-        public DateTime? PaymentDate { get; set; } 
+        public Guid? PolicyNo { get; set; } // Made optional
+        public Policy InsurancePolicy { get; set; } // Navigation property
 
         [Required]
-        public double AmountDue { get; set; } 
+        public DateTime DueDate { get; set; }
 
-        public double? AmountPaid { get; set; } 
+        public DateTime? PaymentDate { get; set; }
 
-        public InstallmentStatus Status { get; set; } = InstallmentStatus.PENDING; 
+        [Required]
+        public double AmountDue { get; set; }
 
-        public string PaymentReference { get; set; } 
+        public double? AmountPaid { get; set; }
 
+        public InstallmentStatus Status { get; set; } = InstallmentStatus.PENDING;
+
+        public string? PaymentReference { get; set; }
     }
 
 }

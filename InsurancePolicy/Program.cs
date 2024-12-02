@@ -35,6 +35,13 @@ namespace InsurancePolicy
             builder.Services.AddTransient<IPolicyService, PolicyService>();
             builder.Services.AddTransient<IPaymentService,PaymentService>();    
             builder.Services.AddTransient<IClaimService, ClaimService>();
+            builder.Services.AddTransient<IInsuranceSettingsService, InsuranceSettingsService>();
+            builder.Services.AddTransient<ITaxSettingsService, TaxSettingsService>();
+            builder.Services.AddTransient<INomineeService,NomineeService>();
+            builder.Services.AddTransient<IInstallmentService, InstallmentService>();
+            builder.Services.AddTransient<IPaymentService, PaymentService>();
+            builder.Services.AddTransient<IWithdrawalRequestService, WithdrawalRequestService>();
+            builder.Services.AddTransient<ICommissionService, CommissionService>();
 
             builder.Services.AddControllers();
 

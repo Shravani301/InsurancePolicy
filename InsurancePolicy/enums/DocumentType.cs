@@ -12,6 +12,8 @@
         AddressProof,
         IncomeProof,
         AgeProof,
+        VEHICLE_REGISTRATION_LICENSE,
+        POLUTION_UNDER_CONTROL_CERTIFICATE,
         Other
     }
 }

@@ -14,6 +14,6 @@ namespace InsurancePolicy.Models
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
         // Navigation property for related insurance policies
-        public List<Policy> InsurancePolicies { get; set; }
+        //public List<Policy> InsurancePolicies { get; set; }
     }
 }

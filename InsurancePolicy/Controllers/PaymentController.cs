@@ -1,7 +1,7 @@
-﻿using InsurancePolicy.Models;
+﻿using InsurancePolicy.DTOs;
 using InsurancePolicy.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace InsurancePolicy.Controllers
 {
@@ -9,31 +9,32 @@ namespace InsurancePolicy.Controllers
     [ApiController]
     public class PaymentController : ControllerBase
     {
-        private readonly IPaymentService _service;
-        public PaymentController(IPaymentService service)
-        {
-            _service = service;
-        }
+        private readonly IPaymentService _paymentService;
 
-        [HttpGet]
-        public IActionResult GetAll()
+        public PaymentController(IPaymentService paymentService)
         {
-            var payments = _service.GetAll();
-            return Ok(payments);
-        }
-
-        [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
-        {
-            var payment = _service.GetById(id);
-            return Ok(payment);
+            _paymentService = paymentService;
         }
 
         [HttpPost]
-        public IActionResult Add(Payment payment)
+        public IActionResult AddPayment(PaymentRequestDto paymentDto)
         {
-            var newPayment = _service.Add(payment);
-            return Ok(newPayment);
+            var paymentId = _paymentService.AddPayment(paymentDto);
+            return Ok(new { PaymentId = paymentId, Message = "Payment added successfully." });
+        }
+
+        [HttpGet("policy/{policyId}")]
+        public IActionResult GetPaymentsByPolicy(Guid policyId)
+        {
+            var payments = _paymentService.GetPaymentsByPolicy(policyId);
+            return Ok(payments);
+        }
+
+        [HttpGet]
+        public IActionResult GetAllPayments()
+        {
+            var payments = _paymentService.GetAllPayments();
+            return Ok(payments);
         }
     }
 }

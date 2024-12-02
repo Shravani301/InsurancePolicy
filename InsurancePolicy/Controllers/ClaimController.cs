@@ -1,6 +1,5 @@
-﻿using InsurancePolicy.Models;
+﻿using InsurancePolicy.DTOs;
 using InsurancePolicy.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsurancePolicy.Controllers
@@ -10,44 +9,52 @@ namespace InsurancePolicy.Controllers
     public class ClaimController : ControllerBase
     {
         private readonly IClaimService _service;
+
         public ClaimController(IClaimService service)
         {
             _service = service;
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var claims = _service.GetAll();
-            return Ok(claims);
-        }
-
-        [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
-        {
-            var claim = _service.GetById(id);
-            return Ok(claim);
-        }
-
         [HttpPost]
-        public IActionResult Add(Claim claim)
+        public IActionResult AddClaim(ClaimRequestDto requestDto)
         {
-            var newClaim = _service.Add(claim);
-            return Ok(newClaim);
+            var id = _service.AddClaim(requestDto);
+            return Ok(new { ClaimId = id });
         }
 
         [HttpPut]
-        public IActionResult Modify(Claim claim)
+        public IActionResult UpdateClaim(ClaimRequestDto requestDto)
         {
-            _service.Update(claim);
+            _service.UpdateClaim(requestDto);
+            return Ok("Claim updated successfully.");
+        }
+
+        [HttpPut("{claimId}/approve")]
+        public IActionResult ApproveClaim(Guid claimId)
+        {
+            _service.ApproveClaim(claimId);
+            return Ok("Claim approved successfully.");
+        }
+
+        [HttpPut("{claimId}/reject")]
+        public IActionResult RejectClaim(Guid claimId, [FromQuery] string rejectionReason)
+        {
+            _service.RejectClaim(claimId, rejectionReason);
+            return Ok("Claim rejected successfully.");
+        }
+
+        [HttpGet("{claimId}")]
+        public IActionResult GetClaimById(Guid claimId)
+        {
+            var claim = _service.GetClaimById(claimId);
             return Ok(claim);
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
+        [HttpGet]
+        public IActionResult GetAllClaims()
         {
-            _service.Delete(id);
-            return Ok("Deleted Successfully!");
+            var claims = _service.GetAllClaims();
+            return Ok(claims);
         }
     }
 }

@@ -43,7 +43,7 @@ namespace InsurancePolicy.Exceptions
             else
             {
                 response.StatusCode = StatusCodes.Status500InternalServerError;
-                response.ExceptionMessage = exception.Message;
+                response.ExceptionMessage = exception.StackTrace;
                 response.Title = "Something went wrong!";
             }
             await httpContext.Response.WriteAsJsonAsync(response, cancellationToken);

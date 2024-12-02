@@ -1,59 +1,85 @@
-﻿using InsurancePolicy.Exceptions.ClaimExceptions;
+﻿using AutoMapper;
+using InsurancePolicy.DTOs;
+using InsurancePolicy.enums;
 using InsurancePolicy.Models;
 using InsurancePolicy.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace InsurancePolicy.Services
 {
-    public class ClaimService:IClaimService
+    public class ClaimService : IClaimService
     {
-        private readonly IRepository<Claim> _repository;
-        public ClaimService(IRepository<Claim> repository)
+        private readonly IRepository<Claim> _claimRepository;
+        private readonly IMapper _mapper;
+
+        public ClaimService(IRepository<Claim> claimRepository, IMapper mapper)
         {
-            _repository = repository;
+            _claimRepository = claimRepository;
+            _mapper = mapper;
         }
-        public Guid Add(Claim claim)
+
+        public Guid AddClaim(ClaimRequestDto requestDto)
         {
-            _repository.Add(claim);
+            var claim = _mapper.Map<Claim>(requestDto);
+            claim.Status = Status.PENDING; // Set default status to PENDING
+            _claimRepository.Add(claim);
             return claim.ClaimId;
         }
 
-        public bool Delete(Guid id)
+        public void UpdateClaim(ClaimRequestDto requestDto)
         {
-            var claim = _repository.GetById(id);
-            if (claim != null)
-            {
-                _repository.Delete(claim);
-                return true;
-            }
-            throw new ClaimNotFoundException("No such claim found to delete");
+            var existingClaim = _claimRepository.GetById(requestDto.ClaimId.Value);
+            if (existingClaim == null)
+                throw new KeyNotFoundException("Claim not found.");
+
+            _mapper.Map(requestDto, existingClaim);
+            _claimRepository.Update(existingClaim);
         }
 
-        public Claim GetById(Guid id)
+        public void ApproveClaim(Guid claimId)
         {
-            var claim = _repository.GetById(id);
-            if (claim != null)
-                return claim;
-            throw new ClaimNotFoundException("No such claim found");
+            var claim = _claimRepository.GetById(claimId);
+            if (claim == null)
+                throw new KeyNotFoundException("Claim not found.");
+
+            claim.Status = Status.APPROVED;
+            claim.ApprovalDate = DateTime.Now;
+            _claimRepository.Update(claim);
         }
 
-        public List<Claim> GetAll()
+        public void RejectClaim(Guid claimId, string rejectionReason)
         {
-            var claims = _repository.GetAll().ToList();
-            if (claims.Count == 0)
-                throw new ClaimsDoesNotExistException("No claims Exist");
-            return claims;
+            var claim = _claimRepository.GetById(claimId);
+            if (claim == null)
+                throw new KeyNotFoundException("Claim not found.");
+
+            claim.Status = Status.REJECTED;
+            claim.ClaimReason = rejectionReason;
+            claim.RejectionDate = DateTime.Now;
+            _claimRepository.Update(claim);
         }
 
-        public bool Update(Claim claim)
+        public ClaimResponseDto GetClaimById(Guid claimId)
         {
-            var existingAdmin = _repository.GetAll().AsNoTracking().FirstOrDefault(a => a.ClaimId == claim.ClaimId);
-            if (existingAdmin != null)
-            {
-                _repository.Update(claim);
-                return true;
-            }
-            throw new ClaimNotFoundException("No such claim found");
+            var claim = _claimRepository.GetAll()
+                .Include(c => c.Policy)
+                .Include(c => c.Customer)
+                .FirstOrDefault(c => c.ClaimId == claimId);
+
+            if (claim == null)
+                throw new KeyNotFoundException("Claim not found.");
+
+            return _mapper.Map<ClaimResponseDto>(claim);
+        }
+
+        public List<ClaimResponseDto> GetAllClaims()
+        {
+            var claims = _claimRepository.GetAll()
+                .Include(c => c.Policy)
+                .Include(c => c.Customer)
+                .ToList();
+
+            return _mapper.Map<List<ClaimResponseDto>>(claims);
         }
     }
 }

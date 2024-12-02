@@ -1,13 +1,14 @@
-﻿using InsurancePolicy.Models;
+﻿using InsurancePolicy.DTOs;
+using InsurancePolicy.Models;
 
 namespace InsurancePolicy.Services
 {
     public interface IInsurancePlanService
     {
-        public List<InsurancePlan> GetAll();
-        public InsurancePlan GetById(Guid id);
-        public Guid Add(InsurancePlan plan);
-        public bool Update(InsurancePlan plan);
-        public bool Delete(Guid id);
+        List<InsurancePlanResponseDto> GetAll();
+        InsurancePlanResponseDto GetById(Guid id);
+        Guid Add(InsurancePlanRequestDto plan);
+        void Update(InsurancePlanRequestDto plan);
+        void Delete(Guid id);
     }
 }

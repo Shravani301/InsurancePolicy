@@ -1,4 +1,5 @@
-﻿using InsurancePolicy.Models;
+﻿using InsurancePolicy.DTOs;
+using InsurancePolicy.Models;
 using InsurancePolicy.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -30,14 +31,14 @@ namespace InsurancePolicy.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(InsuranceScheme scheme)
+        public IActionResult Add(InsuranceSchemeRequestDto scheme)
         {
             var newScheme = _service.Add(scheme);
             return Ok(newScheme);
         }
 
         [HttpPut]
-        public IActionResult Modify(InsuranceScheme scheme)
+        public IActionResult Modify(InsuranceSchemeRequestDto scheme)
         {
             _service.Update(scheme);
             return Ok(scheme);

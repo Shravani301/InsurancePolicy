@@ -30,7 +30,9 @@ namespace InsurancePolicy.Models
         [Required(ErrorMessage = "Status is required.")]
         public WithdrawalRequestStatus Status { get; set; }
 
-        public DateTime? ApprovedAt { get; set; } 
+        public DateTime? ApprovedAt { get; set; }
+        [NotMapped] // This field can be dynamically computed or populated
+        public double TotalCommission { get; set; }
 
     }
 }

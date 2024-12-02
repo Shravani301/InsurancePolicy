@@ -37,6 +37,25 @@ namespace InsurancePolicy.Services
             customer.User.Password = hashedPassword;
             customer.User.RoleId = customerRole.Id;
 
+            // Handle Address, City, and State
+            if (customer.Address == null)
+            {
+                customer.Address = new Address
+                {
+                    HouseNo = customerRequestDto.HouseNo,
+                    Apartment = customerRequestDto.Apartment,
+                    Pincode = customerRequestDto.Pincode,
+                    City = new City
+                    {
+                        CityName = customerRequestDto.City,
+                        State = new State
+                        {
+                            StateName = customerRequestDto.State
+                        }
+                    }
+                };
+            }
+
             _repository.Add(customer);
             return customer.CustomerId;
         }
@@ -44,8 +63,12 @@ namespace InsurancePolicy.Services
         public CustomerResponseDto GetById(Guid id)
         {
             var customer = _repository.GetAll()
-                .Include(c => c.User).Include(a=>a.Agent)
+                .Include(c => c.User)
+                .Include(c => c.Agent)
                 .Include(c => c.Policies)
+                .Include(a => a.Address)
+                    .ThenInclude(ad => ad.City)
+                        .ThenInclude(city => city.State)
                 .FirstOrDefault(c => c.CustomerId == id);
 
             if (customer == null)
@@ -57,7 +80,11 @@ namespace InsurancePolicy.Services
         public List<CustomerResponseDto> GetAll()
         {
             var customers = _repository.GetAll()
-                .Include(c => c.User).Include(a=>a.Agent)
+                .Include(c => c.User)
+                .Include(a => a.Agent)
+                .Include(a => a.Address)
+                    .ThenInclude(ad => ad.City)
+                        .ThenInclude(city => city.State)
                 .Include(c => c.Policies)
                 .ToList();
 
@@ -74,13 +101,68 @@ namespace InsurancePolicy.Services
 
             var existingCustomer = _repository.GetAll()
                 .Include(c => c.User)
+                .Include(a => a.Address)
+                    .ThenInclude(ad => ad.City)
+                        .ThenInclude(city => city.State)
                 .FirstOrDefault(c => c.CustomerId == customerRequestDto.CustomerId.Value);
 
             if (existingCustomer == null)
                 throw new CustomerNotFoundException("No such customer found.");
 
-            // Map updated values to the existing customer entity
+            // Update basic fields
             _mapper.Map(customerRequestDto, existingCustomer);
+
+            // Update Address, City, and State
+            if (existingCustomer.Address == null)
+            {
+                existingCustomer.Address = new Address
+                {
+                    HouseNo = customerRequestDto.HouseNo,
+                    Apartment = customerRequestDto.Apartment,
+                    Pincode = customerRequestDto.Pincode,
+                    City = new City
+                    {
+                        CityName = customerRequestDto.City,
+                        State = new State
+                        {
+                            StateName = customerRequestDto.State
+                        }
+                    }
+                };
+            }
+            else
+            {
+                existingCustomer.Address.HouseNo = customerRequestDto.HouseNo;
+                existingCustomer.Address.Apartment = customerRequestDto.Apartment;
+                existingCustomer.Address.Pincode = customerRequestDto.Pincode;
+
+                if (existingCustomer.Address.City == null)
+                {
+                    existingCustomer.Address.City = new City
+                    {
+                        CityName = customerRequestDto.City,
+                        State = new State
+                        {
+                            StateName = customerRequestDto.State
+                        }
+                    };
+                }
+                else
+                {
+                    existingCustomer.Address.City.CityName = customerRequestDto.City;
+                    if (existingCustomer.Address.City.State == null)
+                    {
+                        existingCustomer.Address.City.State = new State
+                        {
+                            StateName = customerRequestDto.State
+                        };
+                    }
+                    else
+                    {
+                        existingCustomer.Address.City.State.StateName = customerRequestDto.State;
+                    }
+                }
+            }
 
             // Hash the password if it's being updated
             if (!string.IsNullOrEmpty(customerRequestDto.Password))
@@ -91,6 +173,7 @@ namespace InsurancePolicy.Services
             _repository.Update(existingCustomer);
             return true;
         }
+
         public bool Delete(Guid id)
         {
             var customer = _repository.GetById(id);

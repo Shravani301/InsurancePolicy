@@ -23,14 +23,26 @@ namespace InsurancePolicy.DTOs
         [RegularExpression(@"^[6-9]\d{9}$", ErrorMessage = "Phone number must start with 6-9 and contain exactly 10 digits.")]
         public string Phone { get; set; }
 
-        [StringLength(100, ErrorMessage = "Address should not exceed 100 characters.")]
-        public string? Address { get; set; }
+        // Address Details
+        [Required(ErrorMessage = "House Number is required.")]
+        [StringLength(50, ErrorMessage = "House Number should not exceed 50 characters.")]
+        public string HouseNo { get; set; }
+
+        [Required(ErrorMessage = "Apartment name is required.")]
+        [StringLength(50, ErrorMessage = "Apartment name should not exceed 50 characters.")]
+        public string Apartment { get; set; }
+
+        [Required(ErrorMessage = "Pincode is required.")]
+        [Range(100000, 999999, ErrorMessage = "Pincode must have exactly 6 digits.")]
+        public int Pincode { get; set; }
+
+        [Required(ErrorMessage = "City is required.")]
+        [StringLength(50, ErrorMessage = "City name should not exceed 50 characters.")]
+        public string City { get; set; }
 
         [Required(ErrorMessage = "State is required.")]
-        public string? State { get; set; }
-
-        [StringLength(50, ErrorMessage = "City should not exceed 50 characters.")]
-        public string? City { get; set; }
+        [StringLength(50, ErrorMessage = "State name should not exceed 50 characters.")]
+        public string State { get; set; }
 
         public bool Status { get; set; }
 
@@ -47,5 +59,4 @@ namespace InsurancePolicy.DTOs
             ErrorMessage = "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.")]
         public string Password { get; set; } = string.Empty;
     }
-
 }

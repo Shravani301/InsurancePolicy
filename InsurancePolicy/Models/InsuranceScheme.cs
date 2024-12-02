@@ -56,8 +56,10 @@ namespace InsurancePolicy.Models
         public double InstallmentCommRatio { get; set; }
 
         public bool Status { get; set; }
-        [ForeignKey("Plan")]
+        [ForeignKey("InsurancePlan")]
         public Guid PlanId { get; set; }
+        public InsurancePlan InsurancePlan { get; set; }
+       
         public List<Policy>? Policies { get; set; }
         [Required]
         public List<DocumentType> RequiredDocuments { get; set; } = new List<DocumentType>();

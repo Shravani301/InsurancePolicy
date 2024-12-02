@@ -6,6 +6,5 @@
         PAID,
         OVERDUE,
         CANCELLED
-
     }
 }
