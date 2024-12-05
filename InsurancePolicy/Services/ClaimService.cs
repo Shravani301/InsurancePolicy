@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using InsurancePolicy.DTOs;
 using InsurancePolicy.enums;
+using InsurancePolicy.Helpers;
 using InsurancePolicy.Models;
 using InsurancePolicy.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -80,6 +81,21 @@ namespace InsurancePolicy.Services
                 .ToList();
 
             return _mapper.Map<List<ClaimResponseDto>>(claims);
+        }
+        public PageList<ClaimResponseDto> GetAllPaginated(PageParameters pageParameters)
+        {
+            var claims = _claimRepository.GetAll()
+                .Include(c => c.Policy)
+                .Include(c => c.Customer)
+                .ToList();
+
+            var paginatedClaims = PageList<ClaimResponseDto>.ToPagedList(
+                _mapper.Map<List<ClaimResponseDto>>(claims),
+                pageParameters.PageNumber,
+                pageParameters.PageSize
+            );
+
+            return paginatedClaims;
         }
     }
 }

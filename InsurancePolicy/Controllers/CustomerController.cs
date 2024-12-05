@@ -16,12 +16,6 @@ namespace InsurancePolicy.Controllers
             _service = service;
         }
 
-        //[HttpGet]
-        //public IActionResult GetAll()
-        //{
-        //    var customers = _service.GetAll();
-        //    return Ok(customers);
-        //}
         [HttpGet]
         public IActionResult GetAll([FromQuery] PageParameters pageParameters)
         {

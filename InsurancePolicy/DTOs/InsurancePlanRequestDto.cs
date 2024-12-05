@@ -10,7 +10,7 @@ namespace InsurancePolicy.DTOs
         [StringLength(100, ErrorMessage = "Plan Name should not exceed 100 characters.")]
         public string PlanName { get; set; }
 
-        public bool Status { get; set; }
+        public bool Status { get; set; } = true;
     }
 
 }
