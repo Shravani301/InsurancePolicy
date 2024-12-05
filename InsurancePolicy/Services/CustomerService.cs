@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using InsurancePolicy.DTOs;
 using InsurancePolicy.Exceptions.CustomerExceptions;
+using InsurancePolicy.Helpers;
 using InsurancePolicy.Models;
 using InsurancePolicy.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,15 @@ namespace InsurancePolicy.Services
             var customerRole = _roleRepository.GetAll().FirstOrDefault(r => r.Name == "Customer");
             if (customerRole == null)
                 throw new Exception("Customer role not found.");
+            var userNameCheck = _roleRepository
+                .GetAll()
+                .Include(u => u.Users)
+                .FirstOrDefault(u => u.Users.Any(user => user.UserName == customerRequestDto.UserName));
+
+            if (userNameCheck != null)
+            {
+                throw new BadHttpRequestException("Username already exists.", StatusCodes.Status409Conflict);
+            }
 
             // Hash the password
             var hashedPassword = BCrypt.Net.BCrypt.HashPassword(customerRequestDto.Password);
@@ -92,6 +102,16 @@ namespace InsurancePolicy.Services
                 throw new CustomersDoesNotExistException("No customers exist.");
 
             return _mapper.Map<List<CustomerResponseDto>>(customers);
+        }
+        public PageList<CustomerResponseDto> GetAllPaginated(PageParameters pageParameters)
+        {
+            var customers = _repository.GetAll().ToList();
+            var pagedCustomers = PageList<CustomerResponseDto>.ToPagedList(
+                _mapper.Map<List<CustomerResponseDto>>(customers),
+                pageParameters.PageNumber,
+                pageParameters.PageSize
+            );
+            return pagedCustomers;
         }
 
         public bool Update(CustomerRequestDto customerRequestDto)

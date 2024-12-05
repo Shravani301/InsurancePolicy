@@ -3,8 +3,11 @@ using InsurancePolicy.Exceptions;
 using InsurancePolicy.Mappers;
 using InsurancePolicy.Repositories;
 using InsurancePolicy.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using System.Text.Json.Serialization;
 
 namespace InsurancePolicy
@@ -22,6 +25,17 @@ namespace InsurancePolicy
                 options.ConfigureWarnings(warnings =>
                 warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
             });
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngularApp", policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .WithExposedHeaders("*");
+                });
+            });
+
             builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             builder.Services.AddTransient<IRoleService, RoleService>();
             builder.Services.AddTransient<IUserService, UserService>();
@@ -50,7 +64,17 @@ namespace InsurancePolicy
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+                   .GetBytes(builder.Configuration.GetSection("AppSettings:Key").Value)),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
 
             builder.Services.AddControllers().AddJsonOptions(x =>
             {
@@ -70,7 +94,8 @@ namespace InsurancePolicy
 
             app.UseExceptionHandler(_ => { });
             app.UseHttpsRedirection();
-
+            app.UseCors("AllowAngularApp");
+            app.UseAuthentication();
             app.UseAuthorization();
 
 
