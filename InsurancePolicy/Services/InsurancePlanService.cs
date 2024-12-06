@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using InsurancePolicy.DTOs;
 using InsurancePolicy.Exceptions.PlanExceptions;
+using InsurancePolicy.Helpers;
 using InsurancePolicy.Models;
 using InsurancePolicy.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +34,14 @@ namespace InsurancePolicy.Services
 
             _repository.Delete(plan);
         }
+        public void Activate(Guid id)
+        {
+            var plan = _repository.GetById(id);
+            if (plan == null)
+                throw new PlanNotFoundException("No such plan found to delete");
+
+            _repository.Activate(plan);
+        }
 
         public InsurancePlanResponseDto GetById(Guid id)
         {
@@ -45,18 +54,36 @@ namespace InsurancePolicy.Services
 
             return _mapper.Map<InsurancePlanResponseDto>(plan);
         }
+        public PageList<InsurancePlanResponseDto> GetAllPaginated(PageParameters pageParameters)
+        {
+            // Fetch only active plans
+            var activePlans = _repository.GetAll().ToList();
+
+            // Map to response DTO and apply pagination
+            var paginatedPlans = PageList<InsurancePlanResponseDto>.ToPagedList(
+                _mapper.Map<List<InsurancePlanResponseDto>>(activePlans),
+                pageParameters.PageNumber,
+                pageParameters.PageSize
+            );
+
+            return paginatedPlans;
+        }
+
 
         public List<InsurancePlanResponseDto> GetAll()
         {
-            var plans = _repository.GetAll()
+            // Fetch only active plans
+            var activePlans = _repository.GetAll()
                 .Include(p => p.Schemes)
+                .Where(p => p.Status) // Filter plans with Status == true
                 .ToList();
 
-            if (!plans.Any())
-                throw new PlansDoesNotExistException("No plans exist");
+            if (!activePlans.Any())
+                throw new PlansDoesNotExistException("No active plans exist");
 
-            return _mapper.Map<List<InsurancePlanResponseDto>>(plans);
+            return _mapper.Map<List<InsurancePlanResponseDto>>(activePlans);
         }
+
 
         public void Update(InsurancePlanRequestDto planRequest)
         {

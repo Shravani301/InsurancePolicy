@@ -1,4 +1,5 @@
 ﻿using InsurancePolicy.DTOs;
+using InsurancePolicy.Helpers;
 using InsurancePolicy.Models;
 using InsurancePolicy.Services;
 using Microsoft.AspNetCore.Http;
@@ -17,11 +18,22 @@ namespace InsurancePolicy.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll([FromQuery] PageParameters pageParameters)
         {
-            var plans = _service.GetAll();
-            return Ok(plans);
+            var customers = _service.GetAllPaginated(pageParameters);
+
+            // Add pagination metadata to headers
+            Response.Headers.Add("X-Total-Count", customers.TotalCount.ToString());
+            Response.Headers.Add("X-Page-Size", customers.PageSize.ToString());
+            Response.Headers.Add("X-Current-Page", customers.CurrentPage.ToString());
+            Response.Headers.Add("X-Total-Pages", customers.TotalPages.ToString());
+            Response.Headers.Add("X-Has-Next", customers.HasNext.ToString());
+            Response.Headers.Add("X-Has-Previous", customers.HasPrevious.ToString());
+
+            // Return the customers in the response body
+            return Ok(customers);
         }
+
 
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
@@ -42,6 +54,12 @@ namespace InsurancePolicy.Controllers
         {
             _service.Update(plan);
             return Ok(plan);
+        }
+        [HttpPut("activate")]
+        public IActionResult Activate(Guid id)
+        {
+            _service.Activate(id);
+            return Ok(id);
         }
 
         [HttpDelete("{id}")]

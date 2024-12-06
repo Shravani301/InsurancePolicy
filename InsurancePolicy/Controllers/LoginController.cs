@@ -26,7 +26,7 @@ namespace InsurancePolicy.Controllers
         [HttpPost]
         public IActionResult Login(LoginDto loginDto)
         {
-            var existingUser = _context.Users.Include(user => user.Role).FirstOrDefault(a => a.UserName == loginDto.UserName);
+            var existingUser = _context.Users.Include(user => user.Role).Include(c=>c.Customer).FirstOrDefault(a => a.UserName == loginDto.UserName);
             if (existingUser != null)
             {
                 if (BCrypt.Net.BCrypt.Verify(loginDto.Password, existingUser.Password))
@@ -34,6 +34,8 @@ namespace InsurancePolicy.Controllers
 
                     var token = CreateToken(existingUser);
                     Response.Headers.Add("Jwt", token);
+                    if(existingUser.Role.Name=="Customer")
+                            return Ok(new { roleName = existingUser.Role.Name, customerId=existingUser.Customer.CustomerId });
                     return Ok(new { roleName = existingUser.Role.Name });
                 }
 

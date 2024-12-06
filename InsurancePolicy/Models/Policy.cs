@@ -40,7 +40,7 @@ namespace InsurancePolicy.Models
         public double? InstallmentAmount { get; set; }
         public double? TotalPaidAmount { get; set; }
 
-        public PolicyStatus Status { get; set; } = PolicyStatus.PENDING;
+        public PolicyStatus Status { get; set; } = PolicyStatus.ACTIVE;
 
         [ForeignKey("Agent")]
         public Guid? AgentId { get; set; }

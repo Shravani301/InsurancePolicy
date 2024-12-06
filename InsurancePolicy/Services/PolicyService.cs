@@ -76,7 +76,7 @@ namespace InsurancePolicy.Services
             var policy = _mapper.Map<Policy>(requestDto);
 
             // Set default values and validate relationships
-            policy.Status = PolicyStatus.PENDING;
+            policy.Status = PolicyStatus.ACTIVE;
             policy.IssueDate = DateTime.Now;
 
             // Validate and set Insurance Scheme

@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using InsurancePolicy.DTOs;
 using InsurancePolicy.Exceptions.SchemeExceptions;
-using InsurancePolicy.Exceptions.PlanExceptions; // Import PlanNotFoundException
+using InsurancePolicy.Exceptions.PlanExceptions;
 using InsurancePolicy.Models;
 using InsurancePolicy.Repositories;
 using Microsoft.EntityFrameworkCore;
+using InsurancePolicy.Helpers;
 
 namespace InsurancePolicy.Services
 {
@@ -14,14 +15,17 @@ namespace InsurancePolicy.Services
         private readonly IRepository<InsurancePlan> _planRepository;
         private readonly IMapper _mapper;
 
-        public InsuranceSchemeService(IRepository<InsuranceScheme> repository, IRepository<InsurancePlan> planRepository, IMapper mapper)
+        public InsuranceSchemeService(
+            IRepository<InsuranceScheme> repository,
+            IRepository<InsurancePlan> planRepository,
+            IMapper mapper)
         {
             _repository = repository;
             _planRepository = planRepository;
             _mapper = mapper;
         }
 
-        public List<InsuranceSchemeResponseDto> GetAll()
+        public PageList<InsuranceSchemeResponseDto> GetAllPaginated(PageParameters pageParameters)
         {
             var schemes = _repository.GetAll()
                 .Include(s => s.InsurancePlan)
@@ -31,7 +35,36 @@ namespace InsurancePolicy.Services
             if (!schemes.Any())
                 throw new SchemesDoesNotExistException("No schemes found.");
 
-            return _mapper.Map<List<InsuranceSchemeResponseDto>>(schemes);
+            var paginatedSchemes = PageList<InsuranceSchemeResponseDto>.ToPagedList(
+                _mapper.Map<List<InsuranceSchemeResponseDto>>(schemes),
+                pageParameters.PageNumber,
+                pageParameters.PageSize
+            );
+
+            return paginatedSchemes;
+        }
+
+        public PageList<InsuranceSchemeResponseDto> GetAllByPlanIdPaginated(Guid planId, PageParameters pageParameters)
+        {
+            var plan = _planRepository.GetById(planId);
+            if (plan == null)
+                throw new PlanNotFoundException("No such plan found.");
+
+            var schemes = _repository.GetAll()
+                .Where(s => s.PlanId == planId)
+                .Include(s => s.Policies)
+                .ToList();
+
+            if (!schemes.Any())
+                throw new SchemesDoesNotExistException("No schemes found for the specified plan.");
+
+            var paginatedSchemes = PageList<InsuranceSchemeResponseDto>.ToPagedList(
+                _mapper.Map<List<InsuranceSchemeResponseDto>>(schemes),
+                pageParameters.PageNumber,
+                pageParameters.PageSize
+            );
+
+            return paginatedSchemes;
         }
 
         public InsuranceSchemeResponseDto GetById(Guid id)
@@ -49,12 +82,9 @@ namespace InsurancePolicy.Services
 
         public Guid Add(InsuranceSchemeRequestDto schemeDto)
         {
-            // Check if the associated plan exists and is active
             var plan = _planRepository.GetById(schemeDto.PlanId);
             if (plan == null || !plan.Status)
-            {
                 throw new PlanNotFoundException("Plan is deactivated.");
-            }
 
             var scheme = _mapper.Map<InsuranceScheme>(schemeDto);
 
@@ -70,12 +100,9 @@ namespace InsurancePolicy.Services
 
         public bool Update(InsuranceSchemeRequestDto schemeDto)
         {
-            // Check if the associated plan exists and is active
             var plan = _planRepository.GetById(schemeDto.PlanId);
             if (plan == null || !plan.Status)
-            {
                 throw new PlanNotFoundException("Plan is deactivated.");
-            }
 
             var existingScheme = _repository.GetAll()
                 .FirstOrDefault(s => s.SchemeId == schemeDto.SchemeId);

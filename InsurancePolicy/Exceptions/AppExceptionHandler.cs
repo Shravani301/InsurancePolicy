@@ -12,6 +12,7 @@ using InsurancePolicy.Exceptions.SchemeDetailsExceptions;
 using InsurancePolicy.Exceptions.SchemeExceptions;
 using InsurancePolicy.Models;
 using Microsoft.AspNetCore.Diagnostics;
+using System.ComponentModel.DataAnnotations;
 
 namespace InsurancePolicy.Exceptions
 {
@@ -22,7 +23,14 @@ namespace InsurancePolicy.Exceptions
         {
 
             var response = new ErrorResponse();
-            if (exception is AdminNotFoundException || exception is AgentNotFoundException ||exception is ClaimNotFoundException|| exception is CustomerNotFoundException ||
+            if (exception is ValidationException)
+            {
+                response.StatusCode = StatusCodes.Status400BadRequest;
+                response.Title = "Invalid Input";
+                response.ExceptionMessage = exception.Message;
+            }
+
+            else if (exception is AdminNotFoundException || exception is AgentNotFoundException ||exception is ClaimNotFoundException|| exception is CustomerNotFoundException ||
     exception is DocumentNotFoundException || exception is EmployeeNotFoundException || exception is SchemeExceptions.SchemeNotFoundException ||
     exception is RoleNotFoundException || exception is PlanExceptions.PlanNotFoundException||exception is PolicyNotFoundException||exception is SchemeDetailsNotFoundException
     ||exception is PaymentNotFoundException)

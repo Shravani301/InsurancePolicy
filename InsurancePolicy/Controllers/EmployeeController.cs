@@ -1,6 +1,8 @@
 ﻿using InsurancePolicy.DTOs;
+using InsurancePolicy.Models;
 using InsurancePolicy.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -30,8 +32,17 @@ public class EmployeeController : ControllerBase
     [HttpPost]
     public IActionResult Add(EmployeeRequestDto employeeRequestDto)
     {
+        if (!ModelState.IsValid)
+        {
+            var errors = string.Join("; ", ModelState.Values
+                .SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage));
+            throw new ValidationException($"{errors}");
+        }
         var newEmployeeId = _service.Add(employeeRequestDto);
         return Ok(new { EmployeeId = newEmployeeId, Message = "Employee added successfully" });
+        
+
     }
 
     [HttpPut]

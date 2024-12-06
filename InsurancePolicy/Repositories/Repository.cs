@@ -35,6 +35,20 @@ namespace InsurancePolicy.Repositories
                 throw new InvalidOperationException("The entity does not have a 'status' property of type bool.");
             }
         }
+        public void Activate(T entity)
+        {
+            var propertyInfo = entity.GetType().GetProperty("Status");
+            if (propertyInfo != null && propertyInfo.PropertyType == typeof(bool))
+            {
+                propertyInfo.SetValue(entity, true);
+                _table.Update(entity);
+                _context.SaveChanges(); 
+            }
+            else
+            {
+                throw new InvalidOperationException("The entity does not have a 'status' property of type bool.");
+            }
+        }
 
         public IQueryable<T> GetAll()
         {

@@ -1,14 +1,16 @@
 ﻿using InsurancePolicy.DTOs;
+using InsurancePolicy.Helpers;
 using InsurancePolicy.Models;
 
 namespace InsurancePolicy.Services
 {
     public interface IInsuranceSchemeService
     {
-        public List<InsuranceSchemeResponseDto> GetAll();
-        public InsuranceSchemeResponseDto GetById(Guid id);
-        public Guid Add(InsuranceSchemeRequestDto scheme);
-        public bool Update(InsuranceSchemeRequestDto scheme);
-        public bool Delete(Guid id);
+        PageList<InsuranceSchemeResponseDto> GetAllPaginated(PageParameters pageParameters);
+        PageList<InsuranceSchemeResponseDto> GetAllByPlanIdPaginated(Guid planId, PageParameters pageParameters);
+        InsuranceSchemeResponseDto GetById(Guid id);
+        Guid Add(InsuranceSchemeRequestDto scheme);
+        bool Update(InsuranceSchemeRequestDto scheme);
+        bool Delete(Guid id);
     }
 }

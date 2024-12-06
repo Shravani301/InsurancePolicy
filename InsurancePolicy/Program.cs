@@ -4,6 +4,7 @@ using InsurancePolicy.Mappers;
 using InsurancePolicy.Repositories;
 using InsurancePolicy.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.IdentityModel.Tokens;
@@ -56,11 +57,15 @@ namespace InsurancePolicy
             builder.Services.AddTransient<IPaymentService, PaymentService>();
             builder.Services.AddTransient<IWithdrawalRequestService, WithdrawalRequestService>();
             builder.Services.AddTransient<ICommissionService, CommissionService>();
+            builder.Services.AddTransient<ICustomerQueryService, CustomerQueryService>();
 
             builder.Services.AddControllers();
 
             builder.Services.AddAutoMapper(typeof(MappingProfile));
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+            builder.Services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 

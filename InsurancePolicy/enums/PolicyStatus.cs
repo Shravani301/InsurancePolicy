@@ -2,8 +2,8 @@
 {
     public enum PolicyStatus
     {
-        PENDING,
-        COMPLETE,
+        ACTIVE,
+        INACTIVE,
         DROPPED,
         CLAIMED
     }

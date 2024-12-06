@@ -1,7 +1,9 @@
-﻿using InsurancePolicy.Models;
+﻿using InsurancePolicy.DTOs;
+using InsurancePolicy.Models;
 using InsurancePolicy.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace InsurancePolicy.Controllers
 {
@@ -32,9 +34,17 @@ namespace InsurancePolicy.Controllers
         [HttpPost]
         public IActionResult Add(User user)
         {
+            if (!ModelState.IsValid)
+            {
+                var errors = string.Join("; ", ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage));
+                throw new ValidationException($"{errors}");
+            }
             var newUser = _service.Add(user);
             return Ok(newUser);
         }
+
 
         [HttpPut]
         public IActionResult Modify(User user)

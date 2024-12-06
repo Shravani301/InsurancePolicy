@@ -1,7 +1,7 @@
 ﻿using InsurancePolicy.DTOs;
+using InsurancePolicy.Helpers;
 using InsurancePolicy.Models;
 using InsurancePolicy.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsurancePolicy.Controllers
@@ -11,15 +11,33 @@ namespace InsurancePolicy.Controllers
     public class InsuranceSchemeController : ControllerBase
     {
         private readonly IInsuranceSchemeService _service;
+
         public InsuranceSchemeController(IInsuranceSchemeService service)
         {
             _service = service;
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll([FromQuery] PageParameters pageParameters)
         {
-            var schemes = _service.GetAll();
+            var schemes = _service.GetAllPaginated(pageParameters);
+            Response.Headers.Add("X-Current-Page", schemes.CurrentPage.ToString());
+            Response.Headers.Add("X-Total-Pages", schemes.TotalPages.ToString());
+            Response.Headers.Add("X-Has-Next", schemes.HasNext.ToString());
+            Response.Headers.Add("X-Has-Previous", schemes.HasPrevious.ToString());
+            Response.Headers.Add("X-Total-Count", schemes.TotalCount.ToString());
+            return Ok(schemes);
+        }
+
+        [HttpGet("Plan/{planId}")]
+        public IActionResult GetAllByPlanId(Guid planId, [FromQuery] PageParameters pageParameters)
+        {
+            var schemes = _service.GetAllByPlanIdPaginated(planId, pageParameters);
+            Response.Headers.Add("X-Current-Page", schemes.CurrentPage.ToString());
+            Response.Headers.Add("X-Total-Pages", schemes.TotalPages.ToString());
+            Response.Headers.Add("X-Has-Next", schemes.HasNext.ToString());
+            Response.Headers.Add("X-Has-Previous", schemes.HasPrevious.ToString());
+            Response.Headers.Add("X-Total-Count", schemes.TotalCount.ToString());
             return Ok(schemes);
         }
 
