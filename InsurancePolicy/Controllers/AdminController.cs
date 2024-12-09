@@ -29,6 +29,12 @@ namespace InsurancePolicy.Controllers
             var admin = _service.GetById(id);
             return Ok(admin);
         }
+        [HttpGet("ByName/{name}")]
+        public IActionResult GetByName(string name)
+        {
+            var admin = _service.GetByName(name);
+            return Ok(admin);
+        }
 
         [HttpPost]
         public IActionResult Add(AdminRequestDto adminRequestDto)

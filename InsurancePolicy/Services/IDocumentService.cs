@@ -1,13 +1,20 @@
-﻿using InsurancePolicy.Models;
+﻿using InsurancePolicy.DTOs;
+using InsurancePolicy.Helpers;
+using InsurancePolicy.Models;
 
 namespace InsurancePolicy.Services
 {
     public interface IDocumentService
     {
-        public List<Document> GetAll();
-        //public Document GetById(string id);
-        public string Add(Document document);
-        public bool Update(Document document);
-        //public bool Delete(string id);
+        PageList<DocumentResponseDto> GetAllPaginated(PageParameters pageParameters);
+        List<DocumentResponseDto> GetDocumentsByRoleId(Guid roleId, string roleType);
+        string Add(DocumentRequestDto documentRequestDto);
+        bool Update(DocumentRequestDto documentRequestDto);
+        void ApproveDocument(string documentId, Guid employeeId);
+        void RejectDocument(string documentId, Guid employeeId);
+        DocumentResponseDto GetById(string documentId);
+        List<DocumentTypeDto> GetAllDocumentTypes();
+
+
     }
 }

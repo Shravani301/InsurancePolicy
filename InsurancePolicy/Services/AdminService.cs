@@ -57,7 +57,20 @@ namespace InsurancePolicy.Services
 
             return _mapper.Map<AdminResponseDto>(admin);
         }
+        public AdminResponseDto GetByName(string name)
+        {
 
+            // Fetch the admin including the associated user
+            var admin = _repository.GetAll()
+                .Include(a => a.User)
+                .Where(a => a.User.UserName == name).FirstOrDefault();
+
+            if (admin == null)
+                throw new AdminsDoesNotExistException($"Admin with username '{admin}' does not exist.");
+
+            // Map the admin entity to AdminResponseDto
+            return _mapper.Map<AdminResponseDto>(admin);
+        }
         public List<AdminResponseDto> GetAll()
         {
             var admins = _repository.GetAll().Include(a => a.User).ToList();

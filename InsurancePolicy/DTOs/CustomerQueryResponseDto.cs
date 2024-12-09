@@ -10,6 +10,7 @@ namespace InsurancePolicy.DTOs
         public string? Response { get; set; }
         public bool IsResolved { get; set; }
         public string? ResolvedBy { get; set; } // Employee name who resolved the query
+        public string? CustomerName { get; set; } // Customer name
         public DateTime CreatedAt { get; set; }
         public DateTime? ResolvedAt { get; set; }
     }

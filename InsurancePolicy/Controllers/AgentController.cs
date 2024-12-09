@@ -1,4 +1,5 @@
 ﻿using InsurancePolicy.DTOs;
+using InsurancePolicy.Helpers;
 using InsurancePolicy.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,11 +15,43 @@ namespace InsurancePolicy.Controllers
         {
             _service = service;
         }
+        [HttpPut("activate")]
+        public IActionResult Activate(Guid id)
+        {
+            _service.Activate(id);
+            return Ok(id);
+        }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll([FromQuery] PageParameters pageParameters)
         {
-            var agents = _service.GetAll();
+            var agents = _service.GetAllPaginated(pageParameters);
+
+            // Add pagination metadata to headers
+            Response.Headers.Add("X-Total-Count", agents.TotalCount.ToString());
+            Response.Headers.Add("X-Page-Size", agents.PageSize.ToString());
+            Response.Headers.Add("X-Current-Page", agents.CurrentPage.ToString());
+            Response.Headers.Add("X-Total-Pages", agents.TotalPages.ToString());
+            Response.Headers.Add("X-Has-Next", agents.HasNext.ToString());
+            Response.Headers.Add("X-Has-Previous", agents.HasPrevious.ToString());
+
+            // Return the customers in the response body
+            return Ok(agents);
+        }
+        [HttpGet("customer/{customerId}")]
+        public IActionResult GetAgentsByCustomerId(Guid customerId, [FromQuery] PageParameters pageParameters)
+        {
+            var agents = _service.GetAgentsByCustomerId(customerId, pageParameters);
+
+            // Add pagination metadata to headers
+            Response.Headers.Add("X-Total-Count", agents.TotalCount.ToString());
+            Response.Headers.Add("X-Page-Size", agents.PageSize.ToString());
+            Response.Headers.Add("X-Current-Page", agents.CurrentPage.ToString());
+            Response.Headers.Add("X-Total-Pages", agents.TotalPages.ToString());
+            Response.Headers.Add("X-Has-Next", agents.HasNext.ToString());
+            Response.Headers.Add("X-Has-Previous", agents.HasPrevious.ToString());
+
+            // Return paginated agents
             return Ok(agents);
         }
 
@@ -46,7 +79,7 @@ namespace InsurancePolicy.Controllers
         public IActionResult Delete(Guid id)
         {
             _service.Delete(id);
-            return Ok("Deleted Successfully!");
+            return Ok(new { Message="Deleted Successfully!" });
         }
     }
 }

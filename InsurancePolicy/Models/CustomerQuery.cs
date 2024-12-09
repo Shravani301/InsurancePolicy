@@ -30,9 +30,8 @@ namespace InsurancePolicy.Models
         public Customer Customer { get; set; }
 
         [Required]
-        public DateTime CreatedAt { get; set; } = DateTime.Now; // Automatically set creation timestamp
-
-        public DateTime? ResolvedAt { get; set; } // Nullable for unresolved queries
+        public DateTime CreatedAt { get; set; } = DateTime.Now; 
+        public DateTime? ResolvedAt { get; set; } 
 
     }
 }

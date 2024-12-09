@@ -2,6 +2,7 @@
 {
     public enum PolicyStatus
     {
+        PENDING,
         ACTIVE,
         INACTIVE,
         DROPPED,

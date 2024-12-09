@@ -66,7 +66,7 @@ namespace InsurancePolicy.Controllers
         public IActionResult Delete(Guid id)
         {
             _service.Delete(id);
-            return Ok("Deleted Successfully!");
+            return Ok(new { Message = "Deleted Successfully!" });
         }
     }
 }

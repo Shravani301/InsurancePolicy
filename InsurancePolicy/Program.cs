@@ -1,6 +1,7 @@
 using InsurancePolicy.Data;
 using InsurancePolicy.Exceptions;
 using InsurancePolicy.Mappers;
+using InsurancePolicy.Models;
 using InsurancePolicy.Repositories;
 using InsurancePolicy.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -37,6 +38,7 @@ namespace InsurancePolicy
                 });
             });
 
+
             builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             builder.Services.AddTransient<IRoleService, RoleService>();
             builder.Services.AddTransient<IUserService, UserService>();
@@ -68,6 +70,9 @@ namespace InsurancePolicy
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
+
+ 
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {

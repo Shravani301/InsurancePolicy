@@ -27,7 +27,7 @@ namespace InsurancePolicy.Controllers
         public IActionResult UpdateNominee(NomineeRequestDto nomineeDto)
         {
             _nomineeService.UpdateNominee(nomineeDto);
-            return Ok("Nominee updated successfully.");
+            return Ok(new { Message = "Nominee updated successfully." });
         }
 
         [HttpGet("{nomineeId}")]
@@ -48,7 +48,7 @@ namespace InsurancePolicy.Controllers
         public IActionResult DeleteNominee(Guid nomineeId)
         {
             _nomineeService.DeleteNominee(nomineeId);
-            return Ok("Nominee deleted successfully.");
+            return Ok(new { Message = "Deleted Successfully!" });
         }
     }
 }

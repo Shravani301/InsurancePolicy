@@ -27,7 +27,7 @@ namespace InsurancePolicy.Controllers
         public IActionResult Update(TaxSettingsRequestDto requestDto)
         {
             _service.Update(requestDto);
-            return Ok("Updated successfully.");
+            return Ok(new { Message = "Updated successfully." });
         }
 
 

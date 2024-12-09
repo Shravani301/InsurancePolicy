@@ -3,6 +3,7 @@ using InsurancePolicy.Data;
 using InsurancePolicy.DTOs;
 using InsurancePolicy.enums;
 using InsurancePolicy.Exceptions.PolicyExceptions;
+using InsurancePolicy.Helpers;
 using InsurancePolicy.Models;
 using InsurancePolicy.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -42,21 +43,28 @@ namespace InsurancePolicy.Services
             _context = context;
         }
 
-        public List<PolicyResponseDto> GetAll()
+        public PageList<PolicyResponseDto> GetAll(PageParameters pageParameters)
         {
-            var policies = _policyRepository.GetAll()
-                .Include(p => p.InsuranceScheme).ThenInclude(p=>p.InsurancePlan)
+            var policiesQuery = _policyRepository.GetAll()
+                .Include(p => p.InsuranceScheme).ThenInclude(p => p.InsurancePlan)
                 .Include(p => p.Nominees)
                 .Include(p => p.Installments)
                 .Include(p => p.Payments)
                 .Include(p => p.Claim)
-                .ToList();
+                .AsQueryable();
 
-            return _mapper.Map<List<PolicyResponseDto>>(policies);
+            var paginatedPolicies = PageList<PolicyResponseDto>.ToPagedList(
+                _mapper.Map<List<PolicyResponseDto>>(policiesQuery.ToList()),
+                pageParameters.PageNumber,
+                pageParameters.PageSize
+            );
+
+            return paginatedPolicies;
         }
 
         public PolicyResponseDto GetById(Guid id)
         {
+            // Retrieve the policy along with related data
             var policy = _policyRepository.GetAll()
                 .Include(p => p.InsuranceScheme)
                 .Include(p => p.Nominees)
@@ -68,15 +76,33 @@ namespace InsurancePolicy.Services
             if (policy == null)
                 throw new PolicyNotFoundException("Policy not found.");
 
-            return _mapper.Map<PolicyResponseDto>(policy);
+            // Retrieve documents associated with the customer
+            var selectedDocuments = _context.Documents
+                .Where(d => d.CustomerId == policy.CustomerId) // Filter by CustomerId
+                .ToList();
+
+            // Map the policy to the response DTO
+            var response = _mapper.Map<PolicyResponseDto>(policy);
+
+            // Add selected documents to the response DTO
+            response.Documents = selectedDocuments.Select(d => new DocumentResponseDto
+            {
+                DocumentId = d.DocumentId,
+                DocumentName = d.DocumentName.ToString(), // Convert enum to string
+                DocumentPath = d.DocumentPath
+            }).ToList();
+
+            return response;
         }
+
 
         public Guid Add(PolicyRequestDto requestDto)
         {
+            // Map PolicyRequestDto to Policy entity
             var policy = _mapper.Map<Policy>(requestDto);
 
             // Set default values and validate relationships
-            policy.Status = PolicyStatus.ACTIVE;
+            policy.Status = PolicyStatus.PENDING;
             policy.IssueDate = DateTime.Now;
 
             // Validate and set Insurance Scheme
@@ -109,14 +135,41 @@ namespace InsurancePolicy.Services
                 policy.Nominees = requestDto.Nominees.Select(n => _mapper.Map<Nominee>(n)).ToList();
             }
 
+            policy.InstallmentAmount = Math.Round(policy.PremiumAmount / policy.PolicyTerm, 2);
+
             // Generate Installments
             policy.Installments = GenerateInstallments(policy);
+
+            var totalAmount = policy.Installments.Sum(i => i.AmountDue);
+            var totalWithProfit = totalAmount * (policy.InsuranceScheme.ProfitRatio / 100);
+            policy.SumAssured = Math.Round((double)(totalAmount + totalWithProfit), 2);
+            policy.MaturityDate = policy.IssueDate.AddMonths((int)policy.PolicyTerm);
 
             // Add Policy to the repository
             _policyRepository.Add(policy);
 
-            // Save changes through repository
+            // Save changes to ensure PolicyId is generated
             _context.SaveChanges();
+
+            // Handle Selected Documents
+            if (requestDto.SelectedDocumentIds != null && requestDto.SelectedDocumentIds.Any())
+            {
+                // Retrieve and validate selected documents
+                var selectedDocuments = _context.Documents
+                    .Where(d => requestDto.SelectedDocumentIds.Contains(d.DocumentId) && d.CustomerId == requestDto.CustomerId)
+                    .ToList();
+
+                if (selectedDocuments.Count != requestDto.SelectedDocumentIds.Count)
+                {
+                    throw new InvalidOperationException("One or more provided document IDs are invalid or do not belong to the specified customer.");
+                }
+
+                // Log or process the selected documents
+                foreach (var document in selectedDocuments)
+                {
+                    Console.WriteLine($"Document Linked: {document.DocumentName}, Path: {document.DocumentPath}");
+                }
+            }
 
             // Update Commissions if Agent exists
             if (policy.AgentId.HasValue)
@@ -126,6 +179,93 @@ namespace InsurancePolicy.Services
 
             return policy.PolicyId;
         }
+
+        private List<Installment> GenerateInstallments(Policy policy)
+
+        {
+
+            var installments = new List<Installment>();
+
+            if (policy.PremiumType == PremiumType.SINGLE)
+
+            {
+
+                installments.Add(new Installment
+
+                {
+
+                    PolicyId = policy.PolicyId,
+
+                    DueDate = policy.IssueDate,
+
+                    AmountDue = policy.SumAssured,
+
+                    Status = InstallmentStatus.PENDING,
+
+                    PaymentReference = "TEMP-REFERENCE"
+
+                });
+
+            }
+
+            else
+
+            {
+
+                int intervalInMonths = policy.PremiumType switch
+
+                {
+
+                    PremiumType.MONTHLY => 1,
+
+                    PremiumType.QUARTERLY => 3,
+
+                    PremiumType.SEMI_ANNUALLY => 6,
+
+                    PremiumType.ANNUALLY => 12,
+
+                    _ => throw new ArgumentException("Invalid PremiumType.")
+
+                };
+
+                //double installmentAmount = policy.SumAssured / (policy.PolicyTerm / intervalInMonths);
+
+                int totalInstallments = (int)policy.PolicyTerm * (12 / intervalInMonths);
+
+                var taxAmountPerInstallment = policy.InstallmentAmount * (policy.TaxSettings.TaxPercentage / 100);
+
+                var installmentAmountWithTax = policy.InstallmentAmount + taxAmountPerInstallment;
+
+                installmentAmountWithTax *= intervalInMonths;
+
+                for (int i = 1; i <= policy.PolicyTerm / intervalInMonths; i++)
+
+                {
+
+                    installments.Add(new Installment
+
+                    {
+
+                        PolicyId = policy.PolicyId,
+
+                        DueDate = policy.IssueDate.AddMonths(i * intervalInMonths),
+
+                        AmountDue = Math.Round((double)installmentAmountWithTax, 2),
+
+                        Status = InstallmentStatus.PENDING,
+
+                        PaymentReference = $"TEMP-REF-{i}"
+
+                    });
+
+                }
+
+            }
+
+            return installments;
+
+        }
+
 
         public bool Update(PolicyRequestDto requestDto)
         {
@@ -156,51 +296,6 @@ namespace InsurancePolicy.Services
         }
 
         // --- Helper Methods ---
-        private List<Installment> GenerateInstallments(Policy policy)
-        {
-            var installments = new List<Installment>();
-
-            if (policy.PremiumType == PremiumType.SINGLE)
-            {
-                installments.Add(new Installment
-                {
-                    PolicyId = policy.PolicyId,
-                    DueDate = policy.IssueDate,
-                    AmountDue = policy.SumAssured,
-                    Status = InstallmentStatus.PENDING,
-                    PaymentReference = "TEMP-REFERENCE"
-                });
-            }
-            else
-            {
-                int intervalInMonths = policy.PremiumType switch
-                {
-                    PremiumType.MONTHLY => 1,
-                    PremiumType.QUARTERLY => 3,
-                    PremiumType.SEMI_ANNUALLY => 6,
-                    PremiumType.ANNUALLY => 12,
-                    _ => throw new ArgumentException("Invalid PremiumType.")
-                };
-
-                var installmentAmount = policy.SumAssured / (policy.PolicyTerm / intervalInMonths);
-                for (int i = 1; i <= policy.PolicyTerm / intervalInMonths; i++)
-                {
-                    installments.Add(new Installment
-                    {
-                        PolicyId = policy.PolicyId,
-                        DueDate = policy.IssueDate.AddMonths(i * intervalInMonths),
-                        AmountDue = installmentAmount,
-                        Status = InstallmentStatus.PENDING,
-                        PaymentReference = $"TEMP-REF-{i}"
-                    });
-                }
-            }
-
-            return installments;
-        }
-
-
-
         private void CalculateCommissions(Policy policy)
         {
             if (policy.AgentId.HasValue && policy.InsuranceScheme != null)
@@ -261,43 +356,70 @@ namespace InsurancePolicy.Services
             // Save changes
             _context.SaveChanges();
         }
-        public List<PolicyResponseDto> GetPoliciesByAgentId(Guid agentId)
+        public PageList<PolicyResponseDto> GetPoliciesByAgentId(Guid agentId, PageParameters pageParameters)
         {
-            var policies = _policyRepository.GetAll()
-                .Include(p => p.Agent)
+            var policiesQuery = _policyRepository.GetAll()
                 .Where(p => p.AgentId == agentId)
-                .ToList();
+                .AsQueryable();
 
-            return _mapper.Map<List<PolicyResponseDto>>(policies);
+            var paginatedPolicies = PageList<PolicyResponseDto>.ToPagedList(
+                _mapper.Map<List<PolicyResponseDto>>(policiesQuery.ToList()),
+                pageParameters.PageNumber,
+                pageParameters.PageSize
+            );
+
+            return paginatedPolicies;
         }
 
-        public List<PolicyResponseDto> GetPoliciesByCustomerId(Guid customerId)
+        public PageList<PolicyResponseDto> GetPoliciesByCustomerId(Guid customerId, PageParameters pageParameters)
         {
-            var policies = _policyRepository.GetAll()
-                .Where(p => p.CustomerId == customerId)
+            var policiesQuery = _policyRepository.GetAll()
+                .Where(p => p.CustomerId == customerId).Include(p => p.InsuranceScheme)
+                .Include(p => p.Nominees)
+                .Include(p => p.Installments)
+                .Include(p => p.Payments)
+                .Include(p => p.Claim)
+                .Include(p=>p.Documents)
                 .ToList();
 
-            return _mapper.Map<List<PolicyResponseDto>>(policies);
+            var paginatedPolicies = PageList<PolicyResponseDto>.ToPagedList(
+                _mapper.Map<List<PolicyResponseDto>>(policiesQuery.ToList()),
+                pageParameters.PageNumber,
+                pageParameters.PageSize
+            );
+
+            return paginatedPolicies;
         }
 
-        public List<PolicyResponseDto> GetPoliciesBySchemeId(Guid schemeId)
+        public PageList<PolicyResponseDto> GetPoliciesBySchemeId(Guid schemeId, PageParameters pageParameters)
         {
-            var policies = _policyRepository.GetAll()
-                .Include(p => p.InsuranceScheme)
+            var policiesQuery = _policyRepository.GetAll()
                 .Where(p => p.InsuranceSchemeId == schemeId)
-                .ToList();
+                .AsQueryable();
 
-            return _mapper.Map<List<PolicyResponseDto>>(policies);
+            var paginatedPolicies = PageList<PolicyResponseDto>.ToPagedList(
+                _mapper.Map<List<PolicyResponseDto>>(policiesQuery.ToList()),
+                pageParameters.PageNumber,
+                pageParameters.PageSize
+            );
+
+            return paginatedPolicies;
         }
 
-        public List<PolicyResponseDto> GetPoliciesByPlanId(Guid planId)
+        public PageList<PolicyResponseDto> GetPoliciesByPlanId(Guid planId, PageParameters pageParameters)
         {
-            var policies = _policyRepository.GetAll()
+            var policiesQuery = _policyRepository.GetAll()
                 .Where(p => p.InsuranceScheme.InsurancePlan.PlanId == planId)
-                .ToList();
+                .AsQueryable();
 
-            return _mapper.Map<List<PolicyResponseDto>>(policies);
+            var paginatedPolicies = PageList<PolicyResponseDto>.ToPagedList(
+                _mapper.Map<List<PolicyResponseDto>>(policiesQuery.ToList()),
+                pageParameters.PageNumber,
+                pageParameters.PageSize
+            );
+
+            return paginatedPolicies;
         }
-
     }
+
 }

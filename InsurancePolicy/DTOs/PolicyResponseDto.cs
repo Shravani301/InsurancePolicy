@@ -19,6 +19,7 @@ namespace InsurancePolicy.DTOs
         public string PolicyStatus { get; set; } // Enum value as string
         public string AgentName { get; set; } // From Agent Navigation Property
         public List<NomineeResponseDto> Nominees { get; set; }
+        public List<DocumentResponseDto> Documents { get; set; }
         public List<InstallmentResponseDto> Installments { get; set; }
         public List<PaymentResponseDto> Payments { get; set; }
 

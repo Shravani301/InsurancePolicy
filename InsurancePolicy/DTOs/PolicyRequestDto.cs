@@ -37,5 +37,6 @@ namespace InsurancePolicy.DTOs
         public Guid? InsuranceSettingId { get; set; } // Optional InsuranceSettings ID
 
         public List<NomineeRequestDto>? Nominees { get; set; } // List of nominees
+        public List<string>? SelectedDocumentIds { get; set; }
     }
 }

@@ -327,10 +327,24 @@ namespace InsurancePolicy.Mappers
                 .ForMember(dest => dest.AgentName, opt => opt.MapFrom(src => src.Agent != null ? $"{src.Agent.AgentFirstName} {src.Agent.AgentLastName}" : null)) // Combine Agent's first and last name
                 .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer != null ? $"{src.Customer.CustomerFirstName} {src.Customer.CustomerLastName}" : null)); // Combine Customer's first and last name
 
+            // Map CustomerQueryRequestDto to CustomerQuery and vice versa
+            CreateMap<CustomerQueryRequestDto, CustomerQuery>()
+                .ForMember(dest => dest.QueryId, opt => opt.Ignore()) // Ignore QueryId if not provided (for new queries)
+                .ForMember(dest => dest.CreatedAt, opt => opt.Ignore()) // Ignore CreatedAt as it is set by default
+                .ForMember(dest => dest.ResolvedAt, opt => opt.Ignore()) // Ignore ResolvedAt as it is handled separately
+                .ForMember(dest => dest.Response, opt => opt.Ignore()) // Ignore Response for request
+                .ForMember(dest => dest.IsResolved, opt => opt.Ignore()); // Ignore IsResolved for request
 
-            // Other mappings (e.g., Agent, Employee)
-            CreateMap<Agent, AgentInfoDto>();
-            CreateMap<Employee, EmployeeInfoDto>();
+            CreateMap<CustomerQuery, CustomerQueryResponseDto>()
+     .ForMember(dest => dest.ResolvedBy, opt => opt.MapFrom(src => src.ResolvedBy != null ? $"{src.ResolvedBy.EmployeeFirstName} {src.ResolvedBy.EmployeeLastName}" : null))
+     .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer != null ? $"{src.Customer.CustomerFirstName} {src.Customer.CustomerLastName}" : null));
+
+            CreateMap<Document, DocumentResponseDto>()
+            .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer != null ? src.Customer.CustomerFirstName + " " + src.Customer.CustomerLastName : null))
+            .ForMember(dest => dest.VerifiedByName, opt => opt.MapFrom(src => src.VerifiedBy != null ? src.VerifiedBy.EmployeeFirstName + " " + src.VerifiedBy.EmployeeLastName : null));
+            CreateMap<DocumentRequestDto, Document>()
+    .ForMember(dest => dest.DocumentId, opt => opt.MapFrom(src => Guid.NewGuid().ToString()));
+
 
         }
     }

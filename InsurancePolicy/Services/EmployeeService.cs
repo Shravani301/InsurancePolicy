@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using InsurancePolicy.DTOs;
 using InsurancePolicy.Exceptions.AdminExceptions;
+using InsurancePolicy.Exceptions.AgentExceptions;
 using InsurancePolicy.Exceptions.EmployeeExceptions;
+using InsurancePolicy.Helpers;
 using InsurancePolicy.Models;
 using InsurancePolicy.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -90,6 +92,37 @@ namespace InsurancePolicy.Services
             _repository.Update(existingEmployee);
             return true;
         }
+        public void UpdateSalary(Guid id, double salary)
+        {
+            var employee = _repository.GetAll()
+                .Include(e => e.User) // Include User navigation property
+                .FirstOrDefault(e => e.EmployeeId == id);
+
+            if (employee == null)
+                throw new EmployeeNotFoundException("No such employee found.");
+            employee.Salary = salary;
+            _repository.Update(employee);
+
+        }
+        public void Activate(Guid id)
+        {
+            var employee = _repository.GetById(id);
+            if (employee == null)
+                throw new EmployeeNotFoundException("No such employee found to activate");
+
+            _repository.Activate(employee);
+        }
+        public PageList<EmployeeResponseDto> GetAllPaginated(PageParameters pageParameters)
+        {
+            var employees = _repository.GetAll().ToList();
+            var pagedEmployees = PageList<EmployeeResponseDto>.ToPagedList(
+                _mapper.Map<List<EmployeeResponseDto>>(employees),
+                pageParameters.PageNumber,
+                pageParameters.PageSize
+            );
+            return pagedEmployees;
+        }
+        
         public bool Delete(Guid id)
         {
             var employee = _repository.GetById(id);

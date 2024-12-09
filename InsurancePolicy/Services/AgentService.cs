@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using InsurancePolicy.DTOs;
 using InsurancePolicy.Exceptions.AgentExceptions;
+using InsurancePolicy.Exceptions.PlanExceptions;
+using InsurancePolicy.Helpers;
 using InsurancePolicy.Models;
 using InsurancePolicy.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +25,17 @@ namespace InsurancePolicy.Services
             _mapper = mapper;
         }
 
+        public PageList<AgentResponseDto> GetAllPaginated(PageParameters pageParameters)
+        {
+            var agents = _repository.GetAll().Include(c=>c.Customers).ToList();
+            var paginatedAgents = PageList<AgentResponseDto>.ToPagedList(
+                _mapper.Map<List<AgentResponseDto>>(agents),
+                pageParameters.PageNumber,
+                pageParameters.PageSize
+            );
+
+            return paginatedAgents;
+        }
         public Guid Add(AgentRequestDto agentRequestDto)
         {
             // Ensure the "Agent" role exists
@@ -104,6 +117,47 @@ namespace InsurancePolicy.Services
             _repository.Update(existingAgent);
             return true;
         }
+        public void Activate(Guid id)
+        {
+            var agent = _repository.GetById(id);
+            if (agent == null)
+                throw new AgentNotFoundException("No such agent found to activate");
+
+            _repository.Activate(agent);
+        }
+        public List<AgentResponseDto> GetAgentsByCustomerId(Guid customerId)
+        {
+            // Find agents associated with the given customerId
+            var agents = _repository.GetAll()
+                .Include(a => a.Customers) // Include Customers navigation property
+                .Where(a => a.Customers.Any(c => c.CustomerId == customerId))
+                .ToList();
+
+            if (!agents.Any())
+                throw new AgentNotFoundException("No agents found for the specified customer.");
+
+            return _mapper.Map<List<AgentResponseDto>>(agents);
+        }
+        public PageList<AgentResponseDto> GetAgentsByCustomerId(Guid customerId, PageParameters pageParameters)
+        {
+            // Fetch agents associated with the given customerId
+            var agents = _repository.GetAll()
+                .Include(a => a.Customers) // Include Customers navigation property
+                .Where(a => a.Customers.Any(c => c.CustomerId == customerId))
+                .ToList();
+
+            if (!agents.Any())
+                throw new AgentNotFoundException("No agents found for the specified customer.");
+
+            // Apply pagination
+            var paginatedAgents = PageList<AgentResponseDto>.ToPagedList(
+                _mapper.Map<List<AgentResponseDto>>(agents),
+                pageParameters.PageNumber,
+                pageParameters.PageSize
+            );
+
+            return paginatedAgents;
+        }
 
         public bool Delete(Guid id)
         {
@@ -115,5 +169,6 @@ namespace InsurancePolicy.Services
             }
             throw new AgentNotFoundException("No such agent found to delete");
         }
+
     }
 }

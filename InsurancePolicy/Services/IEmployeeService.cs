@@ -1,4 +1,5 @@
 ﻿using InsurancePolicy.DTOs;
+using InsurancePolicy.Helpers;
 using InsurancePolicy.Models;
 
 namespace InsurancePolicy.Services
@@ -10,5 +11,8 @@ namespace InsurancePolicy.Services
         public Guid Add(EmployeeRequestDto employee);
         public bool Update(EmployeeRequestDto employee);
         public bool Delete(Guid id);
+        public void Activate(Guid id);
+        public void UpdateSalary(Guid id,double salary);
+        PageList<EmployeeResponseDto> GetAllPaginated(PageParameters pageParameters);
     }
 }

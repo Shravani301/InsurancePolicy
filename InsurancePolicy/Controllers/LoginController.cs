@@ -62,5 +62,33 @@ namespace InsurancePolicy.Controllers
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
             return jwt;
         }
+        [HttpPost("ChangePassword")]
+        public IActionResult ChangePassword([FromBody] PasswordChangeDto changePasswordDto)
+        {
+            // Find the user by their username
+            var existingUser = _context.Users.FirstOrDefault(u => u.UserName == changePasswordDto.UserName);
+            if (existingUser == null)
+            {
+                return BadRequest("User not found.");
+            }
+
+            // Verify the old password
+            if (!BCrypt.Net.BCrypt.Verify(changePasswordDto.OldPassword, existingUser.Password))
+            {
+                return BadRequest("Old password is incorrect.");
+            }
+
+            // Hash the new password
+            var newHashedPassword = BCrypt.Net.BCrypt.HashPassword(changePasswordDto.NewPassword);
+
+            // Overwrite the user's password with the new hash
+            existingUser.Password = newHashedPassword;
+
+            // Save changes to the database
+            _context.Users.Update(existingUser);
+            _context.SaveChanges();
+
+            return Ok(new { Message = "Password changed successfully." });
+        }
     }
 }

@@ -7,6 +7,7 @@ namespace InsurancePolicy.Services
     {
         Guid AddClaim(ClaimRequestDto requestDto);
         PageList<ClaimResponseDto> GetAllPaginated(PageParameters pageParameters);
+        PageList<ClaimResponseDto> GetClaimsByCustomerId(Guid customerId, PageParameters pageParameters);
         void UpdateClaim(ClaimRequestDto requestDto);
         void ApproveClaim(Guid claimId);
         void RejectClaim(Guid claimId, string rejectionReason);

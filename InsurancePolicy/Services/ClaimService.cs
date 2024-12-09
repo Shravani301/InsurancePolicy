@@ -36,7 +36,25 @@ namespace InsurancePolicy.Services
             _mapper.Map(requestDto, existingClaim);
             _claimRepository.Update(existingClaim);
         }
+        public PageList<ClaimResponseDto> GetClaimsByCustomerId(Guid customerId, PageParameters pageParameters)
+        {
+            var claims = _claimRepository.GetAll()
+                .Include(c => c.Policy)
+                .Include(c => c.Customer)
+                .Where(c => c.CustomerId == customerId) // Filter by customerId
+                .ToList();
 
+            if (!claims.Any())
+                throw new KeyNotFoundException("No claims found for the specified customer.");
+
+            var paginatedClaims = PageList<ClaimResponseDto>.ToPagedList(
+                _mapper.Map<List<ClaimResponseDto>>(claims),
+                pageParameters.PageNumber,
+                pageParameters.PageSize
+            );
+
+            return paginatedClaims;
+        }
         public void ApproveClaim(Guid claimId)
         {
             var claim = _claimRepository.GetById(claimId);

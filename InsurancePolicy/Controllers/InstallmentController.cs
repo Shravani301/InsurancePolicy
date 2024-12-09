@@ -1,5 +1,6 @@
 ﻿using InsurancePolicy.DTOs;
 using InsurancePolicy.Services;
+using InsurancePolicy.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsurancePolicy.Controllers
@@ -29,25 +30,34 @@ namespace InsurancePolicy.Controllers
             return Ok("Installment updated successfully.");
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet("{installmentId}")]
         public IActionResult GetInstallmentById(Guid installmentId)
         {
             var installment = _installmentService.GetInstallmentById(installmentId);
             return Ok(installment);
         }
 
-        [HttpGet("policy/{Id}")]
-        public IActionResult GetAllInstallmentsForPolicy(Guid policyId)
+        [HttpGet("policy/{policyId}")]
+        public IActionResult GetPaginatedInstallmentsForPolicy(Guid policyId, [FromQuery] PageParameters pageParameters)
         {
-            var installments = _installmentService.GetAllInstallmentsForPolicy(policyId);
+            var installments = _installmentService.GetPaginatedInstallmentsForPolicy(policyId, pageParameters);
+
+            // Add pagination metadata to headers
+            Response.Headers.Add("X-Total-Count", installments.TotalCount.ToString());
+            Response.Headers.Add("X-Page-Size", installments.PageSize.ToString());
+            Response.Headers.Add("X-Current-Page", installments.CurrentPage.ToString());
+            Response.Headers.Add("X-Total-Pages", installments.TotalPages.ToString());
+            Response.Headers.Add("X-Has-Next", installments.HasNext.ToString());
+            Response.Headers.Add("X-Has-Previous", installments.HasPrevious.ToString());
+
             return Ok(installments);
         }
 
-        [HttpDelete("{Id}")]
+        [HttpDelete("{installmentId}")]
         public IActionResult DeleteInstallment(Guid installmentId)
         {
             _installmentService.DeleteInstallment(installmentId);
-            return Ok("Installment deleted successfully.");
+            return Ok(new { Message = "Deleted Successfully!" });
         }
     }
 }

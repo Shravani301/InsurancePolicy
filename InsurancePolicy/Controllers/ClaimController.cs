@@ -67,5 +67,20 @@ namespace InsurancePolicy.Controllers
             // Return the customers in the response body
             return Ok(claims);
         }
+        [HttpGet("customer/{customerId}")]
+        public IActionResult GetClaimsByCustomer(Guid customerId, [FromQuery] PageParameters pageParameters)
+        {
+            var claims = _service.GetClaimsByCustomerId(customerId, pageParameters);
+
+            // Add pagination metadata to headers
+            Response.Headers.Add("X-Total-Count", claims.TotalCount.ToString());
+            Response.Headers.Add("X-Page-Size", claims.PageSize.ToString());
+            Response.Headers.Add("X-Current-Page", claims.CurrentPage.ToString());
+            Response.Headers.Add("X-Total-Pages", claims.TotalPages.ToString());
+            Response.Headers.Add("X-Has-Next", claims.HasNext.ToString());
+            Response.Headers.Add("X-Has-Previous", claims.HasPrevious.ToString());
+
+            return Ok(claims);
+        }
     }
 }

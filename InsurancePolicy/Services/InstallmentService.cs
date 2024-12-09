@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InsurancePolicy.DTOs;
+using InsurancePolicy.Helpers;
 using InsurancePolicy.Models;
 using InsurancePolicy.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -56,7 +57,20 @@ namespace InsurancePolicy.Services
 
             return _mapper.Map<List<InstallmentResponseDto>>(installments);
         }
+        public PageList<InstallmentResponseDto> GetPaginatedInstallmentsForPolicy(Guid policyId, PageParameters pageParameters)
+        {
+            var installments = _installmentRepository.GetAll()
+                .Where(i => i.PolicyId == policyId)
+                .ToList();
 
+            var paginatedInstallments = PageList<InstallmentResponseDto>.ToPagedList(
+                _mapper.Map<List<InstallmentResponseDto>>(installments),
+                pageParameters.PageNumber,
+                pageParameters.PageSize
+            );
+
+            return paginatedInstallments;
+        }
         public bool DeleteInstallment(Guid installmentId)
         {
             var installment = _installmentRepository.GetById(installmentId);

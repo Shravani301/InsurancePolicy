@@ -1,4 +1,5 @@
 ﻿using InsurancePolicy.DTOs;
+using InsurancePolicy.Helpers;
 
 namespace InsurancePolicy.Services
 {
@@ -8,6 +9,7 @@ namespace InsurancePolicy.Services
         bool UpdateInstallment(InstallmentRequestDto installmentDto);
         InstallmentResponseDto GetInstallmentById(Guid installmentId);
         List<InstallmentResponseDto> GetAllInstallmentsForPolicy(Guid policyId);
+        PageList<InstallmentResponseDto> GetPaginatedInstallmentsForPolicy(Guid policyId, PageParameters pageParameters);
         bool DeleteInstallment(Guid installmentId);
     }
 }

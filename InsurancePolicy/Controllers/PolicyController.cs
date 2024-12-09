@@ -1,4 +1,5 @@
 ﻿using InsurancePolicy.DTOs;
+using InsurancePolicy.Helpers;
 using InsurancePolicy.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,13 +14,6 @@ namespace InsurancePolicy.Controllers
         public PolicyController(IPolicyService service)
         {
             _service = service;
-        }
-
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var policies = _service.GetAll();
-            return Ok(policies);
         }
 
         [HttpGet("{id}")]
@@ -47,34 +41,75 @@ namespace InsurancePolicy.Controllers
         public IActionResult Delete(Guid id)
         {
             _service.Delete(id);
-            return Ok("Policy deleted successfully.");
+            return Ok(new { Message = "Deleted Successfully!" });
+        }
+        [HttpGet]
+        public IActionResult GetAll([FromQuery] PageParameters pageParameters)
+        {
+            var policies = _service.GetAll(pageParameters);
+
+            Response.Headers.Add("X-Total-Count", policies.TotalCount.ToString());
+            Response.Headers.Add("X-Total-Pages", policies.TotalPages.ToString());
+            Response.Headers.Add("X-Current-Page", policies.CurrentPage.ToString());
+            Response.Headers.Add("X-Has-Next", policies.HasNext.ToString());
+            Response.Headers.Add("X-Has-Previous", policies.HasPrevious.ToString());
+
+            return Ok(policies);
         }
 
         [HttpGet("agent/{agentId}")]
-        public IActionResult GetPoliciesByAgentId(Guid agentId)
+        public IActionResult GetPoliciesByAgentId(Guid agentId, [FromQuery] PageParameters pageParameters)
         {
-            var policies = _service.GetPoliciesByAgentId(agentId);
+            var policies = _service.GetPoliciesByAgentId(agentId, pageParameters);
+
+            Response.Headers.Add("X-Total-Count", policies.TotalCount.ToString());
+            Response.Headers.Add("X-Total-Pages", policies.TotalPages.ToString());
+            Response.Headers.Add("X-Current-Page", policies.CurrentPage.ToString());
+            Response.Headers.Add("X-Has-Next", policies.HasNext.ToString());
+            Response.Headers.Add("X-Has-Previous", policies.HasPrevious.ToString());
+
             return Ok(policies);
         }
 
         [HttpGet("customer/{customerId}")]
-        public IActionResult GetPoliciesByCustomerId(Guid customerId)
+        public IActionResult GetPoliciesByCustomerId(Guid customerId, [FromQuery] PageParameters pageParameters)
         {
-            var policies = _service.GetPoliciesByCustomerId(customerId);
+            var policies = _service.GetPoliciesByCustomerId(customerId, pageParameters);
+
+            Response.Headers.Add("X-Total-Count", policies.TotalCount.ToString());
+            Response.Headers.Add("X-Total-Pages", policies.TotalPages.ToString());
+            Response.Headers.Add("X-Current-Page", policies.CurrentPage.ToString());
+            Response.Headers.Add("X-Has-Next", policies.HasNext.ToString());
+            Response.Headers.Add("X-Has-Previous", policies.HasPrevious.ToString());
+
             return Ok(policies);
         }
 
         [HttpGet("scheme/{schemeId}")]
-        public IActionResult GetPoliciesBySchemeId(Guid schemeId)
+        public IActionResult GetPoliciesBySchemeId(Guid schemeId, [FromQuery] PageParameters pageParameters)
         {
-            var policies = _service.GetPoliciesBySchemeId(schemeId);
+            var policies = _service.GetPoliciesBySchemeId(schemeId, pageParameters);
+
+            Response.Headers.Add("X-Total-Count", policies.TotalCount.ToString());
+            Response.Headers.Add("X-Total-Pages", policies.TotalPages.ToString());
+            Response.Headers.Add("X-Current-Page", policies.CurrentPage.ToString());
+            Response.Headers.Add("X-Has-Next", policies.HasNext.ToString());
+            Response.Headers.Add("X-Has-Previous", policies.HasPrevious.ToString());
+
             return Ok(policies);
         }
 
         [HttpGet("plan/{planId}")]
-        public IActionResult GetPoliciesByPlanId(Guid planId)
+        public IActionResult GetPoliciesByPlanId(Guid planId, [FromQuery] PageParameters pageParameters)
         {
-            var policies = _service.GetPoliciesByPlanId(planId);
+            var policies = _service.GetPoliciesByPlanId(planId, pageParameters);
+
+            Response.Headers.Add("X-Total-Count", policies.TotalCount.ToString());
+            Response.Headers.Add("X-Total-Pages", policies.TotalPages.ToString());
+            Response.Headers.Add("X-Current-Page", policies.CurrentPage.ToString());
+            Response.Headers.Add("X-Has-Next", policies.HasNext.ToString());
+            Response.Headers.Add("X-Has-Previous", policies.HasPrevious.ToString());
+
             return Ok(policies);
         }
     }

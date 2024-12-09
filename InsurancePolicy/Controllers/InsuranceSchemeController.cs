@@ -62,11 +62,18 @@ namespace InsurancePolicy.Controllers
             return Ok(scheme);
         }
 
+        [HttpGet("{schemeId}/customer/{customerId}/exists")]
+        public IActionResult IsCustomerAssociatedWithScheme(Guid schemeId, Guid customerId)
+        {
+            var isAssociated = _service.IsCustomerAssociatedWithScheme(schemeId, customerId);
+            return Ok(new { IsAssociated = isAssociated });
+        }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
             _service.Delete(id);
-            return Ok("Deleted Successfully!");
+            return Ok(new { Message = "Deleted Successfully!" });
         }
     }
 }

@@ -121,7 +121,22 @@ namespace InsurancePolicy.Services
             _repository.Update(updatedScheme);
             return true;
         }
+        public bool IsCustomerAssociatedWithScheme(Guid schemeId, Guid customerId)
+        {
+            // Fetch the scheme including its plan and related policies
+            var scheme = _repository.GetAll()
+                .Include(s => s.Policies) // Include related policies
+                .Include(s => s.InsurancePlan) // Include the related plan
+                .FirstOrDefault(s => s.SchemeId == schemeId);
 
+            if (scheme == null)
+                throw new SchemeNotFoundException("No such scheme found.");
+
+            // Check if the customer is associated with any policy under this scheme
+            var isCustomerAssociated = scheme.Policies.Any(p => p.CustomerId == customerId);
+
+            return isCustomerAssociated;
+        }
         public bool Delete(Guid id)
         {
             var scheme = _repository.GetById(id);
