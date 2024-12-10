@@ -8,6 +8,7 @@ namespace InsurancePolicy.Services
     {
         PageList<DocumentResponseDto> GetAllPaginated(PageParameters pageParameters);
         List<DocumentResponseDto> GetDocumentsByRoleId(Guid roleId, string roleType);
+        List<DocumentResponseDto> GetDocumentsByCustomerId(Guid roleId);
         string Add(DocumentRequestDto documentRequestDto);
         bool Update(DocumentRequestDto documentRequestDto);
         void ApproveDocument(string documentId, Guid employeeId);

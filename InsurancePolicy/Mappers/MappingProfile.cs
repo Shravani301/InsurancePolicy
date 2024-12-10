@@ -240,7 +240,7 @@ namespace InsurancePolicy.Mappers
 
             CreateMap<Installment, InstallmentResponseDto>()
                 .ForMember(dest => dest.PolicyName, opt => opt.MapFrom(src => src.InsurancePolicy != null ? src.InsurancePolicy.InsuranceScheme.SchemeName : "N/A"));
-            CreateMap<PaymentRequestDto, Payment>();
+            CreateMap<PaymentRequestDto, Payment>().ForMember(dest=>dest.PolicyId, opt => opt.MapFrom(src => src.PolicyId));
             CreateMap<Payment, PaymentResponseDto>()
                 .ForMember(dest => dest.PolicyName, opt => opt.MapFrom(src => src.Policy.InsuranceScheme.SchemeName));
 
@@ -307,11 +307,6 @@ namespace InsurancePolicy.Mappers
             CreateMap<Installment, InstallmentResponseDto>()
                 .ForMember(dest => dest.PolicyName, opt => opt.MapFrom(src => src.InsurancePolicy != null ? src.InsurancePolicy.InsuranceScheme.SchemeName : null)); // Handle null InsurancePolicy
 
-            // Map PaymentRequestDto to Payment
-            CreateMap<PaymentRequestDto, Payment>()
-                .ForMember(dest => dest.PolicyId, opt => opt.Ignore()); // PolicyId will be set in service
-
-            // Map Payment to PaymentResponseDto
             CreateMap<Payment, PaymentResponseDto>()
                 .ForMember(dest => dest.PolicyName, opt => opt.MapFrom(src => src.Policy != null ? src.Policy.InsuranceScheme.SchemeName : null)); // Handle null Policy
 

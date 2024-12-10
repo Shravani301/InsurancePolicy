@@ -36,6 +36,11 @@ namespace InsurancePolicy.Controllers
                     Response.Headers.Add("Jwt", token);
                     if(existingUser.Role.Name=="Customer")
                             return Ok(new { roleName = existingUser.Role.Name, customerId=existingUser.Customer.CustomerId });
+                    else if (existingUser.Role.Name == "Agent")
+                        return Ok(new { roleName = existingUser.Role.Name, customerId = existingUser.Agent.AgentId });
+                    else if (existingUser.Role.Name == "Employee")
+                        return Ok(new { roleName = existingUser.Role.Name, customerId = existingUser.Employee.EmployeeId });
+
                     return Ok(new { roleName = existingUser.Role.Name });
                 }
 

@@ -68,6 +68,12 @@ namespace InsurancePolicy.Controllers
             var isAssociated = _service.IsCustomerAssociatedWithScheme(schemeId, customerId);
             return Ok(new { IsAssociated = isAssociated });
         }
+        [HttpPut("activate")]
+        public IActionResult Activate(Guid id)
+        {
+            _service.Activate(id);
+            return Ok(id);
+        }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)

@@ -52,6 +52,20 @@ namespace InsurancePolicy.Services
 
             return _mapper.Map<List<DocumentResponseDto>>(documents);
         }
+        public List<DocumentResponseDto> GetDocumentsByCustomerId(Guid customerId)
+        {
+            var documents = _repository.GetAll()
+                .Where(d => (d.CustomerId == customerId) ||
+                            (d.VerifiedById == customerId))
+                .Include(d => d.Customer)
+                .Include(d => d.VerifiedBy)
+                .ToList();
+
+            if (!documents.Any())
+                throw new DocumentsDoesNotExistException("No documents found for the specified role.");
+
+            return _mapper.Map<List<DocumentResponseDto>>(documents);
+        }
         public DocumentResponseDto GetById(string documentId)
         {
             var document = _repository.GetAll()

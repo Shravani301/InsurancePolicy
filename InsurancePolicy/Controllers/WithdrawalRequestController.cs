@@ -26,14 +26,14 @@ namespace InsurancePolicy.Controllers
         public IActionResult ApproveRequest(Guid requestId)
         {
             _service.ApproveRequest(requestId);
-            return Ok("Request approved successfully.");
+            return Ok(new { Message="Request approved successfully." });
         }
 
         [HttpPut("{requestId}/reject")]
         public IActionResult RejectRequest(Guid requestId)
         {
             _service.RejectRequest(requestId);
-            return Ok("Request rejected successfully.");
+            return Ok(new { Message = "Request rejected successfully." });
         }
 
         [HttpGet("{requestId}")]

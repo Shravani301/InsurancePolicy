@@ -51,6 +51,14 @@ namespace InsurancePolicy.Controllers
             return Ok(documents);
         }
 
+        [HttpGet("customer/{customerId}")]
+        public IActionResult GetDocumentByCustomerId(Guid customerId) // Use 'customerId' to match the route parameter
+        {
+            var documents = _service.GetDocumentsByCustomerId(customerId); // Use 'customerId' here too
+            return Ok(documents);
+        }
+
+
         [HttpPost]
         public IActionResult Add([FromBody] DocumentRequestDto documentRequestDto)
         {

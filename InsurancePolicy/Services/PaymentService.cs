@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using InsurancePolicy.DTOs;
+using InsurancePolicy.Helpers;
 using InsurancePolicy.Models;
 using InsurancePolicy.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace InsurancePolicy.Services
 {
@@ -48,10 +50,24 @@ namespace InsurancePolicy.Services
 
             return _mapper.Map<List<PaymentResponseDto>>(payments);
         }
+        public PageList<PaymentResponseDto> GetAllPaginated(PageParameters pageParameters)
+        {
+            var paymentsQuery = _paymentRepository.GetAll()
+                .Include(p => p.Policy)
+                .AsQueryable();
+
+            var paginatedPayments = PageList<PaymentResponseDto>.ToPagedList(
+                _mapper.Map<List<PaymentResponseDto>>(paymentsQuery.ToList()),
+                pageParameters.PageNumber,
+                pageParameters.PageSize
+            );
+
+            return paginatedPayments;
+        }
 
         public List<PaymentResponseDto> GetAllPayments()
         {
-            var payments = _paymentRepository.GetAll().ToList();
+            var payments = _paymentRepository.GetAll().Include(p=> p.Policy).ToList();
             return _mapper.Map<List<PaymentResponseDto>>(payments);
         }
     }

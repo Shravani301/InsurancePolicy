@@ -27,7 +27,7 @@ namespace InsurancePolicy.Controllers
         public IActionResult UpdateInstallment(InstallmentRequestDto installmentDto)
         {
             _installmentService.UpdateInstallment(installmentDto);
-            return Ok("Installment updated successfully.");
+            return Ok(new { Message = "Installment updated successfully." });
         }
 
         [HttpGet("{installmentId}")]

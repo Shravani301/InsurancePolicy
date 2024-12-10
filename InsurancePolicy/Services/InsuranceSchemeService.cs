@@ -44,6 +44,15 @@ namespace InsurancePolicy.Services
             return paginatedSchemes;
         }
 
+        public void Activate(Guid id)
+        {
+            var scheme = _repository.GetById(id);
+            if (scheme == null)
+                throw new SchemeNotFoundException("No such scheme found to activate");
+
+            _repository.Activate(scheme);
+        }
+
         public PageList<InsuranceSchemeResponseDto> GetAllByPlanIdPaginated(Guid planId, PageParameters pageParameters)
         {
             var plan = _planRepository.GetById(planId);

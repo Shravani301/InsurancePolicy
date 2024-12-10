@@ -13,5 +13,6 @@ namespace InsurancePolicy.Services
         Guid Add(InsuranceSchemeRequestDto scheme);
         bool Update(InsuranceSchemeRequestDto scheme);
         bool Delete(Guid id);
+        void Activate(Guid id);
     }
 }
